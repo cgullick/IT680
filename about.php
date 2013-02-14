@@ -43,8 +43,8 @@
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="/ems/index.html">Home</a></li>
-              <li><a href="/ems/about.html">About</a></li>
+              <li class="active"><a href="index.php">Home</a></li>
+              <li><a href="./about.html">About</a></li>
               <li><a href="#contact">Contact</a></li>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
