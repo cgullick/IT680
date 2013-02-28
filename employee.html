@@ -112,19 +112,8 @@
 
               $db_handle = mysql_connect($server, $username, $password);
               $db_found = mysql_select_db($database, $db_handle)
-
-              if ($db_found){
-                $SQL = "SELECT First_Name FROM user_profile where User_ID = '1'";
-                $result = mysqli_query($db_handle,"SELECT * FROM user_profile");
-
-                  while($row = mysqli_fetch_array($result)){
-                  //print $db_field['First_Name']."<BR>";
-                  print $row['First_Name'] . " " . $row['Last_Name'];
-                  print "<br />";
-                }
-              }
-            ?>-->
-          </div>
+            ?>
+          </div>-->
 
           </div><!--/row-->
         </div><!--/span-->
