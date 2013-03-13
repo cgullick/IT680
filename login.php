@@ -1,4 +1,7 @@
 <?php
+	
+	session_start();
+
     $username = $_POST['username'];
     $password = $_POST['password'];
 
@@ -21,7 +24,8 @@
 	    	}
 	    	if ($username == $dbusername && $password == $dbpassword)
 	    	{
-	    		echo "Welcome!";
+	    		echo "Welcome! <a href='employee.php'Click</a> here to enter.";
+	    		$_SESSION['username']=$dbusername;
 	    	}
 	    	else
 	    		echo "Incorrect password.";

@@ -1,21 +1,14 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Maverick EMS</title>
 
-<?php
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    if ($username && $password) {
-
-    $connect = mysql_connect("localhost","root","") or die ("Couldn't connect!");
-    mysql_select_db("emp_management") or die("Couldn't find db");
-
-    }
-    else 
-      die("Please enter a username and a password");
+    <?php
+      session_start();
+      echo "Welcome, ".$_SESSION['username']."!<br><a href='logout.php'>Logout</a>";
     ?>
 
 
