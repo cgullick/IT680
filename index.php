@@ -59,11 +59,16 @@
                 </ul>
               </li>-->
             </ul>
-            <form class="navbar-form pull-right">
-              <input class="span2" type="text" placeholder="Username  ">
+<!--             <form class="navbar-form pull-right" action='login.php' method='POST'>
+              <input class="span2" type="text" placeholder="Username">
               <input class="span2" type="password" placeholder="Password">
-              <button type="submit" class="btn">Sign in</button>
-            </form>
+              <input type="submit" value='Log in'>
+            </form> -->
+              <form class='navbar-form pull-right' action='login.php' method='POST'>
+                    <input class='span2' type='text' name='username' placeholder='username'>
+                    <input class='span2' type='password' name='password' placeholder='password'>
+                    <input type='submit' value='Log in' href='./employee.html'>
+              </form>
           </div><!--/.nav-collapse -->
         </div>
       </div>
