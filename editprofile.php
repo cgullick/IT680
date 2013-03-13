@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -83,8 +85,8 @@
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Welcome To Your User Profile!</h1>
-            <p>Here you can view your information and update it.</p>
+            <h1>Edit your User Profile</h1>
+            <p>Here you can edit your update user profile</p>
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
@@ -102,7 +104,7 @@
             City: <input type="text" name="city"><br />
             State: <input type="text" name="state"><br />
             Zip: <input type="text" name="zip"><br />
-            <a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
+
 
             
             <!--<?php

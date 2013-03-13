@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -92,7 +92,18 @@
           <div class="row-fluid">
             
           <div>
-            
+
+            <?php
+              $username = "root";
+              $password = "root";
+              $database = "emp_management";
+              $server = "localhost";
+
+              $db_handle = mysql_connect($server, $username, $password);
+              $db_found = mysql_select_db($database, $db_handle)
+              echo "$username";
+            ?>
+            echo "hello";
             First Name: <input type="text" name="fname"><br />
             Last Name: <input type="text" name="lname"><br />
             Email: <input type="text" name="email"><br />
@@ -102,7 +113,7 @@
             City: <input type="text" name="city"><br />
             State: <input type="text" name="state"><br />
             Zip: <input type="text" name="zip"><br />
-            <a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
+
 
             
             <!--<?php
@@ -147,3 +158,5 @@
 
   </body>
 </html>
+
+?>
