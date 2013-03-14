@@ -1,16 +1,15 @@
 <?php
+ 
+session_start();
+
+include 'dbconnect.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Maverick EMS</title>
-
-    <?php
-      session_start();
-      echo "Welcome, ".$_SESSION['username']."!<br><a href='logout.php'>Logout</a>";
-    ?>
-
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -64,7 +63,7 @@
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -82,11 +81,11 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="#">User Profile</a></li>
-              <li><a href="./timeclock.html">Time Clock</a></li>
-              <li><a href="./schedule.html">Schedule</a></li>
-              <li><a href="./availability.html">Availabilty</a></li>
-              <li><a href="./requesttimeoff.html">Request Time Off</a></li>
+              <li class="actice"><a href="./employee.php">User Profile</a></li>
+              <li><a href="./timeclock.php">Time Clock</a></li>
+              <li><a href="./schedule.php">Schedule</a></li>
+              <li><a href="./availability.php">Availabilty</a></li>
+              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -102,7 +101,7 @@
             
           <div>
             
-            First Name: <input type="text" name="fname"><br />
+            First Name: <?php echo "$dbusername"; ?><br />
             Last Name: <input type="text" name="lname"><br />
             Email: <input type="text" name="email"><br />
             Phone Number: <input type="text" name="phone"><br />

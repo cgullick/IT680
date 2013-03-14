@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,7 +60,7 @@
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -76,10 +79,10 @@
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
               <li class="actice"><a href="#">User Profile</a></li>
-              <li><a href="./timeclock.html">Time Clock</a></li>
-              <li><a href="./schedule.html">Schedule</a></li>
-              <li><a href="./availability.html">Availabilty</a></li>
-              <li><a href="./requesttimeoff.html">Request Time Off</a></li>
+              <li><a href="./timeclock.php">Time Clock</a></li>
+              <li><a href="./schedule.php">Schedule</a></li>
+              <li><a href="./availability.php">Availabilty</a></li>
+              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

@@ -69,7 +69,7 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>
         <!--<button class="btn btn-large btn-primary" type="submit">Sign in</button>-->
-        <!--<p><a class="btn" href="./employee.html">Sign in</a></p>-->
+        <!--<p><a class="btn" href="./employee.php">Sign in</a></p>-->
       </form>
 
     </div> <!-- /container -->

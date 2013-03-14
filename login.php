@@ -7,10 +7,10 @@
 
     if ($username && $password) 
     {
-	    $connect = mysql_connect("localhost","root","root") or die ("Couldn't connect!");
-	    mysql_select_db("phplogin") or die("Couldn't find database.");
+	    $connect = mysql_connect("64.254.188.188","it680","it680") or die ("Couldn't connect!");
+	    mysql_select_db("emp_management") or die("Couldn't find database.");
 
-	    $query = mysql_query("SELECT * FROM users WHERE username='$username'");
+	    $query = mysql_query("SELECT u.username, p.password FROM user_profile u join password p on p.user_id = u.user_id WHERE u.username='$username' and p.password='$password'");
 
 	    $numrows = mysql_num_rows($query);
 
@@ -24,8 +24,9 @@
 	    	}
 	    	if ($username == $dbusername && $password == $dbpassword)
 	    	{
-	    		echo "Welcome! <a href='employee.php'Click</a> here to enter.";
+	    		//echo "Welcome! <a href='employee.php'Click</a> here to enter.";
 	    		$_SESSION['username']=$dbusername;
+	    		header("Location: ./employee.php");
 	    	}
 	    	else
 	    		echo "Incorrect password.";

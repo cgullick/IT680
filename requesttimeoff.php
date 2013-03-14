@@ -73,11 +73,11 @@
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="./employee.html">User Profile</a></li>
-              <li><a href="./timeclock.html">Time Clock</a></li>
-              <li><a href="./schedule.html">Schedule</a></li>
-              <li><a href="./availability.html">Availabilty</a></li>
-              <li><a href="./requesttimeoff.html">Request Time Off</a></li>
+              <li class="actice"><a href="./employee.php">User Profile</a></li>
+              <li><a href="./timeclock.php">Time Clock</a></li>
+              <li><a href="./schedule.php">Schedule</a></li>
+              <li><a href="./availability.php">Availabilty</a></li>
+              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
