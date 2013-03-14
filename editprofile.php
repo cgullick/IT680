@@ -1,7 +1,13 @@
 <?php
-
 session_start();
+$connection = mysql_connect('64.254.188.188','it680','it680') or die ("Couldn't connect to server.");  
+              $db = mysql_select_db('emp_management', $connection) or die ("Couldn't select database.");  
 
+              $search=$_SESSION['username']; 
+
+              $data = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
+              $query = mysql_query($data) or die("Couldn't execute query. ". mysql_error()); 
+              $data2 = mysql_fetch_array($query); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +66,7 @@ session_start();
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
+              Logged in as <a href="#" class="navbar-link">Username</a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -79,10 +85,10 @@ session_start();
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
               <li class="actice"><a href="#">User Profile</a></li>
-              <li><a href="./timeclock.php">Time Clock</a></li>
-              <li><a href="./schedule.php">Schedule</a></li>
-              <li><a href="./availability.php">Availabilty</a></li>
-              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
+              <li><a href="./timeclock.html">Time Clock</a></li>
+              <li><a href="./schedule.html">Schedule</a></li>
+              <li><a href="./availability.html">Availabilty</a></li>
+              <li><a href="./requesttimeoff.html">Request Time Off</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -97,9 +103,9 @@ session_start();
           <div class="row-fluid">
             
           <div>
-            
-            First Name: <input type="text" name="fname"><br />
-            Last Name: <input type="text" name="lname"><br />
+          <!--<?php echo $_SESSION['username']; ?>-->
+            First Name: <input type="text" name="fname" value="<?php echo $data2["First_Name"]; ?>"><br />
+            Last Name: <input type="text" name="lname" value="<?php echo $data2["Last_Name"]; ?>"><br />
             Email: <input type="text" name="email"><br />
             Phone Number: <input type="text" name="phone"><br />
             Rank: <display type="text" name="rank"><br />
