@@ -1,4 +1,5 @@
 <?php
+//something
     $db = mysql_connect('localhost', 'phpriot_demo', 'phpriot123');
  
     if (!$db) {
