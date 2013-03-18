@@ -1,13 +1,18 @@
 <?php
+
 session_start();
+
+include 'dbconnect.php';
+
 $connection = mysql_connect('64.254.188.188','it680','it680') or die ("Couldn't connect to server.");  
               $db = mysql_select_db('emp_management', $connection) or die ("Couldn't select database.");  
-
+ 
               $search=$_SESSION['username']; 
-
+ 
               $data = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
               $query = mysql_query($data) or die("Couldn't execute query. ". mysql_error()); 
-              $data2 = mysql_fetch_array($query); 
+              $data2 = mysql_fetch_array($query);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +71,7 @@ $connection = mysql_connect('64.254.188.188','it680','it680') or die ("Couldn't 
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -85,10 +90,10 @@ $connection = mysql_connect('64.254.188.188','it680','it680') or die ("Couldn't 
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
               <li class="actice"><a href="#">User Profile</a></li>
-              <li><a href="./timeclock.html">Time Clock</a></li>
-              <li><a href="./schedule.html">Schedule</a></li>
-              <li><a href="./availability.html">Availabilty</a></li>
-              <li><a href="./requesttimeoff.html">Request Time Off</a></li>
+              <li><a href="./timeclock.php">Time Clock</a></li>
+              <li><a href="./schedule.php">Schedule</a></li>
+              <li><a href="./availability.php">Availabilty</a></li>
+              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -104,15 +109,15 @@ $connection = mysql_connect('64.254.188.188','it680','it680') or die ("Couldn't 
             
           <div>
           <!--<?php echo $_SESSION['username']; ?>-->
-            First Name: <input type="text" name="fname" value="<?php echo $data2["First_Name"]; ?>"><br />
-            Last Name: <input type="text" name="lname" value="<?php echo $data2["Last_Name"]; ?>"><br />
-            Email: <input type="text" name="email"><br />
-            Phone Number: <input type="text" name="phone"><br />
-            Rank: <display type="text" name="rank"><br />
-            Address: <input type="text" name="address"><br />
-            City: <input type="text" name="city"><br />
-            State: <input type="text" name="state"><br />
-            Zip: <input type="text" name="zip"><br />
+            First Name: <input type="text" name="fname" value="<?php echo $data2['First_Name']; ?>"><br />
+            Last Name: <input type="text" name="lname" value="<?php echo $data2['Last_Name']; ?>"><br />
+            Email: <input type="text" name="email" value="<?php echo $data2['Email']; ?>"><br />
+            Phone Number: <input type="text" name="phone" value="<?php echo $data2['Phone_Number']; ?>"><br />
+            Rank: <display type="text" name="rank" value="<?php echo $data2['Rank']; ?>"><br />
+            Address: <input type="text" name="address" value="<?php echo $data2['Address']; ?>"><br />
+            City: <input type="text" name="city" value="<?php echo $data2['City']; ?>"><br />
+            State: <input type="text" name="state" value="<?php echo $data2['State']; ?>"><br />
+            Zip: <input type="text" name="zip" value="<?php echo $data2['Zip']; ?>"><br />
 
 
             

@@ -7,8 +7,10 @@ mysql_select_db("emp_management") or die("Couldn't find database.");
 
 while ($row = mysql_fetch_assoc($query))
 {
-	$fname = $row['First_Name'];
 	$dbusername = $row['username'];
+	$First_Name = $row['First_Name'];
+	$Last_name = $row['Last_Name'];
+	
 	//$dbpassword = $row['password'];
 }
 
