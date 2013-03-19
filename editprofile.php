@@ -110,29 +110,22 @@ mysql_query($UpdateQuery, $connection);
           <div class="row-fluid">
             
           <div>
-          <!--<?php echo $_SESSION['username']; ?>-->
+
             <?php
 
             echo "<form action=editprofile.php method=post>";
             echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
             echo "First Name: <input type=text name=fname value=" . $data2['First_Name'] . "><br />";
             echo "Last Name: <input type=text name=lname value=" . $data2['Last_Name'] . "><br />";
+            echo "Email <input type=text name=email value=" . $data2['Email'] . " ><br />";
+            echo "Phone Number <input type=text name=phonenumber value=" . $data2['Email'] . " ><br />";
+            echo "Rank: $data2[Rank]" . "<br />";
+            echo "City <input type=text name=city value=" . $data2['City'] . "><br />";
+            echo "State <input type=text name=city value=" . $data2['State'] . "><br />";
+            echo "Zip <input type=text name=zip value=" . $data2['Zip'] . "><br />";
             echo "<input type=submit name=update value=Update>";
             
             ?>
-
-
-<!--        Last Name: <input type="text" name="lname" value="<?php //echo $data2['Last_Name']; ?>"><br />
-            Email: <input type="text" name="email" value="<?php //echo $data2['Email']; ?>"><br />
-            Phone Number: <input type="text" name="phone" value="<?php //echo $data2['Phone_Number']; ?>"><br />
-            Rank: <?php //echo $data2['Rank']; ?><br />
-            Address: <input type="text" name="address" value="<?php //echo $data2['Address']; ?>"><br />
-            City: <input type="text" name="city" value="<?php //echo $data2['City']; ?>"><br />
-            State: <input type="text" name="state" value="<?php //echo $data2['State']; ?>"><br />
-            Zip: <input type="text" name="zip" value="<?php //echo $data2['Zip']; ?>"><br />
-            <input type="submit" name="update" value="Update">
-            <!-- <a class="btn" type="button">Update</a> -->
-
           </div>
 
           </div><!--/row-->
