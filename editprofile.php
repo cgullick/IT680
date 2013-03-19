@@ -4,14 +4,16 @@ session_start();
 
 include 'dbconnect.php';
 
-$connection = mysql_connect('64.254.188.188','it680','it680') or die ("Couldn't connect to server.");  
-              $db = mysql_select_db('emp_management', $connection) or die ("Couldn't select database.");  
- 
-              $search=$_SESSION['username']; 
- 
-              $data = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
-              $query = mysql_query($data) or die("Couldn't execute query. ". mysql_error()); 
-              $data2 = mysql_fetch_array($query);
+$First_Name = $_POST['First_Name'];
+$Last_Name = $_POST['Last_Name'];
+
+if(isset($_POST['update'])) {
+
+//$UpdateQuery = 'UPDATE `user_profile` SET First_Name=$_POST[fname]';
+$UpdateQuery = "UPDATE user_profile SET First_Name = '$_POST[fname]', Last_Name = '$_POST[lname]' WHERE User_ID='$_POST[hidden]' ";
+mysql_query($UpdateQuery, $connection);
+
+};
 
 ?>
 <!DOCTYPE html>
@@ -89,7 +91,7 @@ $connection = mysql_connect('64.254.188.188','it680','it680') or die ("Couldn't 
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="#">User Profile</a></li>
+              <li class="actice"><a href="./employee.php">User Profile</a></li>
               <li><a href="./timeclock.php">Time Clock</a></li>
               <li><a href="./schedule.php">Schedule</a></li>
               <li><a href="./availability.php">Availabilty</a></li>
@@ -109,28 +111,29 @@ $connection = mysql_connect('64.254.188.188','it680','it680') or die ("Couldn't 
             
           <div>
           <!--<?php echo $_SESSION['username']; ?>-->
-            First Name: <input type="text" name="fname" value="<?php echo $data2['First_Name']; ?>"><br />
-            Last Name: <input type="text" name="lname" value="<?php echo $data2['Last_Name']; ?>"><br />
-            Email: <input type="text" name="email" value="<?php echo $data2['Email']; ?>"><br />
-            Phone Number: <input type="text" name="phone" value="<?php echo $data2['Phone_Number']; ?>"><br />
-            Rank: <display type="text" name="rank" value="<?php echo $data2['Rank']; ?>"><br />
-            Address: <input type="text" name="address" value="<?php echo $data2['Address']; ?>"><br />
-            City: <input type="text" name="city" value="<?php echo $data2['City']; ?>"><br />
-            State: <input type="text" name="state" value="<?php echo $data2['State']; ?>"><br />
-            Zip: <input type="text" name="zip" value="<?php echo $data2['Zip']; ?>"><br />
+            <?php
 
-
+            echo "<form action=editprofile.php method=post>";
+            echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
+            echo "First Name: <input type=text name=fname value=" . $data2['First_Name'] . "><br />";
+            echo "Last Name: <input type=text name=lname value=" . $data2['Last_Name'] . "><br />";
+            echo "<input type=submit name=update value=Update>";
             
-            <!--<?php
-              $username = "root";
-              $password = "";
-              $database = "emp_management";
-              $server = "localhost";
-
-              $db_handle = mysql_connect($server, $username, $password);
-              $db_found = mysql_select_db($database, $db_handle)
             ?>
-          </div>-->
+
+
+<!--        Last Name: <input type="text" name="lname" value="<?php //echo $data2['Last_Name']; ?>"><br />
+            Email: <input type="text" name="email" value="<?php //echo $data2['Email']; ?>"><br />
+            Phone Number: <input type="text" name="phone" value="<?php //echo $data2['Phone_Number']; ?>"><br />
+            Rank: <?php //echo $data2['Rank']; ?><br />
+            Address: <input type="text" name="address" value="<?php //echo $data2['Address']; ?>"><br />
+            City: <input type="text" name="city" value="<?php //echo $data2['City']; ?>"><br />
+            State: <input type="text" name="state" value="<?php //echo $data2['State']; ?>"><br />
+            Zip: <input type="text" name="zip" value="<?php //echo $data2['Zip']; ?>"><br />
+            <input type="submit" name="update" value="Update">
+            <!-- <a class="btn" type="button">Update</a> -->
+
+          </div>
 
           </div><!--/row-->
         </div><!--/span-->

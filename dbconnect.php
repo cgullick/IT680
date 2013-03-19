@@ -2,16 +2,17 @@
 
 session_start();
 
-$connect = mysql_connect("64.254.188.188","it680","it680") or die ("Couldn't connect!");
-mysql_select_db("emp_management") or die("Couldn't find database.");
+$dbhost = '64.254.188.188';
+$dbuser = 'it680';
+$dbpass = 'it680';
 
-while ($row = mysql_fetch_assoc($query))
-{
-	$dbusername = $row['username'];
-	$First_Name = $row['First_Name'];
-	$Last_name = $row['Last_Name'];
-	
-	//$dbpassword = $row['password'];
-}
+$connection = mysql_connect($dbhost, $dbuser, $dbpass) or die ("Couldn't connect to server.");  
+$db = mysql_select_db('emp_management', $connection) or die ("Couldn't select database.");  
+ 
+      $search=$_SESSION['username']; 
+
+      $data = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
+      $query = mysql_query($data) or die("Couldn't execute query. ". mysql_error()); 
+      $data2 = mysql_fetch_array($query);
 
 ?>

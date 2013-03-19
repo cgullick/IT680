@@ -101,15 +101,15 @@ include 'dbconnect.php';
             
           <div>
             
-            First Name: <?php echo "$fname"; ?><br />
-            Last Name: <?php echo "$dbusername"; ?><br />
-            Email: <?php echo "$dbusername"; ?><br />
-            Phone Number: <?php echo "$dbusername"; ?><br />
-            Rank: <?php echo "$dbusername"; ?><br />
-            Address: <?php echo "$dbusername"; ?><br />
-            City: <?php echo "$dbusername"; ?><br />
-            State: <?php echo "$dbusername"; ?><br />
-            Zip: <?php echo "$dbusername"; ?><br />
+            First Name: <?php echo $data2['First_Name']; ?><br />
+            Last Name: <?php echo $data2['Last_Name']; ?><br />
+            Email: <?php echo $data2['Email']; ?><br />
+            Phone Number: <?php echo $data2['Phone_Number']; ?><br />
+            Rank: <?php echo $data2['Rank']; ?><br />
+            Address: <?php echo $data2['Address']; ?><br />
+            City: <?php echo $data2['City']; ?><br />
+            State: <?php echo $data2['State']; ?><br />
+            Zip: <?php echo $data2['Zip']; ?><br />
             <a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
 
             
