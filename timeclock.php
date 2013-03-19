@@ -50,6 +50,29 @@ session_start();
 
   <body>
 
+    <?php
+
+              $con = mysql_connect("64.254.188.188","it680","it680");
+              if (!$con)
+                {
+                die('Could not connect: ' . mysql_error());
+                }
+               
+              mysql_select_db("cis_id", $con);
+              //$search=$_SESSION['username'];
+              //$Emp_id = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
+               
+              $sql="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`) VALUES (curtime(), curdate())";
+               
+              if (!mysql_query($sql,$con))
+                {
+                die('Error: ' . mysql_error());
+                }
+              echo "clocked in";
+               
+              mysql_close($con)
+            ?>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -99,8 +122,9 @@ session_start();
             
           <div>
             <p>
-            <button type="submit" class="btn">Clock In</button>	
-   			
+            <input type="submit" class="btn" name="submit" value="Clock In"></input>	
+            
+
    			<!-- Clock in clock out -->	
 			<span id=tick2>
 			</span>
@@ -142,6 +166,8 @@ session_start();
 			</p>
             
             <button type="submit" class="btn">Clock Out</button>
+
+
             <!--<?php
               $username = "root";
               $password = "";
