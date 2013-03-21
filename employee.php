@@ -101,16 +101,16 @@ include 'dbconnect.php';
             
           <div>
             
-            First Name: <?php echo $data2['First_Name']; ?><br />
-            Last Name: <?php echo $data2['Last_Name']; ?><br />
-            Email: <?php echo $data2['Email']; ?><br />
-            Phone Number: <?php echo $data2['Phone_Number']; ?><br />
-            Rank: <?php echo $data2['Rank']; ?><br />
-            Address: <?php echo $data2['Address']; ?><br />
-            City: <?php echo $data2['City']; ?><br />
-            State: <?php echo $data2['State']; ?><br />
-            Zip: <?php echo $data2['Zip']; ?><br />
-            <a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
+            <p>First Name: <?php echo $data2['First_Name']; ?><br />
+            <p>Last Name: <?php echo $data2['Last_Name']; ?><br />
+            <p>Email: <?php echo $data2['Email']; ?><br />
+            <p>Phone Number: <?php echo $data2['Phone_Number']; ?><br />
+            <p>Rank: <?php echo $data2['Rank']; ?><br />
+            <p>Address: <?php echo $data2['Address']; ?><br />
+            <p>City: <?php echo $data2['City']; ?><br />
+            <p>State: <?php echo $data2['State']; ?><br />
+            <p>Zip: <?php echo $data2['Zip']; ?><br />
+            <p><a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
 
             
             <!--<?php

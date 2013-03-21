@@ -98,17 +98,6 @@ session_start();0
             
           <div>
 
-            <!--<?php
-              $username = "root";
-              $password = "";
-              $database = "emp_management";
-              $server = "localhost";
-
-              $db_handle = mysql_connect($server, $username, $password);
-              $db_found = mysql_select_db($database, $db_handle)
-            ?>
-          </div>-->
-
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->

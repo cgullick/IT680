@@ -6,11 +6,19 @@ include 'dbconnect.php';
 
 $First_Name = $_POST['First_Name'];
 $Last_Name = $_POST['Last_Name'];
+$Email = $_POST['Email'];
+$Phone_Number = $_POST['Phone_Number'];
+$Address = $_POST['Address'];
+$City = $_POST['City'];
+$State = $_POST['State'];
+$Zip = $_POST['Zip'];
 
 if(isset($_POST['update'])) {
 
 //$UpdateQuery = 'UPDATE `user_profile` SET First_Name=$_POST[fname]';
-$UpdateQuery = "UPDATE user_profile SET First_Name = '$_POST[fname]', Last_Name = '$_POST[lname]' WHERE User_ID='$_POST[hidden]' ";
+$UpdateQuery = "UPDATE user_profile 
+                SET First_Name = '$_POST[fname]', Last_Name = '$_POST[lname]', Email = '$_POST[email]', Phone_Number = '$_POST[phonenumber]', Address = '$_POST[address]', City = '$_POST[city]', State = '$_POST[state]', Zip = '$_POST[zip]'
+                WHERE User_ID='$_POST[hidden]' ";
 mysql_query($UpdateQuery, $connection);
 
 };
@@ -115,13 +123,14 @@ mysql_query($UpdateQuery, $connection);
 
             echo "<form action=editprofile.php method=post>";
             echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
-            echo "First Name: <input type=text name=fname value=" . $data2['First_Name'] . "><br />";
-            echo "Last Name: <input type=text name=lname value=" . $data2['Last_Name'] . "><br />";
+            echo "First Name: <input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'><br />";
+            echo "Last Name: <input type=text name=lname value='" . stripslashes($data2['Last_Name']) . "'><br />";
             echo "Email <input type=text name=email value=" . $data2['Email'] . " ><br />";
-            echo "Phone Number <input type=text name=phonenumber value=" . $data2['Email'] . " ><br />";
+            echo "Phone Number <input type=text name=phonenumber value=" . $data2['Phone_Number'] . " ><br />";
             echo "Rank: $data2[Rank]" . "<br />";
-            echo "City <input type=text name=city value=" . $data2['City'] . "><br />";
-            echo "State <input type=text name=city value=" . $data2['State'] . "><br />";
+            echo "Address <input type=text name=address value='" . stripslashes($data2["Address"]) . "'><br />";
+            echo "City <input type=text name=city value='" . stripslashes($data2['City']) . "'><br />";
+            echo "State <input type=text name=state value=" . $data2['State'] . "><br />";
             echo "Zip <input type=text name=zip value=" . $data2['Zip'] . "><br />";
             echo "<input type=submit name=update value=Update>";
             
