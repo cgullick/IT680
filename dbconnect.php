@@ -37,31 +37,23 @@ mysql_query($UpdateQuery, $connection);
 };
 
 /* End Update Profile Query */
-<<<<<<< HEAD
+
 /****************************/
 
 /************************/
 /* Start Access Control */
-=======
 
-/* Start Time Clock Query */
-
-
-
-/* End Time Clock Query */
->>>>>>> merge
-
-/* Start Access Control */
 
 
 
 /* End Access Control */
 
-<<<<<<< HEAD
+
 /********************************/
 
-/* Start Time Clock Query */
-=======
+
+
+
 /* Start Employee List */
 
 $employeelist = mysql_query('SELECT * FROM user_profile');
@@ -88,8 +80,7 @@ $employeelist = mysql_query('SELECT * FROM user_profile');
 
 
 
-
->>>>>>> merge
+/* Start Time Clock Query */
 
   	if (isset($_POST['ClockIn'])){
   			$InsertQuery="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
