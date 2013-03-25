@@ -1,21 +1,8 @@
 <?php
 
+session_start();
+
 include 'dbconnect.php';
-
-$rank = $data2['Rank'];
-echo $rank;
-
-if($rank == 'administrator') {
-  $redirect = './admin.php';
-}
-else if($rank == 'manager') {
-  $redirect = './manager.php';
-}
-else if($rank == 'employee') {
-  $redirect = './employee.php';
-}
-
-header('Location: ' . $redirect);
 
 ?>
 
@@ -89,7 +76,7 @@ header('Location: ' . $redirect);
               <form class='navbar-form pull-right' action='login.php' method='POST'>
                     <input class='span2' type='text' name='username' placeholder='username'>
                     <input class='span2' type='password' name='password' placeholder='password'>
-                    <input class='btn' type='submit' value='Log in' href='./employee.php'>
+                    <input class='btn' type='submit' value='Log in'>
               </form>
 
           </div><!--/.nav-collapse -->

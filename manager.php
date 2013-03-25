@@ -1,9 +1,16 @@
-<!DOCTYPE html>
+<?php
+ 
+session_start();
 
+include 'dbconnect.php';
+
+?>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <title>Maverick EMS</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -15,97 +22,165 @@
         padding-top: 60px;
         padding-bottom: 40px;
       }
+      .sidebar-nav {
+        padding: 9px 0;
+      }
+
+      @media (max-width: 980px) {
+        /* Enable use of floated navbar text */
+        .navbar-text.pull-right {
+          float: none;
+          padding-left: 5px;
+          padding-right: 5px;
+        }
+      }
     </style>
-    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="js/html5shiv.js"></script>
+      <script src="../assets/js/html5shiv.js"></script>
     <![endif]-->
 
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
-                    <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
-                                   <link rel="shortcut icon" href="ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+      <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+                    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+                                   <link rel="shortcut icon" href="../assets/ico/favicon.png">
   </head>
 
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
-        <div class="container">
+        <div class="container-fluid">
           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Maverick EMS</a>
+          <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
+            </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="./about.php">About</a></li>
-              <li><a href="./contact.php">Contact</a></li>
-              <!--<li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li class="divider"></li>
-                  <li class="nav-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>-->
+              <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
-<!--             <form class="navbar-form pull-right" action='login.php' method='POST'>
-              <input class="span2" type="text" placeholder="Username">
-              <input class="span2" type="password" placeholder="Password">
-              <input type="submit" value='Log in'>
-            </form> -->
-              <form class='navbar-form pull-right' action='login.php' method='POST'>
-                    <input class='span2' type='text' name='username' placeholder='username'>
-                    <input class='span2' type='password' name='password' placeholder='password'>
-                    <input class='btn' type='submit' value='Log in' href='./employee.html'>
-              </form>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container">
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+              <li class="nav-header">Navigation Bar</li>
+              <li class="actice"><a href="./employee.php">User Profile</a></li>
+              <li><a href="./timeclock.php">Time Clock</a></li>
+              <li><a href="./schedule.php">Schedule</a></li>
+              <li><a href="./availability.php">Availabilty</a></li>
+              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
+            </ul>
+          </div><!--/.well -->
+        </div><!--/span-->
+        <div class="span9">
+          <div class="hero-unit">
+            <h1>Welcome To Your User Profile!</h1>
+            <p>Here you can view your information and update it.</p>
 
-      <!-- Main hero unit for a primary marketing message or call to action -->
-      <div class="hero-unit">
-        <h1>Maverick EMS</h1>
-        <p>Where all your employee scheduling needs are met</p>
-        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
-      </div>
+            <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
+          </div>
+          <!--<img src="sav.png" width="150" height="150">-->
+          <div class="row-fluid">
+            
+          <div>
+            <table>
+              <tr>
+                <img src="./img/glyphicons-halflings.png">
+                <p><td style="font-weight:bold">First Name: </td>
+                <td><?php echo $data2['First_Name']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Last Name: </td>
+                <td><?php echo $data2['Last_Name']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Email: </td>
+                <td><?php echo $data2['Email']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Phone Number: </td>
+                <td><?php echo $data2['Phone_Number']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Rank: </td>
+                <td><?php echo $data2['Rank']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Address: </td>
+                <td><?php echo $data2['Address']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">City: </td>
+                <td><?php echo $data2['City']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">State: </td>
+                <td><?php echo $data2['State']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Zip: </td>
+                <td><?php echo $data2['Zip']; ?></td>
+              </tr> 
+            </table>
+            <p><a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
+
+            
+            <!--<?php
+              $username = "root";
+              $password = "";
+              $database = "emp_management";
+              $server = "localhost";
+
+              $db_handle = mysql_connect($server, $username, $password);
+              $db_found = mysql_select_db($database, $db_handle)
+            ?>
+          </div>-->
+
+          </div><!--/row-->
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
 
       <footer>
         <p>&copy; Company 2013</p>
       </footer>
 
-    <!-- /container -->
+    </div><!--/.fluid-container-->
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap-transition.js"></script>
-    <script src="js/bootstrap-alert.js"></script>
-    <script src="js/bootstrap-modal.js"></script>
-    <script src="js/bootstrap-dropdown.js"></script>
-    <script src="js/bootstrap-scrollspy.js"></script>
-    <script src="js/bootstrap-tab.js"></script>
-    <script src="js/bootstrap-tooltip.js"></script>
-    <script src="js/bootstrap-popover.js"></script>
-    <script src="js/bootstrap-button.js"></script>
-    <script src="js/bootstrap-collapse.js"></script>
-    <script src="js/bootstrap-carousel.js"></script>
-    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="../assets/js/jquery.js"></script>
+    <script src="../assets/js/bootstrap-transition.js"></script>
+    <script src="../assets/js/bootstrap-alert.js"></script>
+    <script src="../assets/js/bootstrap-modal.js"></script>
+    <script src="../assets/js/bootstrap-dropdown.js"></script>
+    <script src="../assets/js/bootstrap-scrollspy.js"></script>
+    <script src="../assets/js/bootstrap-tab.js"></script>
+    <script src="../assets/js/bootstrap-tooltip.js"></script>
+    <script src="../assets/js/bootstrap-popover.js"></script>
+    <script src="../assets/js/bootstrap-button.js"></script>
+    <script src="../assets/js/bootstrap-collapse.js"></script>
+    <script src="../assets/js/bootstrap-carousel.js"></script>
+    <script src="../assets/js/bootstrap-typeahead.js"></script>
 
   </body>
 </html>

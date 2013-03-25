@@ -15,7 +15,7 @@ $db = mysql_select_db('emp_management', $connection) or die ("Couldn't select da
       $query = mysql_query($data) or die("Couldn't execute query. ". mysql_error()); 
       $data2 = mysql_fetch_array($query);
 
-<<<<<<< HEAD
+
 /* Start Update Profile Query */
 
 $First_Name = $_POST['First_Name'];
@@ -45,24 +45,22 @@ mysql_query($UpdateQuery, $connection);
 /************************/
 /* Start Access Control */
 
-$rank = $data2['Rank'];
-echo $rank;
+// $rank = $data2['Rank'];
 
-if($rank == 'administrator') {
-	$redirect = './admin.php';
-}
-else if($rank == 'manager') {
-	$redirect = './manager.php';
-}
-else if($rank == 'employee') {
-	$redirect = './employee.php';
-}
+// if($rank == 'administrator') {
+// 	$redirect = './admin.php';
+// }
+// else if($rank == 'manager') {
+// 	$redirect = './manager.php';
+// }
+// else if($rank == 'employee') {
+// 	$redirect = './employee.php';
+// }
 
-header('Location: ' . $redirect);
+// header('Location: ' . $redirect);
 
 /* End Access Control */
 
-?>
 
 
 
@@ -84,7 +82,8 @@ header('Location: ' . $redirect);
 
 
 
-=======
+
+
 
   	if (isset($_POST['ClockIn'])){
   			$InsertQuery="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
@@ -103,4 +102,3 @@ header('Location: ' . $redirect);
 	}
 
 ?>
->>>>>>> timeclock
