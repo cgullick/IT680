@@ -2,15 +2,20 @@
 	
 	session_start();
 
+	include 'dbconnect.php';
+
     $username = $_POST['username'];
     $password = $_POST['password'];
+    //$rank = $data2['Rank'];
 
     if ($username && $password) 
     {
 	    $connect = mysql_connect("64.254.188.188","it680","it680") or die ("Couldn't connect!");
 	    mysql_select_db("emp_management") or die("Couldn't find database.");
 
-	    $query = mysql_query("SELECT u.username, p.password FROM user_profile u join password p on p.user_id = u.user_id WHERE u.username='$username' and p.password='$password'");
+	    $query = mysql_query("SELECT u.username, p.password, u.rank 
+	    					  FROM user_profile u join password p on p.user_id = u.user_id 
+	    					  WHERE u.username='$username' and p.password='$password'");
 
 	    $numrows = mysql_num_rows($query);
 
@@ -21,15 +26,28 @@
 	    	{
 	    		$dbusername = $row['username'];
 	    		$dbpassword = $row['password'];
+	    		$dbrank = $row['rank'];
+	    	
+		    	if ($username == $dbusername && $password == $dbpassword && $dbrank == 'administrator')
+		    	{
+		    		$redirect = './admin.php';
+		    	}
+	    		else if ($username == $dbusername && $password == $dbpassword && $dbrank == 'manager')
+		    	{
+		    		$redirect = './manager.php';
+		    	}
+	    		else if ($username == $dbusername && $password == $dbpassword && $dbrank == 'employee')
+		    	{
+		    		$redirect = './employee.php';
+		    	}
+		    	else 
+		    	{
+		    		echo "Incorrect password.";
+		    	}
+
+		    	$_SESSION['username'] = $dbusername;
+		    	header("Location: " . $redirect);
 	    	}
-	    	if ($username == $dbusername && $password == $dbpassword)
-	    	{
-	    		//echo "Welcome! <a href='employee.php'Click</a> here to enter.";
-	    		$_SESSION['username']=$dbusername;
-	    		header("Location: ./employee.php");
-	    	}
-	    	else
-	    		echo "Incorrect password.";
     	}
     	else 
     		die("User does not exist.");

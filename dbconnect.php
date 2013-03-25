@@ -37,31 +37,24 @@ mysql_query($UpdateQuery, $connection);
 };
 
 /* End Update Profile Query */
-/****************************/
+
 /* Start Time Clock Query */
 
 
+
 /* End Time Clock Query */
-/************************/
+
 /* Start Access Control */
 
-// $rank = $data2['Rank'];
 
-// if($rank == 'administrator') {
-// 	$redirect = './admin.php';
-// }
-// else if($rank == 'manager') {
-// 	$redirect = './manager.php';
-// }
-// else if($rank == 'employee') {
-// 	$redirect = './employee.php';
-// }
-
-// header('Location: ' . $redirect);
 
 /* End Access Control */
 
+/* Start Employee List */
 
+$employeelist = mysql_query('SELECT * FROM user_profile');
+
+/* End Employee List */
 
 
 
