@@ -37,30 +37,59 @@ mysql_query($UpdateQuery, $connection);
 };
 
 /* End Update Profile Query */
+<<<<<<< HEAD
 /****************************/
 
 /************************/
 /* Start Access Control */
+=======
 
-// $rank = $data2['Rank'];
+/* Start Time Clock Query */
 
-// if($rank == 'administrator') {
-// 	$redirect = './admin.php';
-// }
-// else if($rank == 'manager') {
-// 	$redirect = './manager.php';
-// }
-// else if($rank == 'employee') {
-// 	$redirect = './employee.php';
-// }
 
-// header('Location: ' . $redirect);
+
+/* End Time Clock Query */
+>>>>>>> merge
+
+/* Start Access Control */
+
+
 
 /* End Access Control */
 
+<<<<<<< HEAD
 /********************************/
 
 /* Start Time Clock Query */
+=======
+/* Start Employee List */
+
+$employeelist = mysql_query('SELECT * FROM user_profile');
+
+/* End Employee List */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> merge
 
   	if (isset($_POST['ClockIn'])){
   			$InsertQuery="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 

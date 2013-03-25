@@ -81,7 +81,7 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="./employee.php">User Profile</a></li>
+              <li class="actice"><a href="./manager.php">Employees</a></li>
               <li><a href="./timeclock.php">Time Clock</a></li>
               <li><a href="./schedule.php">Schedule</a></li>
               <li><a href="./availability.php">Availabilty</a></li>
@@ -102,44 +102,12 @@ include 'dbconnect.php';
           <div>
             <table>
               <tr>
-                <img src="./img/glyphicons-halflings.png">
-                <p><td style="font-weight:bold">First Name: </td>
-                <td><?php echo $data2['First_Name']; ?></td>
+                <td><?php echo $employeelist['First_Name'] . " " . $employeelist['Last_Name']; ?></td>
               </tr>
               <tr>
-                <td style="font-weight:bold">Last Name: </td>
-                <td><?php echo $data2['Last_Name']; ?></td>
+                <td><?php echo $employeelist; ?></td>
               </tr>
-              <tr>
-                <td style="font-weight:bold">Email: </td>
-                <td><?php echo $data2['Email']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Phone Number: </td>
-                <td><?php echo $data2['Phone_Number']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Rank: </td>
-                <td><?php echo $data2['Rank']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Address: </td>
-                <td><?php echo $data2['Address']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">City: </td>
-                <td><?php echo $data2['City']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">State: </td>
-                <td><?php echo $data2['State']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Zip: </td>
-                <td><?php echo $data2['Zip']; ?></td>
-              </tr> 
             </table>
-            <p><a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
 
             
             <!--<?php
