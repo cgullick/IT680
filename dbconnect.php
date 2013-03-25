@@ -38,10 +38,7 @@ mysql_query($UpdateQuery, $connection);
 
 /* End Update Profile Query */
 /****************************/
-/* Start Time Clock Query */
 
-
-/* End Time Clock Query */
 /************************/
 /* Start Access Control */
 
@@ -61,29 +58,9 @@ mysql_query($UpdateQuery, $connection);
 
 /* End Access Control */
 
+/********************************/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Start Time Clock Query */
 
   	if (isset($_POST['ClockIn'])){
   			$InsertQuery="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
@@ -100,5 +77,16 @@ mysql_query($UpdateQuery, $connection);
 		header("Location: ./employee.php");
 		exit;
 	}
+  //$clockedin = "select null from time_clock where emp_id = (select emp_id from user_profile where username = "'.$search.'"') and clock_out_time is NULL"
+  $clockedinquery= mysql_query("SELECT null from `time_clock` where emp_id = (SELECT emp_id from user_profile where username = '".$search."') 
+                                and clock_out_time is NULL");
+  $checkifclockedin = mysql_num_rows($clockedinquery);
+
+  $displayClockintime = mysql_query("SELECT * from time_clock where emp_id= (SELECT emp_id from user_profile where username = '".$search."') 
+                                     and Date = curdate() order by Clock_in_time desc limit 1");
+  $clockintimedisplay = mysql_fetch_array($displayClockintime);
+
+/* End Time Clock Query */
+/**********************************/
 
 ?>

@@ -6,8 +6,6 @@ include 'dbconnect.php';
 
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -53,31 +51,6 @@ include 'dbconnect.php';
   </head>
 
   <body>
-
-  <?php
-
-    include 'dbconnect.php';
-    //$con = mysql_connect("64.254.188.188","it680","it680");
-    if (!$connection)
-      {
-      die('Could not connect: ' . mysql_error());
-      }
-     
-    mysql_select_db("cis_id", $connection);
-    //$search=$_SESSION['username'];
-    //$Emp_id = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
-     
-    $sql="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`) VALUES (curtime(), curdate())";
-    $message = "clocked in"; 
-
-    if (!mysql_query($sql, $connection))
-    {
-      die('Error: ' . mysql_error());
-    }
-    echo "$message";
-     
-    mysql_close($connection)
-  ?>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -127,63 +100,71 @@ include 'dbconnect.php';
           <div class="row-fluid">
             
           <div>
+            <!-- Ticker --> 
+      <span id=tick2>
+      </span>
+
+      <script>
+      <!--
+
+      /*By JavaScript Kit
+      http://javascriptkit.com
+      Credit MUST stay intact for use
+      */
+
+      function show2(){
+      if (!document.all&&!document.getElementById)
+      return
+      thelement=document.getElementById? document.getElementById("tick2"): document.all.tick2
+      var Digital=new Date()
+      var hours=Digital.getHours()
+      var minutes=Digital.getMinutes()
+      var seconds=Digital.getSeconds()
+      var dn="PM"
+      if (hours<12)
+      dn="AM"
+      if (hours>12)
+      hours=hours-12
+      if (hours==0)
+      hours=12
+      if (minutes<=9)
+      minutes="0"+minutes
+      if (seconds<=9)
+      seconds="0"+seconds
+      var ctime=hours+":"+minutes+":"+seconds+" "+dn
+      thelement.innerHTML="<b style='font-size:14;color:black;'>"+ctime+"</b>"
+      setTimeout("show2()",1000)
+      }
+      window.onload=show2
+      //-->
+      </script>
             <p>
             <?php 
+            
+            if ($checkifclockedin == 0){
               echo "<form action=timeclock.php method=post>";
               echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
-              echo "<input type='submit' class='btn' name='ClockIn' value='Clock In' style= 'width:100px'></input>";
+              echo "<input type='submit' class='btn' name='ClockIn' value='Clock In' style= 'width:100px'></input> <br/>";
 
+              
+
+              echo "<form action=timeclock.php method=post>";
+              echo "<input type='submit' disabled class='btn' name='ClockOut' value='Clock Out' style= 'width:100px'></input>";
+            }
+            else if($checkifclockedin != 0){
+              echo "You clocked in at " . $clockintimedisplay['Clock_in_Time'];
+              echo "<form action=timeclock.php method=post>";
+              echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
+              echo "<input type='submit' disabled class='btn' name='ClockIn' value='Clock In' style= 'width:100px'></input><br/>";
+
+              echo "<form action=timeclock.php method=post>";
+              echo "<input type='submit' class='btn' name='ClockOut' value='Clock Out' style= 'width:100px'></input>";
+              }
               ?>
-            
+      </p>
+      
 
-   			<!-- Clock in clock out -->	
-			<span id=tick2>
-			</span>
-
-			<script>
-			<!--
-
-			/*By JavaScript Kit
-			http://javascriptkit.com
-			Credit MUST stay intact for use
-			*/
-
-			function show2(){
-			if (!document.all&&!document.getElementById)
-			return
-			thelement=document.getElementById? document.getElementById("tick2"): document.all.tick2
-			var Digital=new Date()
-			var hours=Digital.getHours()
-			var minutes=Digital.getMinutes()
-			var seconds=Digital.getSeconds()
-			var dn="PM"
-			if (hours<12)
-			dn="AM"
-			if (hours>12)
-			hours=hours-12
-			if (hours==0)
-			hours=12
-			if (minutes<=9)
-			minutes="0"+minutes
-			if (seconds<=9)
-			seconds="0"+seconds
-			var ctime=hours+":"+minutes+":"+seconds+" "+dn
-			thelement.innerHTML="<b style='font-size:14;color:black;'>"+ctime+"</b>"
-			setTimeout("show2()",1000)
-			}
-			window.onload=show2
-			//-->
-			</script>
-			</p>
-            
-            <button type="submit" class="btn" style="width:100px">Clock Out</button>
-
-
-            <!--
-            <?php
-            //echo "<form action=timeclock.php method=post>";
-            //echo "<input type='submit' class='btn' name='ClockOut' value='Clock Out' style= 'width:100px'></input>";
-            ?> -->
+          
 
           </div><!--/row-->
         </div><!--/span-->
