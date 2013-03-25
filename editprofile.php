@@ -4,25 +4,6 @@ session_start();
 
 include 'dbconnect.php';
 
-$First_Name = $_POST['First_Name'];
-$Last_Name = $_POST['Last_Name'];
-$Email = $_POST['Email'];
-$Phone_Number = $_POST['Phone_Number'];
-$Address = $_POST['Address'];
-$City = $_POST['City'];
-$State = $_POST['State'];
-$Zip = $_POST['Zip'];
-
-if(isset($_POST['update'])) {
-
-//$UpdateQuery = 'UPDATE `user_profile` SET First_Name=$_POST[fname]';
-$UpdateQuery = "UPDATE user_profile 
-                SET First_Name = '$_POST[fname]', Last_Name = '$_POST[lname]', Email = '$_POST[email]', Phone_Number = '$_POST[phonenumber]', Address = '$_POST[address]', City = '$_POST[city]', State = '$_POST[state]', Zip = '$_POST[zip]'
-                WHERE User_ID='$_POST[hidden]' ";
-mysql_query($UpdateQuery, $connection);
-
-};
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,7 +100,52 @@ mysql_query($UpdateQuery, $connection);
             
           <div>
 
-            <?php
+            <?php echo "<form action=editprofile.php method=post>" ?>
+            <table>
+              <tr>
+                <img src="./img/glyphicons-halflings.png">
+                <p><td style="font-weight:bold">First Name: </td>
+                <td><?php echo "<input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'>"; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Last Name: </td>
+                <td><?php echo "<input type=text name=lname value='" . stripslashes($data2['Last_Name']) . "'>"; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Email: </td>
+                <td><?php echo "<input type=text name=email value=" . $data2['Email'] . " >"; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Phone Number: </td>
+                <td><?php echo "<input type=text name=phonenumber value=" . $data2['Phone_Number'] . " >"; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Rank: </td>
+                <td><?php echo "$data2[Rank]"; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Address: </td>
+                <td><?php echo "<input type=text name=address value='" . stripslashes($data2["Address"]) . "'>"; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">City: </td>
+                <td><?php echo "<input type=text name=city value='" . stripslashes($data2['City']) . "'>"; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">State: </td>
+                <td><?php echo "<input type=text name=state value=" . $data2['State'] . ">"; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Zip: </td>
+                <td><?php echo "<input type=text name=zip value=" . $data2['Zip'] . ">"; ?></td>
+              </tr>
+              <tr>
+                <td><?php echo "<input class=btn type=submit name=update value=Update>"; ?></td>
+              </tr>
+            </table>
+
+
+<!--             <?php
 
             echo "<form action=editprofile.php method=post>";
             echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
@@ -132,9 +158,9 @@ mysql_query($UpdateQuery, $connection);
             echo "City <input type=text name=city value='" . stripslashes($data2['City']) . "'><br />";
             echo "State <input type=text name=state value=" . $data2['State'] . "><br />";
             echo "Zip <input type=text name=zip value=" . $data2['Zip'] . "><br />";
-            echo "<input type=submit name=update value=Update>";
+            echo "<input class=btn type=submit name=update value=Update>";
             
-            ?>
+            ?> -->
           </div>
 
           </div><!--/row-->

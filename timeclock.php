@@ -4,6 +4,8 @@ session_start();
 
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -50,28 +52,30 @@ session_start();
 
   <body>
 
-    <?php
+  <?php
 
-              $con = mysql_connect("64.254.188.188","it680","it680");
-              if (!$con)
-                {
-                die('Could not connect: ' . mysql_error());
-                }
-               
-              mysql_select_db("cis_id", $con);
-              //$search=$_SESSION['username'];
-              //$Emp_id = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
-               
-              $sql="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`) VALUES (curtime(), curdate())";
-               
-              if (!mysql_query($sql,$con))
-                {
-                die('Error: ' . mysql_error());
-                }
-              echo "clocked in";
-               
-              mysql_close($con)
-            ?>
+    include 'dbconnect.php';
+    //$con = mysql_connect("64.254.188.188","it680","it680");
+    if (!$connection)
+      {
+      die('Could not connect: ' . mysql_error());
+      }
+     
+    mysql_select_db("cis_id", $connection);
+    //$search=$_SESSION['username'];
+    //$Emp_id = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
+     
+    $sql="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`) VALUES (curtime(), curdate())";
+    $message = "clocked in"; 
+
+    if (!mysql_query($sql, $connection))
+    {
+      die('Error: ' . mysql_error());
+    }
+    echo "$message";
+     
+    mysql_close($connection)
+  ?>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -122,7 +126,7 @@ session_start();
             
           <div>
             <p>
-            <input type="submit" class="btn" name="submit" value="Clock In"></input>	
+            <input type="submit" class="btn" name="submit" value="Clock In" style="width:100px"></input>	
             
 
    			<!-- Clock in clock out -->	
@@ -165,7 +169,7 @@ session_start();
 			</script>
 			</p>
             
-            <button type="submit" class="btn">Clock Out</button>
+            <button type="submit" class="btn" style="width:100px">Clock Out</button>
 
 
             <!--<?php

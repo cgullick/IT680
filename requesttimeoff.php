@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+include 'dbconnect.php';
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -55,7 +62,7 @@
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -92,17 +99,24 @@
           <div class="row-fluid">
             
           <div>
-            <!--<?php
-              $username = "root";
-              $password = "";
-              $database = "emp_management";
-              $server = "localhost";
-
-              $db_handle = mysql_connect($server, $username, $password);
-              $db_found = mysql_select_db($database, $db_handle)
-            ?>
-          </div>-->
-
+            <table>
+              <tr>
+              <td>First Name: </td>
+              <td><?php echo "<input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'>"; ?></td>
+            </tr>
+            <tr>
+              <td>Last Name: </td>
+              <td><?php echo "<input type=text name=fname value='" . stripslashes($data2["Last_Name"]) . "'>"; ?></td>
+            </tr>
+            <tr>
+              <td>Date: </td>
+              <td><input type=date name=date></td>
+            </tr>
+            <tr>
+              <td>Reason: </td>
+              <td><textarea style="width:400px" maxlength="200"></textarea></td>
+            </tr>
+            </table>
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->

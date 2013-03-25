@@ -1,3 +1,9 @@
+<?php
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -55,7 +61,7 @@
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link">Username</a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -92,16 +98,71 @@
           <div class="row-fluid">
             
           <div>
-            <!--<?php
-              $username = "root";
-              $password = "";
-              $database = "emp_management";
-              $server = "localhost";
 
-              $db_handle = mysql_connect($server, $username, $password);
-              $db_found = mysql_select_db($database, $db_handle)
-            ?>
-          </div>-->
+            <table>
+              <tr>
+                <!--<th>Date</th>-->
+                <th>Day&nbsp</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>&nbspAdd Row&nbsp</th>
+                <th>Turn Off</th>
+              </tr>
+              <tr>
+                <!--<td><?php echo date("Y-m-d"); ?></td>-->
+                <td><?php echo "Monday" ?></td>
+                <td><input type=text name=text></td>
+                <td><input type=text name=text></td>
+                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
+                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+              </tr>
+              <tr>
+                <td><?php echo "Tuesday" ?></td>
+                <td><input type=text name=text></td>
+                <td><input type=text name=text></td>
+                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
+                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+              </tr>
+              <tr>
+                <td><?php echo "Wednesday" ?></td>
+                <td><input type=text name=text></td>
+                <td><input type=text name=text></td>
+                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
+                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+              </tr>
+              <tr>
+                <td><?php echo "Thursday" ?></td>
+                <td><input type=text name=text></td>
+                <td><input type=text name=text></td>
+                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
+                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+              </tr>
+              <tr>
+                <td><?php echo "Friday" ?></td>
+                <td><input type=text name=text></td>
+                <td><input type=text name=text></td>
+                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
+                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+              </tr>
+              <tr>
+                <td><?php echo "Saturday" ?></td>
+                <td><input type=text name=text></td>
+                <td><input type=text name=text></td>
+                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
+                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+              </tr>
+              <tr>
+                <td><?php echo "Sunday" ?></td>
+                <td><input type=text name=text></td>
+                <td><input type=text name=text></td>
+                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
+                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+              </tr>
+              <tr>
+                <td><input class=btn type=button name=submit value=Submit></td>
+              </tr>
+
+            </table>
 
           </div><!--/row-->
         </div><!--/span-->

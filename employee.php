@@ -100,16 +100,45 @@ include 'dbconnect.php';
           <div class="row-fluid">
             
           <div>
-            
-            <p>First Name: <?php echo $data2['First_Name']; ?><br />
-            <p>Last Name: <?php echo $data2['Last_Name']; ?><br />
-            <p>Email: <?php echo $data2['Email']; ?><br />
-            <p>Phone Number: <?php echo $data2['Phone_Number']; ?><br />
-            <p>Rank: <?php echo $data2['Rank']; ?><br />
-            <p>Address: <?php echo $data2['Address']; ?><br />
-            <p>City: <?php echo $data2['City']; ?><br />
-            <p>State: <?php echo $data2['State']; ?><br />
-            <p>Zip: <?php echo $data2['Zip']; ?><br />
+            <table>
+              <tr>
+                <img src="./img/glyphicons-halflings.png">
+                <p><td style="font-weight:bold">First Name: </td>
+                <td><?php echo $data2['First_Name']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Last Name: </td>
+                <td><?php echo $data2['Last_Name']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Email: </td>
+                <td><?php echo $data2['Email']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Phone Number: </td>
+                <td><?php echo $data2['Phone_Number']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Rank: </td>
+                <td><?php echo $data2['Rank']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Address: </td>
+                <td><?php echo $data2['Address']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">City: </td>
+                <td><?php echo $data2['City']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">State: </td>
+                <td><?php echo $data2['State']; ?></td>
+              </tr>
+              <tr>
+                <td style="font-weight:bold">Zip: </td>
+                <td><?php echo $data2['Zip']; ?></td>
+              </tr> 
+            </table>
             <p><a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
 
             
