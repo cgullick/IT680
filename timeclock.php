@@ -2,6 +2,8 @@
 
 session_start();
 
+include 'dbconnect.php';
+
 ?>
 
 
@@ -52,6 +54,7 @@ session_start();
 
   <body>
 
+<<<<<<< HEAD
   <?php
 
     include 'dbconnect.php';
@@ -77,6 +80,8 @@ session_start();
     mysql_close($connection)
   ?>
 
+=======
+>>>>>>> timeclock
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">
@@ -126,7 +131,16 @@ session_start();
             
           <div>
             <p>
+<<<<<<< HEAD
             <input type="submit" class="btn" name="submit" value="Clock In" style="width:100px"></input>	
+=======
+            <?php 
+              echo "<form action=timeclock.php method=post>";
+              echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
+              echo "<input type='submit' class='btn' name='ClockIn' value='Clock In' style= 'width:100px'></input>";
+
+              ?>
+>>>>>>> timeclock
             
 
    			<!-- Clock in clock out -->	
@@ -168,6 +182,7 @@ session_start();
 			//-->
 			</script>
 			</p>
+<<<<<<< HEAD
             
             <button type="submit" class="btn" style="width:100px">Clock Out</button>
 
@@ -180,8 +195,12 @@ session_start();
 
               $db_handle = mysql_connect($server, $username, $password);
               $db_found = mysql_select_db($database, $db_handle)
+=======
+            <?php
+            echo "<form action=timeclock.php method=post>";
+            echo "<input type='submit' class='btn' name='ClockOut' value='Clock Out' style= 'width:100px'></input>";
+>>>>>>> timeclock
             ?>
-          </div>-->
 
           </div><!--/row-->
         </div><!--/span-->
