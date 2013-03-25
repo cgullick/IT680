@@ -2,6 +2,8 @@
 
 session_start();
 
+include 'dbconnect.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -49,29 +51,6 @@ session_start();
   </head>
 
   <body>
-
-    <?php
-
-              $con = mysql_connect("64.254.188.188","it680","it680");
-              if (!$con)
-                {
-                die('Could not connect: ' . mysql_error());
-                }
-               
-              mysql_select_db("cis_id", $con);
-              //$search=$_SESSION['username'];
-              //$Emp_id = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
-               
-              $sql="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`) VALUES (curtime(), curdate())";
-               
-              if (!mysql_query($sql,$con))
-                {
-                die('Error: ' . mysql_error());
-                }
-              echo "clocked in";
-               
-              mysql_close($con)
-            ?>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
@@ -122,7 +101,12 @@ session_start();
             
           <div>
             <p>
-            <input type="submit" class="btn" name="submit" value="Clock In"></input>	
+            <?php 
+              echo "<form action=timeclock.php method=post>";
+              echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
+              echo "<input type='submit' class='btn' name='ClockIn' value='Clock In' style= 'width:100px'></input>";
+
+              ?>
             
 
    			<!-- Clock in clock out -->	
@@ -164,20 +148,10 @@ session_start();
 			//-->
 			</script>
 			</p>
-            
-            <button type="submit" class="btn">Clock Out</button>
-
-
-            <!--<?php
-              $username = "root";
-              $password = "";
-              $database = "emp_management";
-              $server = "localhost";
-
-              $db_handle = mysql_connect($server, $username, $password);
-              $db_found = mysql_select_db($database, $db_handle)
+            <?php
+            echo "<form action=timeclock.php method=post>";
+            echo "<input type='submit' class='btn' name='ClockOut' value='Clock Out' style= 'width:100px'></input>";
             ?>
-          </div>-->
 
           </div><!--/row-->
         </div><!--/span-->
