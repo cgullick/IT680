@@ -1,6 +1,10 @@
 <?php
 
-session_start();0
+session_start();
+include 'dbconnect.php';
+
+$result = mysql_query("SELECT * from schedule") or die('Could not query');
+
 
 ?>
 <!DOCTYPE html>
@@ -45,6 +49,54 @@ session_start();0
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+    <!-- Full Calender -->
+    <link rel='stylesheet' type='text/css' href='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.css' />
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-1.9.1.min.js'></script>
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-ui-1.10.2.custom.min.js'></script>
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.min.js'></script>
+    <script>
+            $(document).ready(function() {
+
+              /* initialize the external events
+    -----------------------------------------------------------------*/
+  
+            $('#external-events div.external-event').each(function() {
+            
+              // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+              // it doesn't need to have a start or end
+              var eventObject = {
+                title: $.trim($(this).text()) // use the element's text as the event title
+              };
+              
+              // store the Event Object in the DOM element so we can get to it later
+              $(this).data('eventObject', eventObject);
+              
+              // make the event draggable using jQuery UI
+              $(this).draggable({
+                zIndex: 999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+              });
+              
+            });
+
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'month,agendaWeek,agendaDay'
+                },
+                editable:true,
+                events: "json-events.php",
+            })
+
+        });
+    </script>
   </head>
 
   <body>
@@ -91,12 +143,15 @@ session_start();0
             <h1>Schedule</h1>
             <p>This displays your schedule</p>
 
+
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
+          <div id='calendar'></div>
           <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
             
           <div>
+
 
           </div><!--/row-->
         </div><!--/span-->
