@@ -11,7 +11,7 @@ $db = mysql_select_db('emp_management', $connection) or die ("Couldn't select da
  
       $search=$_SESSION['username']; 
 
-      $data = 'SELECT * FROM `user_profile`WHERE `username` = "'.$search.'"';
+      $data = 'SELECT * FROM `user_profile` WHERE `username` = "'.$search.'"';
       $query = mysql_query($data) or die("Couldn't execute query. ". mysql_error()); 
       $data2 = mysql_fetch_array($query);
 
@@ -60,7 +60,20 @@ $employeelist = mysql_query('SELECT * FROM user_profile');
 
 /* End Employee List */
 
+/*********************/
 
+/* Start Image Upload Store to Database */
+
+//$name = $_FILES['file']['name'];
+//$location = "profile_image/".$name;
+
+//$imagequery = 'INSERT INTO user_profile SET picture = "profile_image/$name" WHERE username = "'.$search.'" ';
+//$imagequery = mysql_query("INSERT INTO  `user_profile` (`picture`) VALUES (`$location`) ");
+//$imagequery = "UPDATE user_profile SET picture = '".$location."' WHERE username = ".$_SESSION['Username'];
+
+
+
+/* End Image Upload Store to Database */
 
 
 

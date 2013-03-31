@@ -86,6 +86,7 @@ include 'dbconnect.php';
               <li><a href="./schedule.php">Schedule</a></li>
               <li><a href="./availability.php">Availabilty</a></li>
               <li><a href="./requesttimeoff.php">Request Time Off</a></li>
+              <li><a href="./test.php">Image Upload</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -96,13 +97,12 @@ include 'dbconnect.php';
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
-          <!--<img src="sav.png" width="150" height="150">-->
+
           <div class="row-fluid">
             
           <div>
             <table>
               <tr>
-                <img src="./img/glyphicons-halflings.png">
                 <p><td style="font-weight:bold">First Name: </td>
                 <td><?php echo $data2['First_Name']; ?></td>
               </tr>
@@ -140,18 +140,6 @@ include 'dbconnect.php';
               </tr> 
             </table>
             <p><a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
-
-            
-            <!--<?php
-              $username = "root";
-              $password = "";
-              $database = "emp_management";
-              $server = "localhost";
-
-              $db_handle = mysql_connect($server, $username, $password);
-              $db_found = mysql_select_db($database, $db_handle)
-            ?>
-          </div>-->
 
           </div><!--/row-->
         </div><!--/span-->

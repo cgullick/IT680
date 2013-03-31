@@ -3,6 +3,7 @@
 session_start();
 
 include 'dbconnect.php';
+include 'test.php';
 
 ?>
 <!DOCTYPE html>
@@ -100,10 +101,14 @@ include 'dbconnect.php';
             
           <div>
 
+            <form action="test.php" method="POST" enctype="multipart/form-data">
+              File: 
+              <input type="file" name="image"><input type="submit" value="Submit">
+            </form>
+
             <?php echo "<form action=editprofile.php method=post>" ?>
             <table>
               <tr>
-                <img src="./img/glyphicons-halflings.png">
                 <p><td style="font-weight:bold">First Name: </td>
                 <td><?php echo "<input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'>"; ?></td>
               </tr>
@@ -144,23 +149,6 @@ include 'dbconnect.php';
               </tr>
             </table>
 
-
-<!--             <?php
-
-            echo "<form action=editprofile.php method=post>";
-            echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
-            echo "First Name: <input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'><br />";
-            echo "Last Name: <input type=text name=lname value='" . stripslashes($data2['Last_Name']) . "'><br />";
-            echo "Email <input type=text name=email value=" . $data2['Email'] . " ><br />";
-            echo "Phone Number <input type=text name=phonenumber value=" . $data2['Phone_Number'] . " ><br />";
-            echo "Rank: $data2[Rank]" . "<br />";
-            echo "Address <input type=text name=address value='" . stripslashes($data2["Address"]) . "'><br />";
-            echo "City <input type=text name=city value='" . stripslashes($data2['City']) . "'><br />";
-            echo "State <input type=text name=state value=" . $data2['State'] . "><br />";
-            echo "Zip <input type=text name=zip value=" . $data2['Zip'] . "><br />";
-            echo "<input class=btn type=submit name=update value=Update>";
-            
-            ?> -->
           </div>
 
           </div><!--/row-->
