@@ -1,14 +1,9 @@
 <?php
 
 session_start();
-include 'dbconnect.php';
-
-
-
-//$result = mysql_query("SELECT * from schedule") or die('Could not query');
-
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,56 +47,138 @@ include 'dbconnect.php';
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
 
-    <!-- Full Calender -->
+    
     <link rel='stylesheet' type='text/css' href='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.css' />
     <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-1.9.1.min.js'></script>
     <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-ui-1.10.2.custom.min.js'></script>
     <script type='text/javascript' src='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.min.js'></script>
-    <script>
-            $(document).ready(function() {
 
-              /* initialize the external events
+    
+<script>
+    $(document).ready(function() {
+  
+  
+    /* initialize the external events
     -----------------------------------------------------------------*/
   
-            $('#external-events div.external-event').each(function() {
-            
-              // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
-              // it doesn't need to have a start or end
-              var eventObject = {
-                title: $.trim($(this).text()) // use the element's text as the event title
-              };
-              
-              // store the Event Object in the DOM element so we can get to it later
-              $(this).data('eventObject', eventObject);
-              
-              // make the event draggable using jQuery UI
-              $(this).draggable({
-                zIndex: 999,
-                revert: true,      // will cause the event to go back to its
-                revertDuration: 0  //  original position after the drag
-              });
-              
-            });
+    $('#external-events div.external-event').each(function() {
+    
+      // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+      // it doesn't need to have a start or end
+      var eventObject = {
+        title: $.trim($(this).text()) // use the element's text as the event title
+      };
+      
+      // store the Event Object in the DOM element so we can get to it later
+      $(this).data('eventObject', eventObject);
+      
+      // make the event draggable using jQuery UI
+      $(this).draggable({
+        zIndex: 999,
+        revert: true,      // will cause the event to go back to its
+        revertDuration: 0  //  original position after the drag
+      });
+      
+    });
+  
+  
+    /* initialize the calendar
+    -----------------------------------------------------------------*/
+    
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      defaultView: 'agendaWeek',
+      editable: true,
+      droppable: true, // this allows things to be dropped onto the calendar !!!
+      drop: function(date, allDay) { // this function is called when something is dropped
+      
+        // retrieve the dropped element's stored Event Object
+        var originalEventObject = $(this).data('eventObject');
+        
+        // we need to copy it, so that multiple events don't have a reference to the same object
+        var copiedEventObject = $.extend({}, originalEventObject);
+        
+        // assign it the date that was reported
+        copiedEventObject.start = date;
+        copiedEventObject.allDay = allDay;
+        
+        // render the event on the calendar
+        // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+        $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+        
+        // is the "remove after drop" checkbox checked?
+        if ($('#drop-remove').is(':checked')) {
+          // if so, remove the element from the "Draggable Events" list
+          $(this).remove();
+        }
+        
+      }
+    });
+    
+    
+  });
 
+</script>
+  <style>
 
-            // page is now ready, initialize the calendar...
+  body {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    }
+    
+  #wrap {
+    width: 1400px;
+    margin: 0 auto;
+    }
+    
+  #external-events {
+    float: left;
+    width: 150px;
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    background: #eee;
+    text-align: left;
+    }
+    
+  #external-events h4 {
+    font-size: 16px;
+    margin-top: 0;
+    padding-top: 1em;
+    }
+    
+  .external-event { /* try to mimick the look of a real event */
+    margin: 10px 0;
+    padding: 2px 4px;
+    background: #3366CC;
+    color: #fff;
+    font-size: .85em;
+    cursor: pointer;
+    }
+    
+  #external-events p {
+    margin: 1.5em 0;
+    font-size: 11px;
+    color: #666;
+    }
+    
+  #external-events p input {
+    margin: 0;
+    vertical-align: middle;
+    }
 
-            $('#calendar').fullCalendar({
-                // put your options and callbacks here
-                header: {
-                  left: 'prev,next today',
-                  center: 'title',
-                  right: 'month,agendaWeek,agendaDay'
-                },
-                defaultView:'agendaWeek',
-                events: './myevents.php'
+  #calendar {
+    float: left;
+    width: auto;
+    }
 
-                // editable:true
-                
-            })
+</style>
 
-        });
-    </script>
   </head>
 
   <body>
@@ -117,7 +194,7 @@ include 'dbconnect.php';
           <a class="brand" href="#">Project name</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -145,18 +222,38 @@ include 'dbconnect.php';
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Schedule</h1>
-            <p>This displays your schedule</p>
-
+            <h1>Availability</h1>
+            <p>Here you can update your availability Using a drag and drop calendar view</p>
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
-          <div id='calendar'></div>
           <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
             
           <div>
+            <div id='wrap'>
 
+            <div id='external-events'>
+            <h4>Draggable Availability</h4>
+            <div class='external-event'>Available</div>
+          </div>
+            <!-- <p>
+            <input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove after drop</label>
+            </p> -->
+            </div>
+
+            <div id='calendar'></div>
+
+            <div style='clear:both'></div>
+          </div>
+
+
+            <table>
+              <tr>
+                <td><input class=btn type=button name=submit value=Submit></td>
+              </tr>
+
+            </table>
 
           </div><!--/row-->
         </div><!--/span-->

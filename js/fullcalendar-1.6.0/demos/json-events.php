@@ -13,26 +13,26 @@
   }
   echo json_encode($arr); 
 
-	// $year = date('Y');
-	// $month = date('m');
+	$year = date('Y');
+	$month = date('m');
 
-	// echo json_encode(array(
+	echo json_encode(array(
 	
-	// 	array(
-	// 		'id' => 111,
-	// 		'title' => "Event1",
-	// 		'start' => "$year-$month-10",
-	// 		'url' => "http://yahoo.com/"
-	// 	),
+		array(
+			'id' => 111,
+			'title' => "Event1",
+			'start' => "13:00:00",
+			'url' => "http://yahoo.com/"
+		),
 		
-	// 	array(
-	// 		'id' => 222,
-	// 		'title' => "Event2",
-	// 		'start' => "$year-$month-20",
-	// 		'end' => "$year-$month-22",
-	// 		'url' => "http://yahoo.com/"
-	// 	)
+		array(
+			'id' => 222,
+			'title' => "Event2",
+			'start' => "13:00:00",
+			'end' => "18:00:00",
+			'url' => "http://yahoo.com/"
+		)
 	
-	// ));
+	));
 
 ?>

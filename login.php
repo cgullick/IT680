@@ -10,8 +10,8 @@
 
     if ($username && $password) 
     {
-	    $connect = mysql_connect("64.254.188.188","it680","it680") or die ("Couldn't connect!");
-	    mysql_select_db("emp_management") or die("Couldn't find database.");
+	    $connect = mysql_connect($dbhost,$dbuser,$dbpass) or die ("Couldn't connect!");
+	    mysql_select_db("scheduling_database") or die("Couldn't find database.");
 
 	    $query = mysql_query("SELECT u.username, p.password, u.rank 
 	    					  FROM user_profile u join password p on p.user_id = u.user_id 

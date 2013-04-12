@@ -7,7 +7,7 @@ $dbuser = 'it680';
 $dbpass = 'it680';
 
 $connection = mysql_connect($dbhost, $dbuser, $dbpass) or die ("Couldn't connect to server.");  
-$db = mysql_select_db('emp_management', $connection) or die ("Couldn't select database.");  
+$db = mysql_select_db('scheduling_database', $connection) or die ("Couldn't select database.");  
  
       $search=$_SESSION['username']; 
 
