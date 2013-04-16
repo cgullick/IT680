@@ -97,8 +97,18 @@ include 'dbconnect.php';
           </div>
           <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
-            
+          <script>
+          function Confirm() {
+            var r=confirm("Is this correct?");
+            if (r==true) {
+              x="Yes.";
+            } else {
+              x="Cancelled.";
+            }
+          }
+          </script>
           <div>
+          <form method="post" action="requesttimeoff.php" >
             <table>
               <tr>
               <td>First Name: </td>
@@ -110,13 +120,15 @@ include 'dbconnect.php';
             </tr>
             <tr>
               <td>Date: </td>
-              <td><input type=date name=date></td>
+              <td><?php echo "<input type=date name=requestoffdate>" ?></td>
             </tr>
             <tr>
               <td>Reason: </td>
-              <td><textarea style="width:400px" maxlength="200"></textarea></td>
+              <td><input type="text" name="requestoffreason" style="width:400px" maxlength="200"></textarea></td>
             </tr>
             </table>
+            <input class="btn" type="submit" name="RequestOffButton" value="Submit" onclick="Confirm()">
+          </form>
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->

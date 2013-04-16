@@ -18,23 +18,43 @@ $db = mysql_select_db('scheduling_database', $connection) or die ("Couldn't sele
 
 /* Start Update Profile Query */
 
-$First_Name = $_POST['First_Name'];
-$Last_Name = $_POST['Last_Name'];
-$Email = $_POST['Email'];
-$Phone_Number = $_POST['Phone_Number'];
-$Address = $_POST['Address'];
-$City = $_POST['City'];
-$State = $_POST['State'];
-$Zip = $_POST['Zip'];
+// $First_Name = $_POST['First_Name'];
+// $Last_Name = $_POST['Last_Name'];
+// $Email = $_POST['Email'];
+// $Phone_Number = $_POST['Phone_Number'];
+// $Address = $_POST['Address'];
+// $City = $_POST['City'];
+// $State = $_POST['State'];
+// $Zip = $_POST['Zip'];
 
-if(isset($_POST['update'])) {
+$fname = $_POST['fname'];
+$lname = $_POST['lname'];
+$email = $_POST['email'];
+$phonenumber = $_POST['phonenumber'];
+$address = $_POST['address'];
+$city = $_POST['city'];
+$state = $_POST['state'];
+$zip = $_POST['zip'];
 
-$UpdateQuery = "UPDATE user_profile 
-                SET First_Name = '$_POST[fname]', Last_Name = '$_POST[lname]', Email = '$_POST[email]', Phone_Number = '$_POST[phonenumber]', Address = '$_POST[address]', City = '$_POST[city]', State = '$_POST[state]', Zip = '$_POST[zip]'
-                WHERE User_ID='$_POST[hidden]' ";
+if(isset($_POST['UpdateProfileButton'])) {
+$UpdateQuery = "UPDATE user_profile
+                SET First_Name = '$fname', Last_Name = '$lname', Email = '$email', Phone_Number = '$phonenumber', Address = '$address', City = '$city', State = '$state', Zip = '$zip'
+                WHERE username = '".$search."' ";
 mysql_query($UpdateQuery, $connection);
+header("Location: ./editprofile.php");
 
 };
+
+$requestoffdate = $_POST['requestoffdate'];
+$requestoffreason = $_POST['requestoffreason'];
+
+if (isset($_POST['RequestOffButton'])) {
+  $RequestOff = " INSERT INTO request_off (Emp_ID, Request_Off_Date, Reason) 
+                  VALUES ('$emp_id[emp_id]','$requestoffdate','$requestoffreason') ";
+  mysql_query($RequestOff, $connection);
+  header("Location: ./requesttimeoff.php");
+}
+
 
 /* End Update Profile Query */
 
@@ -71,31 +91,39 @@ $employeelist = mysql_query('SELECT * FROM user_profile');
 //$imagequery = mysql_query("INSERT INTO  `user_profile` (`picture`) VALUES (`$location`) ");
 //$imagequery = "UPDATE user_profile SET picture = '".$location."' WHERE username = ".$_SESSION['Username'];
 
-
-
 /* End Image Upload Store to Database */
 
+/* Start Availability Update */
 
+$emp_id = mysql_fetch_assoc(mysql_query("SELECT emp_id FROM user_profile WHERE username = '". $search ."'"));
 
+$UpdateAvailabilityQuery = mysql_query(" SELECT is_avail FROM emp_availability WHERE emp_id = '".$emp_id['emp_id']."' ORDER BY time_availability_id ");
 
+// Query to get max availability_id for specific employee
 
+if (isset($_POST['UpdateAvailabilityButton'])) {
+  for ($i = 1; $i < 46; $i++) {
+    if (isset($_POST['UpdateAvailabilityButton']) && $_POST['UpdateAvailability'.$i] == 'true' ) {
+      $UpdateAvailabilityQuery = " UPDATE emp_availability
+                                   SET is_avail = '1'
+                                   WHERE time_availability_id = '". $i . "' and emp_id = (select emp_id from user_profile where username = '". $search ."') ";
+      mysql_query($UpdateAvailabilityQuery, $connection);
+      header("Location: ./availability.php");                       
+    } else {
+          $UpdateAvailabilityQueryUnchecked = " UPDATE emp_availability
+                                   SET is_avail = '0'
+                                   WHERE time_availability_id = '". $i . "' and emp_id = (select emp_id from user_profile where username = '". $search ."') ";
+      mysql_query($UpdateAvailabilityQueryUnchecked, $connection); 
+      header("Location: ./availability.php");
+    }
+  }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+/* End Availability Update */
 
 /* Start Time Clock Query */
 
-  	if (isset($_POST['ClockIn'])){
+  	if (isset($_POST['ClockIn'])) {
   			$InsertQuery="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
    			(select emp_id from user_profile where User_ID = '$_POST[hidden]'));";
   			mysql_query($InsertQuery, $connection);
@@ -121,5 +149,19 @@ $employeelist = mysql_query('SELECT * FROM user_profile');
 
 /* End Time Clock Query */
 /**********************************/
+
+/* Start Request Off Query */
+
+$requestoffdate = $_POST['requestoffdate'];
+$requestoffreason = $_POST['requestoffreason'];
+
+if (isset($_POST['RequestOffButton'])) {
+  $RequestOff = " INSERT INTO request_off (Emp_ID, Request_Off_Date, Reason) 
+                  VALUES ('$emp_id[emp_id]','$requestoffdate','$requestoffreason') ";
+  mysql_query($RequestOff, $connection);
+  header("Location: ./requesttimeoff.php");
+}
+
+/* End Request Off Query */
 
 ?>

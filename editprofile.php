@@ -3,7 +3,7 @@
 session_start();
 
 include 'dbconnect.php';
-include 'test.php';
+// include 'test.php';
 
 ?>
 <!DOCTYPE html>
@@ -101,15 +101,15 @@ include 'test.php';
             
           <div>
 
-            <form action="test.php" method="POST" enctype="multipart/form-data">
+<!--             <form action="test.php" method="POST" enctype="multipart/form-data">
               File: 
               <input type="file" name="image"><input type="submit" value="Submit">
-            </form>
-
-            <?php echo "<form action=editprofile.php method=post>" ?>
+            </form> -->
+            <form action="editprofile.php" method="post">
             <table>
               <tr>
                 <p><td style="font-weight:bold">First Name: </td>
+                  <!-- <td><input type="text" name="fname"></td> -->
                 <td><?php echo "<input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'>"; ?></td>
               </tr>
               <tr>
@@ -144,10 +144,9 @@ include 'test.php';
                 <td style="font-weight:bold">Zip: </td>
                 <td><?php echo "<input type=text name=zip value=" . $data2['Zip'] . ">"; ?></td>
               </tr>
-              <tr>
-                <td><?php echo "<input class=btn type=submit name=update value=Update>"; ?></td>
-              </tr>
             </table>
+            <input class="btn" type="submit" name="UpdateProfileButton" value="Submit">
+          </form>
 
           </div>
 

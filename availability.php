@@ -2,6 +2,8 @@
 
 session_start();
 
+include 'dbconnect.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -46,6 +48,9 @@ session_start();
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    
+    <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
   </head>
 
   <body>
@@ -94,79 +99,306 @@ session_start();
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
-          <!--<img src="sav.png" width="150" height="150">-->
+
           <div class="row-fluid">
+
+          <form action="availability.php" method="POST">
+
+        <div class="tabbable">
+           <ul class="nav nav-tabs">
+             <li class="active"><a href="#Monday" data-toggle="tab">Monday</a></li>
+             <li><a href="#Tuesday" data-toggle="tab">Tuesday</a></li>
+             <li><a href="#Wednesday" data-toggle="tab">Wednesday</a></li>
+             <li><a href="#Thursday" data-toggle="tab">Thursday</a></li>
+             <li><a href="#Friday" data-toggle="tab">Friday</a></li>
+           </ul>
+           <div class="tab-content">
+               <div id="Monday" class="tab-pane active">
+               <pre><table>
+              <tr>
+                <th>Start Time&nbsp</th>
+                <th>&nbspEnd Time&nbsp</th>
+                <th>&nbspAvailable?</th>
+              </tr>
+              <tr>
+                <td>8:00am</td>
+                <td>9:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability1" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 0) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>9:00am</td>
+                <td>10:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability2" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 1) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>10:00am</td>
+                <td>11:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability3" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 2) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>11:00am</td>
+                <td>12:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability4" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 3) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>12:00pm</td>
+                <td>1:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability5" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 4) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>1:00pm</td>
+                <td>2:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability6" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 5) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>2:00pm</td>
+                <td>3:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability7" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 6) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>3:00pm</td>
+                <td>4:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability8" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 7) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>4:00pm</td>
+                <td>5:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability9" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 8) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+            </table></pre>
+              </div>
+
+               <div id="Tuesday" class="tab-pane">
+               <pre><table>
+              <tr>
+                <th>Start Time&nbsp</th>
+                <th>&nbspEnd Time&nbsp</th>
+                <th>&nbspAvailable?</th>
+              </tr>
+              <tr>
+                <td>8:00am</td>
+                <td>9:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability10" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 9) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>9:00am</td>
+                <td>10:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability11" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 10) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>10:00am</td>
+                <td>11:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability12" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 11) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>11:00am</td>
+                <td>12:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability13" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 12) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>12:00pm</td>
+                <td>1:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability14" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 13) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>1:00pm</td>
+                <td>2:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability15" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 14) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>2:00pm</td>
+                <td>3:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability16" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 15) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>3:00pm</td>
+                <td>4:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability17" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 16) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>4:00pm</td>
+                <td>5:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability18" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 17) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+            </table></pre>
+              </div>
+
+              <div id="Wednesday" class="tab-pane">
+               <pre><table>
+              <tr>
+                <th>Start Time&nbsp</th>
+                <th>&nbspEnd Time&nbsp</th>
+                <th>&nbspAvailable?</th>
+              </tr>
+              <tr>
+                <td>8:00am</td>
+                <td>9:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability19" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 18) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>9:00am</td>
+                <td>10:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability20" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 19) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>10:00am</td>
+                <td>11:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability21" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 20) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>11:00am</td>
+                <td>12:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability22" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 21) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>12:00pm</td>
+                <td>1:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability23" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 22) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>1:00pm</td>
+                <td>2:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability24" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 23) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>2:00pm</td>
+                <td>3:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability25" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 24) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>3:00pm</td>
+                <td>4:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability26" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 25) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>4:00pm</td>
+                <td>5:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability27" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 26) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+            </table></pre>
+              </div>
+
+              <div id="Thursday" class="tab-pane">
+               <pre><table>
+              <tr>
+                <th>Start Time&nbsp</th>
+                <th>&nbspEnd Time&nbsp</th>
+                <th>&nbspAvailable?</th>
+              </tr>
+              <tr>
+                <td>8:00am</td>
+                <td>9:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability28" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 27) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>9:00am</td>
+                <td>10:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability29" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 28) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>10:00am</td>
+                <td>11:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability30" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 29) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>11:00am</td>
+                <td>12:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability31" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 30) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>12:00pm</td>
+                <td>1:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability32" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 31) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>1:00pm</td>
+                <td>2:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability33" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 32) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>2:00pm</td>
+                <td>3:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability34" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 33) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>3:00pm</td>
+                <td>4:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability35" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 34) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>4:00pm</td>
+                <td>5:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability36" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 35) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+            </table></pre>
+              </div>
+
+              <div id="Friday" class="tab-pane">
+               <pre><table>
+              <tr>
+                <th>Start Time&nbsp</th>
+                <th>&nbspEnd Time&nbsp</th>
+                <th>&nbspAvailable?</th>
+              </tr>
+              <tr>
+                <td>8:00am</td>
+                <td>9:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability37" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 36) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>9:00am</td>
+                <td>10:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability38" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 37) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>10:00am</td>
+                <td>11:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability39" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 38) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>11:00am</td>
+                <td>12:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability40" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 39) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>12:00pm</td>
+                <td>1:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability41" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 40) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>1:00pm</td>
+                <td>2:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability42" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 41) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>2:00pm</td>
+                <td>3:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability43" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 42) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>3:00pm</td>
+                <td>4:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability44" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 43) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+              <tr>
+                <td>4:00pm</td>
+                <td>5:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability45" value="true"<?php if(mysql_result($UpdateAvailabilityQuery, 44) == '1') echo "checked='checked'"; ?>></td>
+              </tr>
+            </table></pre>
+              </div>
+
+           </div>
+        </div>
+
+          </div>
             
-          <div>
-
-            <table>
-              <tr>
-                <!--<th>Date</th>-->
-                <th>Day&nbsp</th>
-                <th>Start Time</th>
-                <th>End Time</th>
-                <th>&nbspAdd Row&nbsp</th>
-                <th>Turn Off</th>
-              </tr>
-              <tr>
-                <!--<td><?php echo date("Y-m-d"); ?></td>-->
-                <td><?php echo "Monday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><?php echo "Tuesday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><?php echo "Wednesday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><?php echo "Thursday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><?php echo "Friday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><?php echo "Saturday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><?php echo "Sunday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><input class=btn type=button name=submit value=Submit></td>
-              </tr>
-
-            </table>
+            <input class="btn" type="submit" name="UpdateAvailabilityButton" value="Submit">
 
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
+    </form>
 
       <hr>
 
