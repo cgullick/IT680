@@ -71,45 +71,53 @@ $employeelist = mysql_query('SELECT * FROM user_profile');
 //$imagequery = mysql_query("INSERT INTO  `user_profile` (`picture`) VALUES (`$location`) ");
 //$imagequery = "UPDATE user_profile SET picture = '".$location."' WHERE username = ".$_SESSION['Username'];
 
-
-
 /* End Image Upload Store to Database */
 
+/* Start Availability Update */
 
+$emp_id = mysql_fetch_assoc(mysql_query("SELECT emp_id FROM user_profile WHERE username = '". $search ."'"));
 
+$UpdateAvailabilityQuery = mysql_query(" SELECT is_avail FROM emp_availability WHERE emp_id = '".$emp_id['emp_id']."' ORDER BY time_availability_id ");
 
+// Query to get max availability_id for specific employee
 
+if (isset($_POST['UpdateAvailabilityButton'])) {
+  for ($i = 1; $i < 46; $i++) {
+    if (isset($_POST['UpdateAvailabilityButton']) && $_POST['UpdateAvailability'.$i] == 'true' ) {
+      $UpdateAvailabilityQuery = " UPDATE emp_availability
+                                   SET is_avail = '1'
+                                   WHERE time_availability_id = '". $i . "' and emp_id = (select emp_id from user_profile where username = '". $search ."') ";
+      mysql_query($UpdateAvailabilityQuery, $connection);
+      header("Location: ./availability.php");                       
+    } else {
+          $UpdateAvailabilityQueryUnchecked = " UPDATE emp_availability
+                                   SET is_avail = '0'
+                                   WHERE time_availability_id = '". $i . "' and emp_id = (select emp_id from user_profile where username = '". $search ."') ";
+      mysql_query($UpdateAvailabilityQueryUnchecked, $connection); 
+      header("Location: ./availability.php");
+    }
+  }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+/* End Availability Update */
 
 /* Start Time Clock Query */
 
-  	if (isset($_POST['ClockIn'])){
-  			$InsertQuery="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
-   			(select emp_id from user_profile where User_ID = '$_POST[hidden]'));";
-  			mysql_query($InsertQuery, $connection);
-  			header("Location: ./employee.php");
-  			//echo "clocked in";
-  			exit;
-	};
+          if (isset($_POST['ClockIn'])) {
+                          $InsertQuery="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
+                           (select emp_id from user_profile where User_ID = '$_POST[hidden]'));";
+                          mysql_query($InsertQuery, $connection);
+                          header("Location: ./employee.php");
+                          //echo "clocked in";
+                          exit;
+        };
 
-	if (isset($_POST['ClockOut'])){
-		$ClockoutUpdateQuery="Update time_clock SET Clock_out_Time = curtime() where Emp_id = (select emp_id from user_profile where User_ID = '$_POST[hidden]') and Date = curdate()";
-		mysql_query($ClockoutUpdateQuery, $connection);
-		header("Location: ./employee.php");
-		exit;
-	}
+        if (isset($_POST['ClockOut'])){
+                $ClockoutUpdateQuery="Update time_clock SET Clock_out_Time = curtime() where Emp_id = (select emp_id from user_profile where User_ID = '$_POST[hidden]') and Date = curdate()";
+                mysql_query($ClockoutUpdateQuery, $connection);
+                header("Location: ./employee.php");
+                exit;
+        }
   //$clockedin = "select null from time_clock where emp_id = (select emp_id from user_profile where username = "'.$search.'"') and clock_out_time is NULL"
   $clockedinquery= mysql_query("SELECT null from `time_clock` where emp_id = (SELECT emp_id from user_profile where username = '".$search."') 
                                 and clock_out_time is NULL");
@@ -120,6 +128,20 @@ $employeelist = mysql_query('SELECT * FROM user_profile');
   $clockintimedisplay = mysql_fetch_array($displayClockintime);
 
 /* End Time Clock Query */
+
+
+/* Request Off Query */
+$RequestDate = $_POST['requestoffdate'];
+$Reason = $_POST['Reason'];
+if (isset($_POST['RequestOffButton'])) {
+  //$requestoffquery="INSERT INTO request_off (Emp_ID,request_off_date,reason) values ('".$emp_id."', '".$RequestDate."', '".$Reason"')";
+  $requestoffquery = "INSERT INTO request_off (Emp_ID,request_off_date,reason) values ('".$emp_id."', '".$RequestDate."', '".$Reason."')";
+  mysql_query($requestoffquery, $connection);
+  header("Location: ./requesttimeoff.php");
+  echo $RequestDate;
+  echo $Reason;
+  exit;
+}
 /**********************************/
 
 ?>

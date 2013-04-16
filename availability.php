@@ -2,6 +2,8 @@
 
 session_start();
 
+include 'dbconnect.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -96,73 +98,55 @@ session_start();
           </div>
           <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
-            
-          <div>
 
+          <div>
+            <form action="availability.php" method="POST">
+            <?php 
+              $emp_id = mysql_fetch_assoc(mysql_query("SELECT emp_id FROM user_profile WHERE username = '". $search ."'"));
+              $q4 = mysql_fetch_assoc(mysql_query("SELECT is_avail from emp_availability where emp_id = '".$emp_id['emp_id']."' and time_availability_id = '1'")); 
+              $q5 = mysql_query("SELECT is_avail FROM emp_availability WHERE emp_id = '".$emp_id['emp_id']."' ORDER BY time_availability_id ");
+              // echo "0=".mysql_data_seek($q5, 0);
+              // echo "1=".$q5[1];
+              // echo "2=".$q5[2];
+              // echo "3=".$q5[3];
+              //echo mysql_result($q5, 1);
+            ?>
             <table>
               <tr>
-                <!--<th>Date</th>-->
                 <th>Day&nbsp</th>
                 <th>Start Time</th>
                 <th>End Time</th>
-                <th>&nbspAdd Row&nbsp</th>
-                <th>Turn Off</th>
+                <th>Available?</th>
               </tr>
               <tr>
-                <!--<td><?php echo date("Y-m-d"); ?></td>-->
-                <td><?php echo "Monday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+                <td>Monday&nbsp</td>
+                <td>8:00am</td>
+                <td>9:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability1" value="true"<?php if(mysql_result($q5, 0) == '1') echo "checked='checked'"; ?>></td>
               </tr>
               <tr>
-                <td><?php echo "Tuesday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+                <td>Monday</td>
+                <td>9:00am</td>
+                <td>10:00am</td>
+<!--                 <?php echo "name". $data2['First_Name']; ?>
+                <?php echo "test1". $q3['time_availability_id']; ?>
+                <?php echo "test2". $q3['time_availability_id']; ?> -->
+                <td><input type="checkbox" name="UpdateAvailability2" value="true"<?php if(mysql_result($q5, 1) == '1') echo "checked='checked'"; ?>></td>
               </tr>
               <tr>
-                <td><?php echo "Wednesday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+                <td>Monday</td>
+                <td>10:00am</td>
+                <td>11:00am</td>
+                <td><input type="checkbox" name="UpdateAvailability3" value="true"<?php if(mysql_result($q5, 2) == '1') echo "checked='checked'"; ?>></td>
               </tr>
               <tr>
-                <td><?php echo "Thursday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
+                <td>Monday</td>
+                <td>11:00am</td>
+                <td>12:00pm</td>
+                <td><input type="checkbox" name="UpdateAvailability4" value="true"<?php if(mysql_result($q5, 3) == '1') echo "checked='checked'"; ?>></td>
               </tr>
-              <tr>
-                <td><?php echo "Friday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><?php echo "Saturday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><?php echo "Sunday" ?></td>
-                <td><input type=text name=text></td>
-                <td><input type=text name=text></td>
-                <td><input class=btn type=button name=addrow value=+ style="margin: 0px 0px 12px 25px"></td>
-                <td><input type=checkbox name=checkbox style="margin: 0px 0px 12px 25px"></td>
-              </tr>
-              <tr>
-                <td><input class=btn type=button name=submit value=Submit></td>
-              </tr>
-
             </table>
+            <input class=btn type="submit" name="UpdateAvailabilityButton" value="Submit">
 
           </div><!--/row-->
         </div><!--/span-->

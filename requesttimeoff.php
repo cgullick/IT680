@@ -99,6 +99,7 @@ include 'dbconnect.php';
           <div class="row-fluid">
             
           <div>
+            <form action="requesttimeoff.php" method="POST">
             <table>
               <tr>
               <td>First Name: </td>
@@ -110,13 +111,14 @@ include 'dbconnect.php';
             </tr>
             <tr>
               <td>Date: </td>
-              <td><input type=date name=date></td>
+              <td><?php echo "<input type=date name=requestoffdate>"; ?></td>
             </tr>
             <tr>
               <td>Reason: </td>
-              <td><textarea style="width:400px" maxlength="200"></textarea></td>
+              <td><?php echo "<input type=text name=Reason style=width:400px maxlength=200></textarea>"; ?></td>
             </tr>
             </table>
+            <input class="btn" type="submit" name="RequestOffButton" value="Submit">
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
