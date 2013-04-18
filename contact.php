@@ -40,10 +40,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="index.html">Maverick EMS</a>
+          <a class="brand" href="index.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="./index.php">Home</a></li>
+              <!--<li class="active"><a href="./index.php">Home</a></li>-->
               <li><a href="./about.php">About</a></li>
               <li><a href="./contact.php">Contact</a></li>
               <!--<li class="dropdown">
@@ -59,11 +59,16 @@
                 </ul>
               </li>-->
             </ul>
-            <form class="navbar-form pull-right">
+           <!--  <form class="navbar-form pull-right">
               <input class="span2" type="text" placeholder="Email">
               <input class="span2" type="password" placeholder="Password">
               <button type="submit" class="btn">Sign in</button>
-            </form>
+            </form> -->
+            <form class='navbar-form pull-right' action='login.php' method='POST'>
+                    <input class='span2' type='text' name='username' placeholder='username'>
+                    <input class='span2' type='password' name='password' placeholder='password'>
+                    <input class='btn' type='submit' value='Log in'>
+              </form>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -75,7 +80,7 @@
       <div class="hero-unit">
         <h1>Contact Us</h1>
         <p>Test contact</p>
-        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+        <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
       </div>
 
       <footer>
