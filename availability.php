@@ -114,11 +114,57 @@ include 'dbconnect.php';
            </ul>
            <div class="tab-content">
                <div id="Monday" class="tab-pane active">
+
+              <!-- Toggle All Javascript -->
+              <script language="JavaScript">
+              function toggleMonday(source) {
+                for (var x=1; x<10; x++) {
+                  checkboxes = document.getElementsByName('UpdateAvailability'+x);
+                  for(var i=0, n=checkboxes.length;i<n;i++) {
+                    checkboxes[i].checked = source.checked;
+                  }
+                }
+              }
+              function toggleTuesday(source) {
+                for (var x=10; x<19; x++) {
+                  checkboxes = document.getElementsByName('UpdateAvailability'+x);
+                  for(var i=0, n=checkboxes.length;i<n;i++) {
+                    checkboxes[i].checked = source.checked;
+                  }
+                }
+              }
+              function toggleWednesday(source) {
+                for (var x=19; x<28; x++) {
+                  checkboxes = document.getElementsByName('UpdateAvailability'+x);
+                  for(var i=0, n=checkboxes.length;i<n;i++) {
+                    checkboxes[i].checked = source.checked;
+                  }
+                }
+              }
+              function toggleThursday(source) {
+                for (var x=28; x<37; x++) {
+                  checkboxes = document.getElementsByName('UpdateAvailability'+x);
+                  for(var i=0, n=checkboxes.length;i<n;i++) {
+                    checkboxes[i].checked = source.checked;
+                  }
+                }
+              }
+              function toggleFriday(source) {
+                for (var x=37; x<46; x++) {
+                  checkboxes = document.getElementsByName('UpdateAvailability'+x);
+                  for(var i=0, n=checkboxes.length;i<n;i++) {
+                    checkboxes[i].checked = source.checked;
+                  }
+                }
+              }
+              </script>
+
                <pre><table>
               <tr>
                 <th>Start Time&nbsp</th>
                 <th>&nbspEnd Time&nbsp</th>
-                <th>&nbspAvailable?</th>
+                <th>Check All<input type="checkbox" onClick="toggleMonday(this)" /></th>
+              
               </tr>
               <tr>
                 <td>8:00am</td>
@@ -169,11 +215,12 @@ include 'dbconnect.php';
               </div>
 
                <div id="Tuesday" class="tab-pane">
+
                <pre><table>
               <tr>
                 <th>Start Time&nbsp</th>
                 <th>&nbspEnd Time&nbsp</th>
-                <th>&nbspAvailable?</th>
+                <th>Check All<input type="checkbox" onClick="toggleTuesday(this)" /></th>
               </tr>
               <tr>
                 <td>8:00am</td>
@@ -228,7 +275,7 @@ include 'dbconnect.php';
               <tr>
                 <th>Start Time&nbsp</th>
                 <th>&nbspEnd Time&nbsp</th>
-                <th>&nbspAvailable?</th>
+                <th>Check All<input type="checkbox" onClick="toggleWednesday(this)" /></th>
               </tr>
               <tr>
                 <td>8:00am</td>
@@ -283,7 +330,7 @@ include 'dbconnect.php';
               <tr>
                 <th>Start Time&nbsp</th>
                 <th>&nbspEnd Time&nbsp</th>
-                <th>&nbspAvailable?</th>
+                <th>Check All<input type="checkbox" onClick="toggleThursday(this)" /></th>
               </tr>
               <tr>
                 <td>8:00am</td>
@@ -338,7 +385,7 @@ include 'dbconnect.php';
               <tr>
                 <th>Start Time&nbsp</th>
                 <th>&nbspEnd Time&nbsp</th>
-                <th>&nbspAvailable?</th>
+                <th>Check All<input type="checkbox" onClick="toggleFriday(this)" /></th>
               </tr>
               <tr>
                 <td>8:00am</td>

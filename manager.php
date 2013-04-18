@@ -60,13 +60,13 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="./manager.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="./manager.php">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
@@ -82,44 +82,66 @@ include 'dbconnect.php';
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
               <li class="actice"><a href="./manager.php">Employees</a></li>
-              <li><a href="./timeclock.php">Time Clock</a></li>
-              <li><a href="./schedule.php">Schedule</a></li>
-              <li><a href="./availability.php">Availabilty</a></li>
-              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
+              <li><a href="./managerschedule.php">Schedule</a></li>
+              <li><a href="./report.php">Report</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Welcome To Your User Profile!</h1>
-            <p>Here you can view your information and update it.</p>
+            <h1>Welcome To Your Manager Profile!</h1>
+            <p>Here you can manage your employees.</p>
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
           <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
-            
-          <div>
-            <table>
-              <tr>
-                <td><?php echo $employeelist['First_Name'] . " " . $employeelist['Last_Name']; ?></td>
-              </tr>
-              <tr>
-                <td><?php echo $employeelist; ?></td>
-              </tr>
-            </table>
+          
+          <!-- Get employee list in dropdown -->
+           <form method="post" action="manager.php">
+            <?php
 
-            
-            <!--<?php
-              $username = "root";
-              $password = "";
-              $database = "emp_management";
-              $server = "localhost";
+              
+              echo "<select name = 'User_ID'>";
+              while($row = mysql_fetch_row($emp_list)) {
 
-              $db_handle = mysql_connect($server, $username, $password);
-              $db_found = mysql_select_db($database, $db_handle)
+                echo "<option name=dropdown value='" . $row[0] . "'>" . $row[1] . "</option>";
+              }
+              echo "</select>";
+
             ?>
-          </div>-->
+          </form>
+          <table>
+            <th/>
+            <th/>
+            <th/>
+            <td/>
+            <td/>
+            <td/>
+          </table>
+
+          <div id="wrapper">
+            <for action="" method = "post">
+
+              <select name="gender" id="gender" class="gender">
+                <option value="">Select One</option>
+                <?php if (!empty($list)) { ?>
+
+                <?php foreach($list as $row) { ?>
+                  <option value="<?php echo $row['User_ID']; ?>">
+                    <?php echo $row['First_Name']; ?>
+                  </option>
+                  <?php } ?>
+                <?php } ?>
+              </select>
+
+              <select name="gender" id="gender" class="gender" disabled="disabled">
+                <option value="">- - - - -</option>
+              </select>
+              <select name="gender" id="gender" class="gender" disable="disabled">
+                <option value="">- - - - -</option>
+              </select>
+          </div>
 
           </div><!--/row-->
         </div><!--/span-->

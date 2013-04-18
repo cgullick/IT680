@@ -18,15 +18,6 @@ $db = mysql_select_db('scheduling_database', $connection) or die ("Couldn't sele
 
 /* Start Update Profile Query */
 
-// $First_Name = $_POST['First_Name'];
-// $Last_Name = $_POST['Last_Name'];
-// $Email = $_POST['Email'];
-// $Phone_Number = $_POST['Phone_Number'];
-// $Address = $_POST['Address'];
-// $City = $_POST['City'];
-// $State = $_POST['State'];
-// $Zip = $_POST['Zip'];
-
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
@@ -76,7 +67,23 @@ if (isset($_POST['RequestOffButton'])) {
 
 /* Start Employee List */
 
-$employeelist = mysql_query('SELECT * FROM user_profile');
+try {
+
+  $sql = " SELECT * FROM user_profile WHERE rank = 'employee' ";
+  $result = mysql_query($sql) or die(mysql_error());
+  $list = mysql_fetch_assoc($result);
+
+} catch(PDOException $e) {
+  echo 'There was a problem';
+}
+
+// $emp_list = " SELECT User_ID, concat(First_Name,' ',Last_Name) FROM user_profile WHERE rank = 'Employee' ";
+// $emp_list = mysql_query($emp_list) or die(mysql_error());
+// //$emp_list = mysql_fetch_array($emp_list) or die(mysql_error());
+
+// if (isset($_POST['dropdown'])) {
+//   echo "Hello world";
+// }
 
 /* End Employee List */
 
@@ -124,7 +131,7 @@ if (isset($_POST['UpdateAvailabilityButton'])) {
 /* Start Time Clock Query */
 
   	if (isset($_POST['ClockIn'])) {
-  			$InsertQuery="INSERT INTO `emp_management`.`time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
+  			$InsertQuery="INSERT INTO `time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
    			(select emp_id from user_profile where User_ID = '$_POST[hidden]'));";
   			mysql_query($InsertQuery, $connection);
   			header("Location: ./employee.php");
@@ -163,5 +170,22 @@ if (isset($_POST['RequestOffButton'])) {
 }
 
 /* End Request Off Query */
+
+/* Start Report Query */
+
+$ReportQuery = "SELECT up.tech_id as Tech_ID, up.First_Name, up.Last_Name, e.reference_code as Reference_Code, pr.pay_rate as Pay_Rate, COALESCE(t1.total_hours,0) as Total_Hours, COALESCE(round((pr.pay_rate * t1.pay_hours),2),0) as Total_Pay
+                from user_profile up left join 
+                (select emp_id, time(sum(SUBTIME(clock_out_time,clock_in_time))) as total_hours, (time_to_sec(sum(SUBTIME(clock_out_time,clock_in_time)))/3600.0) as pay_hours
+                 from time_clock group by emp_id) t1 on t1.emp_id = up.emp_id
+                join employee e on e.emp_id = up.emp_id
+                join pay_rate pr on e.reference_code = pr.reference_code";
+$ReportQuery = mysql_query($ReportQuery) or die(mysql_error());
+
+/* End Report Query */
+
+/* Start TimeSheet Query */
+$timesheetquery = mysql_query("SELECT Date , clock_in_time, clock_out_time, timediff(concat(date, ' ',clock_out_time), concat(date,' ',clock_in_time))as hours FROM time_clock where emp_id = '".$emp_id['emp_id']."'");
+/* End TimeSheet Query */
+
 
 ?>

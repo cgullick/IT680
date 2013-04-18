@@ -1,7 +1,6 @@
 <?php
- 
-session_start();
 
+session_start();
 include 'dbconnect.php';
 
 ?>
@@ -10,7 +9,6 @@ include 'dbconnect.php';
   <head>
     <meta charset="utf-8">
     <title>Maverick EMS</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -48,6 +46,57 @@ include 'dbconnect.php';
       <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+
+    <!-- Full Calender -->
+    <link rel='stylesheet' type='text/css' href='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.css' />
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-1.9.1.min.js'></script>
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-ui-1.10.2.custom.min.js'></script>
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.min.js'></script>
+    <script>
+            $(document).ready(function() {
+
+              /* initialize the external events
+    -----------------------------------------------------------------*/
+  
+            $('#external-events div.external-event').each(function() {
+            
+              // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+              // it doesn't need to have a start or end
+              var eventObject = {
+                title: $.trim($(this).text()) // use the element's text as the event title
+              };
+              
+              // store the Event Object in the DOM element so we can get to it later
+              $(this).data('eventObject', eventObject);
+              
+              // make the event draggable using jQuery UI
+              $(this).draggable({
+                zIndex: 999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+              });
+              
+            });
+
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'month,agendaWeek,agendaDay'
+                },
+                defaultView:'agendaWeek',
+                events: './myevents.php'
+
+                // editable:true
+                
+            })
+
+        });
+    </script>
   </head>
 
   <body>
@@ -60,13 +109,13 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="./manager.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="./manager.php">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
@@ -81,67 +130,26 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="./employee.php">User Profile</a></li>
-              <li><a href="./timeclock.php">Time Clock</a></li>
-              <li><a href="./schedule.php">Schedule</a></li>
-              <li><a href="./availability.php">Availabilty</a></li>
-              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
-              <li><a href="./test.php">Image Upload</a></li>
-              <li><a href="./Availability Calender.php">Availablity Calendar</a></li>
-              <li><a href="./timesheet.php">Timesheet</a></li>
+              <li class="actice"><a href="./manager.php">Employees</a></li>
+              <li><a href="./managerschedule.php">Schedule</a></li>
+              <li><a href="./report.php">Report</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Welcome To Your User Profile!</h1>
-            <p>Here you can view your information and update it.</p>
+            <h1>Schedule</h1>
+            <p>This displays the schedule</p>
+
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
-
+          <div id='calendar'></div>
+          <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
             
           <div>
-            <table>
-              <tr>
-                <p><td style="font-weight:bold">First Name: </td>
-                <td><?php echo $data2['First_Name']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Last Name: </td>
-                <td><?php echo $data2['Last_Name']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Email: </td>
-                <td><?php echo $data2['Email']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Phone Number: </td>
-                <td><?php echo $data2['Phone_Number']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Rank: </td>
-                <td><?php echo $data2['Rank']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Address: </td>
-                <td><?php echo $data2['Address']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">City: </td>
-                <td><?php echo $data2['City']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">State: </td>
-                <td><?php echo $data2['State']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Zip: </td>
-                <td><?php echo $data2['Zip']; ?></td>
-              </tr> 
-            </table>
-            <p><a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
+
 
           </div><!--/row-->
         </div><!--/span-->

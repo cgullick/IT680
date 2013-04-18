@@ -60,13 +60,13 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="./manager.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <li class="active"><a href="./manager.php">Home</a></li>
               <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
@@ -81,67 +81,63 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="./employee.php">User Profile</a></li>
-              <li><a href="./timeclock.php">Time Clock</a></li>
-              <li><a href="./schedule.php">Schedule</a></li>
-              <li><a href="./availability.php">Availabilty</a></li>
-              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
-              <li><a href="./test.php">Image Upload</a></li>
-              <li><a href="./Availability Calender.php">Availablity Calendar</a></li>
-              <li><a href="./timesheet.php">Timesheet</a></li>
+              <li class="actice"><a href="./manager.php">Employees</a></li>
+              <li><a href="./managerschedule.php">Schedule</a></li>
+              <li><a href="./report.php">Report</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Welcome To Your User Profile!</h1>
-            <p>Here you can view your information and update it.</p>
-
-            <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
+            <h1>Report</h1>
+            <p>Here you can view reports.</p>
           </div>
 
           <div class="row-fluid">
             
           <div>
-            <table>
+
+            <script>
+            function printDiv()
+            {
+              var divToPrint=document.getElementById('table');
+              newWin= window.open("");
+              newWin.document.write(divToPrint.outerHTML);
+              newWin.print();
+              newWin.close();
+            }
+            </script>
+
+           <?php
+
+              echo "<table class=table id=table>
               <tr>
-                <p><td style="font-weight:bold">First Name: </td>
-                <td><?php echo $data2['First_Name']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Last Name: </td>
-                <td><?php echo $data2['Last_Name']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Email: </td>
-                <td><?php echo $data2['Email']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Phone Number: </td>
-                <td><?php echo $data2['Phone_Number']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Rank: </td>
-                <td><?php echo $data2['Rank']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Address: </td>
-                <td><?php echo $data2['Address']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">City: </td>
-                <td><?php echo $data2['City']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">State: </td>
-                <td><?php echo $data2['State']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Zip: </td>
-                <td><?php echo $data2['Zip']; ?></td>
-              </tr> 
-            </table>
-            <p><a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
+              <th>Tech ID</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Reference Code</th>
+              <th/>Pay Rate
+              <th/>Total Hours
+              <th/>Total Pay
+              </tr>";
+
+              while($row = mysql_fetch_array($ReportQuery))
+                {
+                echo "<tr>";
+                echo "<td>" . $row['Tech_ID'] . "</td>";
+                echo "<td>" . $row['First_Name'] . "</td>";
+                echo "<td>" . $row['Last_Name'] . "</td>";
+                echo "<td>" . $row['Reference_Code'] . "</td>";
+                echo "<td>" . $row['Pay_Rate'] . "</td>";
+                echo "<td>" . $row['Total_Hours'] . "</td>";
+                echo "<td>" . "$" . $row['Total_Pay'] . "</td>";
+                echo "</tr>";
+                }
+              echo "</table>";
+              echo "<input class=btn type=button value=Print onClick=printDiv()>";
+            ?>
+
+
 
           </div><!--/row-->
         </div><!--/span-->

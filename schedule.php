@@ -3,11 +3,6 @@
 session_start();
 include 'dbconnect.php';
 
-
-
-//$result = mysql_query("SELECT * from schedule") or die('Could not query');
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -148,10 +143,10 @@ include 'dbconnect.php';
             <h1>Schedule</h1>
             <p>This displays your schedule</p>
 
-
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
           <div id='calendar'></div>
+
           <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
             
