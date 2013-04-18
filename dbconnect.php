@@ -173,7 +173,7 @@ if (isset($_POST['RequestOffButton'])) {
 
 /* End Request Off Query */
 
-<<<<<<< HEAD
+
 /* Start Report Query */
 
 $ReportQuery = "SELECT up.tech_id as Tech_ID, up.First_Name, up.Last_Name, e.reference_code as Reference_Code, pr.pay_rate as Pay_Rate, COALESCE(t1.total_hours,0) as Total_Hours, COALESCE(round((pr.pay_rate * t1.pay_hours),2),0) as Total_Pay
@@ -185,16 +185,13 @@ $ReportQuery = "SELECT up.tech_id as Tech_ID, up.First_Name, up.Last_Name, e.ref
 $ReportQuery = mysql_query($ReportQuery) or die(mysql_error());
 
 /* End Report Query */
-=======
->>>>>>> merge
+
 
 /* Start TimeSheet Query */
 $timesheetquery = mysql_query("SELECT Date , clock_in_time, clock_out_time, timediff(concat(date, ' ',clock_out_time), concat(date,' ',clock_in_time))as hours FROM time_clock where emp_id = '".$emp_id['emp_id']."'");
 /* End TimeSheet Query */
 
 
-<<<<<<< HEAD
-=======
 /* Start Generate Schedule Query */
 if (isset($_POST['GenerateSchedulebutton'])){
 $q1counter = mysql_query("SELECT rank_id from day");
@@ -244,5 +241,4 @@ header("Location: ./generateschedule.php");
 
 /* End Generate Schedule */
 
->>>>>>> merge
 ?>

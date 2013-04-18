@@ -82,16 +82,13 @@ include 'dbconnect.php';
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
               <li class="actice"><a href="./manager.php">Employees</a></li>
-<<<<<<< HEAD
               <li><a href="./managerschedule.php">Schedule</a></li>
               <li><a href="./report.php">Report</a></li>
-=======
               <li><a href="./timeclock.php">Time Clock</a></li>
               <li><a href="./schedule.php">Schedule</a></li>
               <li><a href="./availability.php">Availabilty</a></li>
               <li><a href="./requesttimeoff.php">Request Time Off</a></li>
               <li><a href="./generateschedule.php">Generate Schedule</a></li>
->>>>>>> merge
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

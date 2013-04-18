@@ -104,11 +104,11 @@ include 'dbconnect.php';
               <li><a href="./requesttimeoff.php">Request Time Off</a></li>
               <li><a href="./test.php">Image Upload</a></li>
               <li><a href="./Availability Calender.php">Availablity Calendar</a></li>
-<<<<<<< HEAD
+
               <li><a href="./timesheet.php">Timesheet</a></li>
-=======
+
               <li><a href="./timesheet.php">TimeSheet</a></li>
->>>>>>> merge
+
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
