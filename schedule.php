@@ -159,6 +159,7 @@ include 'dbconnect.php';
           <div class="page-header">
             <h1>Schedule</h1>
             <p>This displays your schedule</p>
+<<<<<<< HEAD
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
