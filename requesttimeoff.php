@@ -127,8 +127,23 @@ include 'dbconnect.php';
               <td><input type="text" name="requestoffreason" style="width:400px" maxlength="200"></textarea></td>
             </tr>
             </table>
-            <input class="btn" type="submit" name="RequestOffButton" value="Submit" onclick="Confirm()">
-          </form>
+            <!-- <input class="btn" type="submit" name="RequestOffButton" value="Submit" onclick="Confirm()"> -->
+            <a href="#submitModal" role="button" class="btn"  data-toggle="modal">Submit</a>
+
+              <div id="submitModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                      <h3 id="myModalLabel">Request Time Off Confirmation</h3>
+                    </div>
+                    <div class="modal-body">
+                      <p>Are you sure everything is correct?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                      <button name="RequestOffButton" class="btn btn-primary">Submit</button>
+                    </div>
+              </div>
+            </form>
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
@@ -144,19 +159,9 @@ include 'dbconnect.php';
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
+    <script src="./js/jquery-1.9.1.js"></script>
+    <script src="./js/jquery-1.9.1.min.js"></script> 
+    <script src="./js/bootstrap.js"></script>
 
   </body>
 </html>

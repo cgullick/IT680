@@ -49,10 +49,10 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Maverick EMS</a>
+          <a class="brand" href="./index.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
+              <!--<li class="active"><a href="#">Home</a></li>-->
               <li><a href="./about.php">About</a></li>
               <li><a href="./contact.php">Contact</a></li>
               <!--<li class="dropdown">
@@ -90,11 +90,11 @@ include 'dbconnect.php';
       <div class="hero-unit">
         <h1>Maverick EMS</h1>
         <p>Where all your employee scheduling needs are met</p>
-        <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+        <p><a href="./about.php" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
       </div>
 
       <footer>
-        <p>&copy; Company 2013</p>
+        <p>&copy; Maverick EMS 2013</p>
       </footer>
 
     <!-- /container -->

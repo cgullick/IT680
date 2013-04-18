@@ -138,29 +138,79 @@ include 'dbconnect.php';
       window.onload=show2
       //-->
       </script>
+
+      <script>
+          function ConfirmclockIn() {
+            var r=confirm("Are you sure you wish to Clock In?");
+            if (r==true) {
+              x="Yes.";
+            } else {
+              x="Cancelled.";
+            }
+          }
+          function ConfirmclockOut() {
+            var r=confirm("Are you sure you wish to Clock Out?");
+            if (r==true) {
+              x="Yes.";
+            } else {
+              x="Cancelled.";
+            }
+          }
+          </script>
             <p>
             <?php 
             
             if ($checkifclockedin == 0){
               echo "<form action=timeclock.php method=post>";
               echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
-              echo "<input type='submit' class='btn' name='ClockIn' value='Clock In' style= 'width:100px'></input> <br/>";
-
-              
-
+              //echo "<input type='submit' class='btn' name='ClockIn' value='Clock In' onclick=ConfirmclockIn() style= 'width:100px'></input> <br/>";?>
+              <input type="submit" value="Clock In" href="#clockinModal" style ="width:100px" class="btn" data-toggle="modal"></input><br/><br/>
+              <?php
               echo "<form action=timeclock.php method=post>";
-              echo "<input type='submit' disabled class='btn' name='ClockOut' value='Clock Out' style= 'width:100px'></input>";
+              echo "<input type=submit value='Clock Out' disabled style =width:100px class=btn data-toggle=modal></input><br/><br/>";
             }
             else if($checkifclockedin != 0){
               echo "You clocked in at " . $clockintimedisplay['Clock_in_Time'];
               echo "<form action=timeclock.php method=post>";
               echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
-              echo "<input type='submit' disabled class='btn' name='ClockIn' value='Clock In' style= 'width:100px'></input><br/>";
+              echo "<input type=submit value='Clock In' disabled style =width:100px class=btn data-toggle=modal></input><br/><br/>";
 
               echo "<form action=timeclock.php method=post>";
-              echo "<input type='submit' class='btn' name='ClockOut' value='Clock Out' style= 'width:100px'></input>";
+              //echo "<input type='submit' class='btn' name='ClockOut' value='Clock Out' onclick=ConfirmclockOut() style= 'width:100px'></input>";?>
+              <input type="submit" value="Clock Out" href="#clockoutModal" style ="width:100px" class="btn" data-toggle="modal"></input><br/><br/>
+              <?php
               }
               ?>
+
+              <!-- Clock In Modal -->
+              <div id="clockinModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h3 id="myModalLabel">Clock In Confirmation</h3>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you wish to Clock In?</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                  <button name="ClockIn" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
+
+              <!-- Clock Out Modal -->
+              <div id="clockoutModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h3 id="myModalLabel">Clock Out Confirmation</h3>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you wish to Clock Out?</p>
+                </div>
+                <div class="modal-footer">
+                  <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                  <button name="ClockOut" class="btn btn-primary">Submit</button>
+                </div>
+              </div>
       </p>
       
 
@@ -181,19 +231,10 @@ include 'dbconnect.php';
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
+    <script src="./js/jquery-1.9.1.js"></script>
+    <script src="./js/jquery-1.9.1.min.js"></script> 
+    <script src="./js/bootstrap.js"></script>
+    
 
   </body>
 </html>

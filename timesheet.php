@@ -1,9 +1,8 @@
 <?php
-
+ 
 session_start();
 
 include 'dbconnect.php';
-// include 'test.php';
 
 ?>
 <!DOCTYPE html>
@@ -11,6 +10,7 @@ include 'dbconnect.php';
   <head>
     <meta charset="utf-8">
     <title>Maverick EMS</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -63,10 +63,10 @@ include 'dbconnect.php';
           <a class="brand" href="./employee.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="./employee.php">Home</a></li>
+              <li class="active"><a href="./employee.<?php  ?>">Home</a></li>
               <!-- <li><a href="#about">About</a></li>
               <li><a href="#contact">Contact</a></li> -->
             </ul>
@@ -86,70 +86,44 @@ include 'dbconnect.php';
               <li><a href="./schedule.php">Schedule</a></li>
               <li><a href="./availability.php">Availabilty</a></li>
               <li><a href="./requesttimeoff.php">Request Time Off</a></li>
+              <li><a href="./test.php">Image Upload</a></li>
+              <li><a href="./Availability Calender.php">Availablity Calendar</a></li>
+              <li><a href="./timesheet.php">TimeSheet</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Edit your User Profile</h1>
-            <p>Here you can edit your update user profile</p>
+            <h1>Welcome To Your Time Sheet</h1>
+            <p>Here you can view your hours that you have worked.</p>
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
-          <!--<img src="sav.png" width="150" height="150">-->
+
           <div class="row-fluid">
             
           <div>
+           <?php
 
-<!--             <form action="test.php" method="POST" enctype="multipart/form-data">
-              File: 
-              <input type="file" name="image"><input type="submit" value="Submit">
-            </form> -->
-            <form action="editprofile.php" method="post">
-            <table>
-              <tr>
-                <p><td style="font-weight:bold">First Name: </td>
-                  <!-- <td><input type="text" name="fname"></td> -->
-                <td><?php echo "<input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Last Name: </td>
-                <td><?php echo "<input type=text name=lname value='" . stripslashes($data2['Last_Name']) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Email: </td>
-                <td><?php echo "<input type=text name=email value=" . $data2['Email'] . " >"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Phone Number: </td>
-                <td><?php echo "<input type=text name=phonenumber value=" . $data2['Phone_Number'] . " >"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Rank: </td>
-                <td><?php echo "$data2[Rank]"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Address: </td>
-                <td><?php echo "<input type=text name=address value='" . stripslashes($data2["Address"]) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">City: </td>
-                <td><?php echo "<input type=text name=city value='" . stripslashes($data2['City']) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">State: </td>
-                <td><?php echo "<input type=text name=state value=" . $data2['State'] . ">"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Zip: </td>
-                <td><?php echo "<input type=text name=zip value=" . $data2['Zip'] . ">"; ?></td>
-              </tr>
-            </table>
-            <input class="btn" type="submit" name="UpdateProfileButton" value="Submit">
-          </form>
+				echo "<table class=table>
+				<tr>
+				<th>Date</th>
+				<th>Clock In Time</th>
+				<th>Clock Out Time</th>
+				<th>Hours</th>
+				</tr>";
 
-          </div>
-
+				while($row = mysql_fetch_array($timesheetquery))
+				  {
+				  echo "<tr>";
+				  echo "<td>" . $row['Date'] . "</td>";
+				  echo "<td>" . $row['clock_in_time'] . "</td>";
+				  echo "<td>" . $row['clock_out_time'] . "</td>";
+				  echo "<td>" . $row['hours'] . "</td>";
+				  echo "</tr>";
+				  }
+				echo "</table>";
+				?>
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->

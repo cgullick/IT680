@@ -94,11 +94,27 @@ include 'dbconnect.php';
                   right: 'month,agendaWeek,agendaDay'
                 },
                 defaultView:'agendaWeek',
-                events: './myevents.php'
+                minTime:'08:00',
+                maxTime:'17:00',
+                weekends:false,
+                allDaySlot:false,
+                weekNumbers:true,
+                contentHeight:490,
+                eventClick: function(calEvent, jsEvent, view) { 
+                  alert('Event: ' + calEvent.title +'\n Start Time: ' + calEvent.start +'\n End Time: '+ calEvent.end);
+                  // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                  // alert('View: ' + view.name);
+
+                  // change the border color just for fun
+                  //$(this).css('border-color', 'red');
+
+                },
+                events: './myevents.php',
 
                 // editable:true
                 
             })
+            $('#calendar').fullCalendar('next');
 
         });
     </script>
@@ -143,15 +159,17 @@ include 'dbconnect.php';
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
+        
         <div class="span9">
-          <div class="hero-unit">
+          <div class="page-header">
             <h1>Schedule</h1>
             <p>This displays your schedule</p>
-
+      </div><!--row-fluid-->
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
-          <div id='calendar'></div>
+          <div class="row-fluid">
+          <div class="span12" id='calendar'></div>
           <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
             

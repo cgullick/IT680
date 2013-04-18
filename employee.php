@@ -60,15 +60,31 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="./employee.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="./employee.<?php  ?>">Home</a></li>
+              <!--Dropdown-->
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Services  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">  
+                    <li><a href="./availability.php">Update Availability</a></li>  
+                    <li><a href="./schedule.php">View Schedule</a></li> 
+                    <li><a href="./timeclock.php">Clock in and Clock Out</a></li>
+                    <li><a href="./requesttimeoff.php">Request Time Off</a></li> 
+                    <li><a href="./timesheet.php">View Hours Worked</a></li>   
+                  </ul>  
+              </li>
+              <!-- <li><a href="#about">About</a></li>
+              <li><a href="#contact">Contact</a></li> -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -88,12 +104,13 @@ include 'dbconnect.php';
               <li><a href="./requesttimeoff.php">Request Time Off</a></li>
               <li><a href="./test.php">Image Upload</a></li>
               <li><a href="./Availability Calender.php">Availablity Calendar</a></li>
+              <li><a href="./timesheet.php">TimeSheet</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Welcome To Your User Profile!</h1>
+            <?php echo "<h1>Welcome To Your User Profile ".$First_Name['First_Name']."!</h1>";?>
             <p>Here you can view your information and update it.</p>
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
@@ -157,19 +174,10 @@ include 'dbconnect.php';
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
+    <script src="./js/jquery-1.9.1.js"></script>
+    <script src="./js/jquery-1.9.1.min.js"></script> 
+    <script src="./js/bootstrap.js"></script>
+    
 
   </body>
 </html>

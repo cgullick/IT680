@@ -86,13 +86,14 @@ include 'dbconnect.php';
               <li><a href="./schedule.php">Schedule</a></li>
               <li><a href="./availability.php">Availabilty</a></li>
               <li><a href="./requesttimeoff.php">Request Time Off</a></li>
+              <li><a href="./generateschedule.php">Generate Schedule</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Edit your User Profile</h1>
-            <p>Here you can edit your update user profile</p>
+            <h1>Generate Schedule</h1>
+            <p>Here managers can automatically generate a schedule for their employees </p>
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
@@ -105,47 +106,9 @@ include 'dbconnect.php';
               File: 
               <input type="file" name="image"><input type="submit" value="Submit">
             </form> -->
-            <form action="editprofile.php" method="post">
-            <table>
-              <tr>
-                <p><td style="font-weight:bold">First Name: </td>
-                  <!-- <td><input type="text" name="fname"></td> -->
-                <td><?php echo "<input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Last Name: </td>
-                <td><?php echo "<input type=text name=lname value='" . stripslashes($data2['Last_Name']) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Email: </td>
-                <td><?php echo "<input type=text name=email value=" . $data2['Email'] . " >"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Phone Number: </td>
-                <td><?php echo "<input type=text name=phonenumber value=" . $data2['Phone_Number'] . " >"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Rank: </td>
-                <td><?php echo "$data2[Rank]"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Address: </td>
-                <td><?php echo "<input type=text name=address value='" . stripslashes($data2["Address"]) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">City: </td>
-                <td><?php echo "<input type=text name=city value='" . stripslashes($data2['City']) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">State: </td>
-                <td><?php echo "<input type=text name=state value=" . $data2['State'] . ">"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Zip: </td>
-                <td><?php echo "<input type=text name=zip value=" . $data2['Zip'] . ">"; ?></td>
-              </tr>
-            </table>
-            <input class="btn" type="submit" name="UpdateProfileButton" value="Submit">
+            <form action="generateschedule.php" method="post">
+            
+            <input class="btn" type="submit" name="GenerateSchedulebutton" value="Generate Schedule">
           </form>
 
           </div>

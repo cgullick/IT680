@@ -86,6 +86,7 @@ include 'dbconnect.php';
               <li><a href="./schedule.php">Schedule</a></li>
               <li><a href="./availability.php">Availabilty</a></li>
               <li><a href="./requesttimeoff.php">Request Time Off</a></li>
+              <li><a href="./generateschedule.php">Generate Schedule</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
