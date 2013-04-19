@@ -212,10 +212,10 @@ include 'dbconnect.php';
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
+        </div><!--row-fluid-->
           <div id='calendar'></div>
 
 
-      </div><!--row-fluid-->
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>

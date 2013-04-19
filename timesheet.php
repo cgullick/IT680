@@ -145,6 +145,7 @@ include 'dbconnect.php';
           <div class="row-fluid">
             
           <div>
+<<<<<<< HEAD
           <?php
             echo "<table class=table>
             <tr>
@@ -166,6 +167,49 @@ include 'dbconnect.php';
             echo "</table>";
 				  ?>
 
+=======
+           <?php
+
+                                echo "<table class=table>
+                                <tr>
+                                <th>Date</th>
+                                <th>Clock In Time</th>
+                                <th>Clock Out Time</th>
+                                <th>Hours</th>
+                                </tr>";
+
+                                while($row = mysql_fetch_array($timesheetquery))
+                                  {
+                                  echo "<tr>";
+                                  echo "<td>" . $row['Date'] . "</td>";
+                                  echo "<td>" . $row['clock_in_time'] . "</td>";
+                                  echo "<td>" . $row['clock_out_time'] . "</td>";
+                                  echo "<td>" . $row['hours'] . "</td>";
+                                  echo "</tr>";
+                                  }
+                                echo "</table>";
+                                ?>
+        <?php                        
+				echo "<table class=table>
+				<tr>
+				<th>Date</th>
+				<th>Clock In Time</th>
+				<th>Clock Out Time</th>
+				<th>Hours</th>
+				</tr>";
+
+				while($row = mysql_fetch_array($timesheetquery))
+				  {
+				  echo "<tr>";
+				  echo "<td>" . $row['Date'] . "</td>";
+				  echo "<td>" . $row['clock_in_time'] . "</td>";
+				  echo "<td>" . $row['clock_out_time'] . "</td>";
+				  echo "<td>" . $row['hours'] . "</td>";
+				  echo "</tr>";
+				  }
+				echo "</table>";
+				?>
+>>>>>>> cleanup
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
