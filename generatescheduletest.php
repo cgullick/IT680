@@ -24,26 +24,28 @@ while ($row1 = mysql_fetch_array($q1counter, MYSQL_BOTH)){
                   where ta.time_id = '".$row2['time_id']."' and d.rank_id = '".$row1['rank_id']."' and is_avail = '1' 
                   order by d.day_id) t1
                   where t1.work_date not in (select request_off_date from request_off where emp_id = t1.emp_id)");
-	$colnum= mysql_fetch_row($insert_query);
+	//$colnum= mysql_fetch_row($insert_query);
     //echo $rownum[0]."     ".$rownum[1]."     ".$rownum[2]."     ".$rownum[3]."     ".$rownum[4]."     ".$rownum[5]."<br/>";
 	$array = array();
 	while ($row = mysql_fetch_assoc($insert_query)){
 		$array[] = $row['emp_id'];
 	}
-
+  $colnum= mysql_fetch_row($insert_query);
 	shuffle($array);
 	//print_r(sizeof($array));
 	$max = sizeof($array);
-		// for ($i =0; $i < $max; $i++) {
-		// 	printf($array[$i]);
-		// 	echo "<br/>";
-		// 	$q3 = mysql_query("SELECT count(emp_id) from schedule 
-  //                   where work_date = '".$colnum[1]."' 
-  //                   and emp_start_time = '".$colnum[2]."' 
-  //                   and emp_end_time = '".$colnum[3]."'");
-		// 	$test= mysql_fetch_row($q3);
-		// 	echo $test[0];
-		// }
+		for ($i =1; $i < $max; $i++) {
+			printf($array[$i]);
+			echo "<br/>";
+
+		// $q3 = mysql_query("SELECT count(emp_id) from schedule 
+  //                 where work_date = '".$colnum[1]."' 
+  //                 and emp_start_time = '".$colnum[2]."' 
+  //                 and emp_end_time = '".$colnum[3]."'");
+		// $test= mysql_fetch_row($q3);
+		
+  //   echo $test[0];
+		 }
 
 
 

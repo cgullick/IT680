@@ -89,6 +89,15 @@ include 'dbconnect.php';
                   right: 'month,agendaWeek,agendaDay'
                 },
                 defaultView:'agendaWeek',
+                minTime:'08:00',
+                maxTime:'17:00',
+                weekends:false,
+                allDaySlot:false,
+                weekNumbers:true,
+                contentHeight:490,
+                eventClick: function(calEvent, jsEvent, view) {
+                  alert('Event: ' + calEvent.title + '\n Start Time: ' + calEvent.start + '\n End Time: ' + calEvent.end);
+                },
                 events: './myevents.php'
 
                 // editable:true
@@ -141,7 +150,10 @@ include 'dbconnect.php';
             <h1>Schedule</h1>
             <p>This displays the schedule</p>
 
-
+            </div>
+          </div>
+            <div class="row fluid">
+              <div class="span12">
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
           <div id='calendar'></div>

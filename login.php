@@ -38,7 +38,7 @@
 		    	}
 	    		else if ($username == $dbusername && $password == $dbpassword && $dbrank == 'employee')
 		    	{
-		    		$redirect = './employee.php';
+		    		$redirect = './employeenews.php';
 		    	}
 		    	else 
 		    	{

@@ -37,11 +37,6 @@ include 'dbconnect.php';
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
@@ -131,15 +126,17 @@ include 'dbconnect.php';
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
               <li class="actice"><a href="./employee.php">Profile</a></li>
-              <li><a href="./editprofile.php">Edit Profile</a></li>
+              <li><a href="./availability.php">Availabilty</a></li>
+              <li><a href="./schedule.php">Schedule</a></li>
+              <li><a href="./timeclock.php">Time</a></li>
 
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <?php echo "<h1>Welcome To Your User Profile ".$First_Name['First_Name']."!</h1>";?>
-            <p>Here you can view your information and update it.</p>
+            <?php echo "<h1>Welcome To Your News Feed ".$First_Name['First_Name']."!</h1>";?>
+            <p>Here you can view news around your organization.</p>
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
@@ -147,45 +144,6 @@ include 'dbconnect.php';
           <div class="row-fluid">
             
           <div>
-            <table>
-              <tr>
-                <p><td style="font-weight:bold">First Name: </td>
-                <td><?php echo $data2['First_Name']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Last Name: </td>
-                <td><?php echo $data2['Last_Name']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Email: </td>
-                <td><?php echo $data2['Email']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Phone Number: </td>
-                <td><?php echo $data2['Phone_Number']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Rank: </td>
-                <td><?php echo $data2['Rank']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Address: </td>
-                <td><?php echo $data2['Address']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">City: </td>
-                <td><?php echo $data2['City']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">State: </td>
-                <td><?php echo $data2['State']; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Zip: </td>
-                <td><?php echo $data2['Zip']; ?></td>
-              </tr> 
-            </table>
-            <p><a href="./editprofile.php" class="btn" type="button">Edit Profile</a>
 
           </div><!--/row-->
         </div><!--/span-->

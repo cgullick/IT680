@@ -66,9 +66,57 @@ include 'dbconnect.php';
               Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="./employee.<?php  ?>">Home</a></li>
-              <!-- <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li> -->
+              <li class="active"><a href="./employeenews.php">Home</a></li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Profile  
+                <b class="caret"></b>  
+                </a> 
+              <ul class="dropdown-menu">  
+                    <li><a href="./employee.php">Profile</a></li> 
+                    <li><a href="./editprofile.php">Edit Profile</a></li>   
+                  </ul>  
+              </li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Availability  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="#">My Availability Calendar</a></li>
+                    <li><a href="./availability.php">Update Availability</a></li>
+                    <li><a href="./requesttimeoff.php">Request Off</a></li>
+                  </ul>
+              </li> 
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Schedule  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="#">My Schedule</a></li>
+                    <li><a href="./schedule.php">Whole Schedule</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Time  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="./timeclock.php">Time Clock</a></li>
+                    <li><a href="./timesheet.php">Timesheet</a></li>
+                  </ul>
+              </li> 
+              <!-- End Top Bar Dropdown -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -81,14 +129,8 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="./employee.php">User Profile</a></li>
-              <li><a href="./timeclock.php">Time Clock</a></li>
-              <li><a href="./schedule.php">Schedule</a></li>
-              <li><a href="./availability.php">Availabilty</a></li>
-              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
-              <li><a href="./test.php">Image Upload</a></li>
-              <li><a href="./Availability Calender.php">Availablity Calendar</a></li>
-              <li><a href="./timesheet.php">TimeSheet</a></li>
+              <li class="actice"><a href="./timeclock.php">Time Clock</a></li>
+              <li><a href="./timesheet.php">Timesheet</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -103,49 +145,27 @@ include 'dbconnect.php';
           <div class="row-fluid">
             
           <div>
-           <?php
+          <?php
+            echo "<table class=table>
+            <tr>
+            <th>Date</th>
+            <th>Clock In Time</th>
+            <th>Clock Out Time</th>
+            <th>Hours</th>
+            </tr>";
 
-<<<<<<< HEAD
-                                echo "<table class=table>
-                                <tr>
-                                <th>Date</th>
-                                <th>Clock In Time</th>
-                                <th>Clock Out Time</th>
-                                <th>Hours</th>
-                                </tr>";
+            while($row = mysql_fetch_array($timesheetquery))
+              {
+              echo "<tr>";
+              echo "<td>" . $row['Date'] . "</td>";
+              echo "<td>" . $row['clock_in_time'] . "</td>";
+              echo "<td>" . $row['clock_out_time'] . "</td>";
+              echo "<td>" . $row['hours'] . "</td>";
+              echo "</tr>";
+              }
+            echo "</table>";
+				  ?>
 
-                                while($row = mysql_fetch_array($timesheetquery))
-                                  {
-                                  echo "<tr>";
-                                  echo "<td>" . $row['Date'] . "</td>";
-                                  echo "<td>" . $row['clock_in_time'] . "</td>";
-                                  echo "<td>" . $row['clock_out_time'] . "</td>";
-                                  echo "<td>" . $row['hours'] . "</td>";
-                                  echo "</tr>";
-                                  }
-                                echo "</table>";
-                                ?>
-=======
-				echo "<table class=table>
-				<tr>
-				<th>Date</th>
-				<th>Clock In Time</th>
-				<th>Clock Out Time</th>
-				<th>Hours</th>
-				</tr>";
-
-				while($row = mysql_fetch_array($timesheetquery))
-				  {
-				  echo "<tr>";
-				  echo "<td>" . $row['Date'] . "</td>";
-				  echo "<td>" . $row['clock_in_time'] . "</td>";
-				  echo "<td>" . $row['clock_out_time'] . "</td>";
-				  echo "<td>" . $row['hours'] . "</td>";
-				  echo "</tr>";
-				  }
-				echo "</table>";
-				?>
->>>>>>> merge
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
@@ -161,19 +181,9 @@ include 'dbconnect.php';
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
+    <script src="./js/jquery-1.9.1.js"></script>
+    <script src="./js/jquery-1.9.1.min.js"></script> 
+    <script src="./js/bootstrap.js"></script>
 
   </body>
 </html>

@@ -66,9 +66,57 @@ include 'dbconnect.php';
               Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li class="active"><a href="./employeenews.php">Home</a></li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Profile  
+                <b class="caret"></b>  
+                </a> 
+              <ul class="dropdown-menu">  
+                    <li><a href="./employee.php">Profile</a></li> 
+                    <li><a href="./editprofile.php">Edit Profile</a></li>   
+                  </ul>  
+              </li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Availability  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="#">My Availability Calendar</a></li>
+                    <li><a href="./availability.php">Update Availability</a></li>
+                    <li><a href="./requesttimeoff.php">Request Off</a></li>
+                  </ul>
+              </li> 
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Schedule  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="#">My Schedule</a></li>
+                    <li><a href="./schedule.php">Whole Schedule</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Time  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="./timeclock.php">Time Clock</a></li>
+                    <li><a href="./timesheet.php">Timesheet</a></li>
+                  </ul>
+              </li> 
+              <!-- End Top Bar Dropdown -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -81,11 +129,8 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="./employee.php">User Profile</a></li>
-              <li><a href="./timeclock.php">Time Clock</a></li>
-              <li><a href="./schedule.php">Schedule</a></li>
-              <li><a href="./availability.php">Availabilty</a></li>
-              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
+              <li class="actice"><a href="./timeclock.php">Time Clock</a></li>
+              <li><a href="./timesheet.php">Timesheet</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
