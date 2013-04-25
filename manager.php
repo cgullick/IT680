@@ -76,7 +76,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">  
-                    <li><a href="#">View</a></li> 
+                    <li><a href="./managerviewemployees.php">View</a></li> 
                     <li><a href="#">Edit</a></li>
                     <li><a href="#">Add</a></li>
                     <li><a href="#">Delete</a></li>
@@ -147,20 +147,20 @@ include 'dbconnect.php';
 
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
-          <!--<img src="sav.png" width="150" height="150">-->
+          
           <div class="row-fluid">
           
           <!-- Get employee list in dropdown -->
-           <form method="post" action="manager.php">
+           <!-- <form method="post" action="manager.php">
             <?php
 
               
-              echo "<select name = 'User_ID'>";
-              while($row = mysql_fetch_row($emp_list)) {
+              // echo "<select name = 'User_ID'>";
+              // while($row = mysql_fetch_row($emp_list)) {
 
-                echo "<option name=dropdown value='" . $row[0] . "'>" . $row[1] . "</option>";
-              }
-              echo "</select>";
+              //   echo "<option name=dropdown value='" . $row[0] . "'>" . $row[1] . "</option>";
+              // }
+              // echo "</select>";
 
             ?>
           </form>
@@ -194,7 +194,7 @@ include 'dbconnect.php';
               <select name="gender" id="gender" class="gender" disable="disabled">
                 <option value="">- - - - -</option>
               </select>
-          </div>
+          </div> -->
 
           </div><!--/row-->
         </div><!--/span-->

@@ -1,5 +1,5 @@
 <?php
-
+ 
 session_start();
 
 include 'dbconnect.php';
@@ -10,6 +10,7 @@ include 'dbconnect.php';
   <head>
     <meta charset="utf-8">
     <title>Maverick EMS</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -36,6 +37,11 @@ include 'dbconnect.php';
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../assets/js/html5shiv.js"></script>
+    <![endif]-->
+
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
@@ -54,24 +60,26 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="./employeenews.php">Maverick EMS</a>
+          <a class="brand" href="./manager.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="./employeenews.php">Home</a></li>
+              <li class="active"><a href="./manager.php">Home</a></li>
               <!--Start Top Bar Dropdown-->
               <li class="dropdown">  
                 <a href="#"  
                   class="dropdown-toggle"  
                   data-toggle="dropdown">  
-                  Profile  
+                  Employees  
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">  
-                    <li><a href="./employee.php">Profile</a></li> 
-                    <li><a href="./editprofile.php">Edit Profile</a></li>   
+                    <li><a href="#">View</a></li> 
+                    <li><a href="#">Edit</a></li>
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">Delete</a></li>
                   </ul>  
               </li>
               <li class="dropdown">  
@@ -83,8 +91,8 @@ include 'dbconnect.php';
                 </a>  
                   <ul class="dropdown-menu">
                     <li><a href="#">My Availability Calendar</a></li>
-                    <li><a href="./availability.php">Update Availability</a></li>
-                    <li><a href="./requesttimeoff.php">Request Off</a></li>
+                    <li><a href="#">Update Availability</a></li>
+                    <li><a href="#">Request Off</a></li>
                   </ul>
               </li> 
               <li class="dropdown">  
@@ -96,7 +104,8 @@ include 'dbconnect.php';
                 </a>  
                   <ul class="dropdown-menu">
                     <li><a href="#">My Schedule</a></li>
-                    <li><a href="./schedule.php">Whole Schedule</a></li>
+                    <li><a href="#">Whole Schedule</a></li>
+                    <li><a href="./generateschedule.php">Generate Schedule</a></li>
                   </ul>
               </li>
               <li class="dropdown">  
@@ -107,8 +116,8 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="./timeclock.php">Time Clock</a></li>
-                    <li><a href="./timesheet.php">Timesheet</a></li>
+                    <li><a href="#">Time Clock</a></li>
+                    <li><a href="#">Timesheet</a></li>
                   </ul>
               </li> 
               <!-- End Top Bar Dropdown -->
@@ -124,69 +133,28 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="./employee.php">Profile</a></li>
-              <li><a href="./editprofile.php">Edit Profile</a></li>
+              <li class="actice"><a href="#">Employees</a></li>
+              <li><a href="#">Availabilty</a></li>
+              <li><a href="#">Schedule</a></li>
+              <li><a href="#">Time</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
         <div class="span9">
           <div class="hero-unit">
-            <h1>Edit your User Profile</h1>
-            <p>Here you can edit your update user profile</p>
+            <h1>View Employees</h1>
+            <p>Here you can view your employees.</p>
 
-            <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
-          <!--<img src="sav.png" width="150" height="150">-->
+          
           <div class="row-fluid">
-            
-          <div>
-            <form action="editprofile.php" method="POST" enctype="multipart/form-data">
+        
+          <form method="post" action="managerviewemployees.php">
             <table>
-              <tr>
-                File: <input type="file" name="myfile">
-                <td><?php echo "<img src='$data2[Image_Location]' width='200' height='200'>"; ?></td>
-              </tr>
-              <tr>
-                <p><td style="font-weight:bold">First Name: </td>
-                <td><?php echo "<input type=text name=fname value='" . stripslashes($data2["First_Name"]) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Last Name: </td>
-                <td><?php echo "<input type=text name=lname value='" . stripslashes($data2['Last_Name']) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Email: </td>
-                <td><?php echo "<input type=text name=email value=" . $data2['Email'] . " >"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Phone Number: </td>
-                <td><?php echo "<input type=text name=phonenumber value=" . $data2['Phone_Number'] . " >"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Rank: </td>
-                <td><?php echo "$data2[Rank]"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Address: </td>
-                <td><?php echo "<input type=text name=address value='" . stripslashes($data2["Address"]) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">City: </td>
-                <td><?php echo "<input type=text name=city value='" . stripslashes($data2['City']) . "'>"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">State: </td>
-                <td><?php echo "<input type=text name=state value=" . $data2['State'] . ">"; ?></td>
-              </tr>
-              <tr>
-                <td style="font-weight:bold">Zip: </td>
-                <td><?php echo "<input type=text name=zip value=" . $data2['Zip'] . ">"; ?></td>
-              </tr>
+              <th/>Image
+              <th/>Name
             </table>
-            <input class="btn" type="submit" name="UpdateProfileButton" value="Submit">
           </form>
-
-          </div>
 
           </div><!--/row-->
         </div><!--/span-->

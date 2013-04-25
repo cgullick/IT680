@@ -98,6 +98,51 @@ try {
 //$imagequery = mysql_query("INSERT INTO  `user_profile` (`picture`) VALUES (`$location`) ");
 //$imagequery = "UPDATE user_profile SET picture = '".$location."' WHERE username = ".$_SESSION['Username'];
 
+// $file = $_FILES['image']['tmp_name'];
+// $getImageQuery = " SELECT image FROM user_profile WHERE username = '".$search."' ";
+
+// if(!isset($file))
+// {
+// }
+// else 
+// {
+//   $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+//   echo $image_name = addslashes($_FILES['image']['name']);
+//   $image_size = getimagesize($_FILES['image']['tmp_name']);
+
+//   if($image_size==FALSE)
+//   {
+//     echo "That's not an image.";
+//   }
+//   else
+//   {
+//     if (!$insert = mysql_query("UPDATE user_profile SET image='$image', name='$image_name' WHERE Username = '".$search."' "))
+//     {
+//       echo mysql_error();
+//     }
+//     else
+//     {
+//       $lastid = mysql_insert_id();
+//       header("Content-type: image/jpeg");
+//       //echo "Image uploaded.<p />Your image:<p /><img src=get.php?id=$lastid>";
+//       echo $getImageQuery['image'];
+//     }
+//   }
+// }
+if ($_POST['UpdateProfileButton']) {
+  $name = $_FILES['myfile']['name'];
+  $tmp_name = $_FILES['myfile']['tmp_name'];
+
+  if ($name) {
+    $location = "img/$name";
+    move_uploaded_file($tmp_name, $location);
+
+    $ImageQuery2 = mysql_query("UPDATE user_profile SET image_location='$location' WHERE username= '".$search."' ");
+    die("Your profile image has been uploaded!");
+  } else
+    die("Please select a file!");
+}
+
 /* End Image Upload Store to Database */
 
 /* Start Availability Update */

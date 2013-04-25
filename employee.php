@@ -60,7 +60,7 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="./employee/employee.php">Maverick EMS</a>
+          <a class="brand" href="./employeenews.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
@@ -160,6 +160,10 @@ include 'dbconnect.php';
             
           <div>
             <table>
+              <tr>
+                <td><?php echo "<img src='$data2[Image_Location]' width='200' height='200'>"; ?></td>
+                <!-- <td><img src="$data2[Image_Location']" width="100" height="100"></td> -->
+              </tr>
               <tr>
                 <p><td style="font-weight:bold">First Name: </td>
                 <td><?php echo $data2['First_Name']; ?></td>
