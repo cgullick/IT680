@@ -87,7 +87,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Availability Calendar</a></li>
+                    <li><a href="./MyAvailabilityCalendar.php">My Availability Calendar</a></li>
                     <li><a href="./availability.php">Update Availability</a></li>
                     <li><a href="./requesttimeoff.php">Request Off</a></li>
                   </ul>
@@ -100,7 +100,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Schedule</a></li>
+                    <li><a href="./myschedule.php">My Schedule</a></li>
                     <li><a href="./schedule.php">Whole Schedule</a></li>
                   </ul>
               </li>
@@ -145,7 +145,6 @@ include 'dbconnect.php';
           <div class="row-fluid">
             
           <div>
-<<<<<<< HEAD
           <?php
             echo "<table class=table>
             <tr>
@@ -166,50 +165,6 @@ include 'dbconnect.php';
               }
             echo "</table>";
 				  ?>
-
-=======
-           <?php
-
-                                echo "<table class=table>
-                                <tr>
-                                <th>Date</th>
-                                <th>Clock In Time</th>
-                                <th>Clock Out Time</th>
-                                <th>Hours</th>
-                                </tr>";
-
-                                while($row = mysql_fetch_array($timesheetquery))
-                                  {
-                                  echo "<tr>";
-                                  echo "<td>" . $row['Date'] . "</td>";
-                                  echo "<td>" . $row['clock_in_time'] . "</td>";
-                                  echo "<td>" . $row['clock_out_time'] . "</td>";
-                                  echo "<td>" . $row['hours'] . "</td>";
-                                  echo "</tr>";
-                                  }
-                                echo "</table>";
-                                ?>
-        <?php                        
-				echo "<table class=table>
-				<tr>
-				<th>Date</th>
-				<th>Clock In Time</th>
-				<th>Clock Out Time</th>
-				<th>Hours</th>
-				</tr>";
-
-				while($row = mysql_fetch_array($timesheetquery))
-				  {
-				  echo "<tr>";
-				  echo "<td>" . $row['Date'] . "</td>";
-				  echo "<td>" . $row['clock_in_time'] . "</td>";
-				  echo "<td>" . $row['clock_out_time'] . "</td>";
-				  echo "<td>" . $row['hours'] . "</td>";
-				  echo "</tr>";
-				  }
-				echo "</table>";
-				?>
->>>>>>> cleanup
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->

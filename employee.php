@@ -88,7 +88,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Availability Calendar</a></li>
+                    <li><a href="./MyAvailabilityCalendar.php">My Availability Calendar</a></li>
                     <li><a href="./availability.php">Update Availability</a></li>
                     <li><a href="./requesttimeoff.php">Request Off</a></li>
                   </ul>
@@ -101,7 +101,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Schedule</a></li>
+                    <li><a href="./myschedule.php">My Schedule</a></li>
                     <li><a href="./schedule.php">Whole Schedule</a></li>
                   </ul>
               </li>
@@ -130,10 +130,8 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-<<<<<<< HEAD
               <li class="actice"><a href="./employee.php">Profile</a></li>
               <li><a href="./editprofile.php">Edit Profile</a></li>
-=======
               <li class="actice"><a href="./employee.php">User Profile</a></li>
               <li><a href="./timeclock.php">Time Clock</a></li>
               <li><a href="./schedule.php">Schedule</a></li>
@@ -143,7 +141,6 @@ include 'dbconnect.php';
               <li><a href="./Availability Calender.php">Availablity Calendar</a></li>
 
               <li><a href="./timesheet.php">Timesheet</a></li>
->>>>>>> cleanup
 
             </ul>
           </div><!--/.well -->

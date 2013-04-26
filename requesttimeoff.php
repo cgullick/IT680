@@ -87,7 +87,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Availability Calendar</a></li>
+                    <li><a href="./MyAvailabilityCalendar.php">My Availability Calendar</a></li>
                     <li><a href="./availability.php">Update Availability</a></li>
                     <li><a href="./requesttimeoff.php">Request Off</a></li>
                   </ul>
@@ -100,7 +100,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Schedule</a></li>
+                    <li><a href="./myschedule.php">My Schedule</a></li>
                     <li><a href="./schedule.php">Whole Schedule</a></li>
                   </ul>
               </li>

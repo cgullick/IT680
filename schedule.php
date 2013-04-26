@@ -98,7 +98,7 @@ include 'dbconnect.php';
                 weekends:false,
                 allDaySlot:false,
                 weekNumbers:true,
-                contentHeight:490,
+                contentHeight:580,
                 eventClick: function(calEvent, jsEvent, view) { 
                   alert('Event: ' + calEvent.title +'\n Start Time: ' + calEvent.start +'\n End Time: '+ calEvent.end);
                   // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -108,12 +108,12 @@ include 'dbconnect.php';
                   //$(this).css('border-color', 'red');
 
                 },
-                events: './myevents.php',
+                events: './fullschedule.php',
 
                 // editable:true
                 
-            })
-            $('#calendar').fullCalendar('next');
+            });
+            //$('#calendar').fullCalendar('next');
 
         });
     </script>
@@ -157,7 +157,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Availability Calendar</a></li>
+                    <li><a href="./MyAvailability.php">My Availability Calendar</a></li>
                     <li><a href="./availability.php">Update Availability</a></li>
                     <li><a href="./requesttimeoff.php">Request Off</a></li>
                   </ul>
@@ -170,7 +170,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Schedule</a></li>
+                    <li><a href="./myschedule.php">My Schedule</a></li>
                     <li><a href="./schedule.php">Whole Schedule</a></li>
                   </ul>
               </li>

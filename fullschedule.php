@@ -6,7 +6,7 @@
    //    join user_profile u on u.Emp_ID = s.Emp_ID");
    $sql=("SELECT Schedule_ID, concat(u.First_Name, ' ' , u.Last_Name) as first_last, 
 concat(work_date,' ', emp_start_time) AS start_time, concat(work_date,' ',emp_end_time) as end_time FROM schedule s
-      join user_profile u on u.Emp_ID = s.Emp_ID where s.Emp_ID = '".$emp_id['emp_id']."';");
+      join user_profile u on u.Emp_ID = s.Emp_ID;");
    $check = mysql_query($sql) or die(mysql_error());
    $var = 'false';
 

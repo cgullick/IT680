@@ -1,6 +1,6 @@
 <?php
 # Connect to the database
-$host     = "64.254.188.188";
+$host     = "192.168.1.58";
 $dbuser   = "it680";
 $dbpasswd = "it680";
 $database = "scheduling_database";
@@ -9,7 +9,8 @@ mysql_select_db($database,$connect) or die(mysql_error());
 
 
 # Query the database and get the results
-$sql      = "SELECT * FROM `scheduling_database.`Schedule` ";
+$sql      = "SELECT Schedule_ID, work_date, Emp_Start_Time, Emp_End_Time, concat(First_Name, ' ', Last_Name) as Employee
+             from schedule s join user_profile up on up.emp_id = s.emp_id ";
 $result   = mysql_query($sql);
 $nresult  = mysql_num_rows($result);
 
@@ -44,31 +45,31 @@ $ics_contents .= "END:VTIMEZONE\n";
 
 
 while ($schedule_details = mysql_fetch_assoc($result)) {
-  $id            = $schedule_details['schedule_ID'];
+  $id            = $schedule_details['Schedule_ID'];
   $start_date    = $schedule_details['work_date'];
-  $start_time    = $schedule_details['emp_start_ime'];
-  //$end_date      = $schedule_details['EndDate'];
-  $end_time      = $schedule_details['emp_end_time'];
+  $start_time    = $schedule_details['Emp_Start_Time'];
+  $end_date      = $schedule_details['work_date'];
+  $end_time      = $schedule_details['Emp_End_Time'];
   //$category      = $schedule_details['Category'];
-  //$name          = $schedule_details['Name'];
+  $name          = $schedule_details['Employee'];
   //$location      = $schedule_details['Location'];
-  $description   = $schedule_details['emp_id'];
+  //$description   = $schedule_details['Emp_ID'];
  
   # Remove '-' in $start_date and $end_date
   $estart_date   = str_replace("-", "", $start_date);
-  //$eend_date     = str_replace("-", "", $end_date);
+  $eend_date     = str_replace("-", "", $end_date);
  
   # Remove ':' in $start_time and $end_time
   $estart_time   = str_replace(":", "", $start_time);
   $eend_time     = str_replace(":", "", $end_time);
  
   # Replace some HTML tags
-  // $name          = str_replace("<br>", "\\n",   $name);
-  // $name          = str_replace("&amp;", "&",    $name);
-  // $name          = str_replace("&rarr;", "-->", $name);
-  // $name          = str_replace("&larr;", "<--", $name);
-  // $name          = str_replace(",", "\\,",      $name);
-  // $name          = str_replace(";", "\\;",      $name);
+  $name          = str_replace("<br>", "\\n",   $name);
+  $name          = str_replace("&amp;", "&",    $name);
+  $name          = str_replace("&rarr;", "-->", $name);
+  $name          = str_replace("&larr;", "<--", $name);
+  $name          = str_replace(",", "\\,",      $name);
+  $name          = str_replace(";", "\\;",      $name);
  
   // $location      = str_replace("<br>", "\\n",   $location);
   // $location      = str_replace("&amp;", "&",    $location);
@@ -77,21 +78,21 @@ while ($schedule_details = mysql_fetch_assoc($result)) {
   // $location      = str_replace(",", "\\,",      $location);
   // $location      = str_replace(";", "\\;",      $location);
  
-  $description   = str_replace("<br>", "\\n",   $description);
-  $description   = str_replace("&amp;", "&",    $description);
-  $description   = str_replace("&rarr;", "-->", $description);
-  $description   = str_replace("&larr;", "<--", $description);
-  $description   = str_replace("<em>", "",      $description);
-  $description   = str_replace("</em>", "",     $description);
+  // $description   = str_replace("<br>", "\\n",   $description);
+  // $description   = str_replace("&amp;", "&",    $description);
+  // $description   = str_replace("&rarr;", "-->", $description);
+  // $description   = str_replace("&larr;", "<--", $description);
+  // $description   = str_replace("<em>", "",      $description);
+  // $description   = str_replace("</em>", "",     $description);
  
   # Change TZID if need be
   $ics_contents .= "BEGIN:VEVENT\n";
   $ics_contents .= "DTSTART;TZID=America/New_York"     . $estart_date . "T". $estart_time . "\n";
-  $ics_contents .= "DTEND:"       . $estart_date . "T". $eend_time . "\n";
+  $ics_contents .= "DTEND:"       . $eend_date . "T". $eend_time . "\n";
   $ics_contents .= "DTSTAMP:"     . date('Ymd') . "T". date('His') . "Z\n";
-  $ics_contents .= "LOCATION:"    . $description . "\n";
-  $ics_contents .= "DESCRIPTION:" . $description . "\n";
-  $ics_contents .= "SUMMARY:"     . $description . "\n";
+  $ics_contents .= "LOCATION:"    . "Front Desk" . "\n";
+  $ics_contents .= "DESCRIPTION:" . "Work" . "\n";
+  $ics_contents .= "SUMMARY:"     . $name . "\n";
   $ics_contents .= "UID:"         . $id . "\n";
   $ics_contents .= "SEQUENCE:0\n";
   $ics_contents .= "END:VEVENT\n";
@@ -115,7 +116,7 @@ if (is_writable($ics_file)) {
     exit;
   }
  
-   #echo "Success, wrote to <b>schedule.ics</b><br>\n\n";
+   //echo "Success, wrote to <b>schedule.ics</b><br>\n\n";
 
   fclose($handle);
  
