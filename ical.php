@@ -1,6 +1,6 @@
 <?php
 # Connect to the database
-$host     = "192.168.1.58";
+$host     = "64.254.188.188";
 $dbuser   = "it680";
 $dbpasswd = "it680";
 $database = "scheduling_database";
@@ -23,9 +23,9 @@ $ics_contents .= "METHOD:PUBLISH\n";
 $ics_contents .= "X-WR-CALNAME:Schedule\n";
  
 # Change the timezone as well daylight settings if need be
-$ics_contents .= "X-WR-TIMEZONE:America/New_York\n";
+$ics_contents .= "X-WR-TIMEZONE:America/Chicago\n";
 $ics_contents .= "BEGIN:VTIMEZONE\n";
-$ics_contents .= "TZID:America/New_York\n";
+$ics_contents .= "TZID:America/Chicago\n";
 $ics_contents .= "BEGIN:DAYLIGHT\n";
 $ics_contents .= "TZOFFSETFROM:-0500\n";
 $ics_contents .= "TZOFFSETTO:-0400\n";
@@ -87,7 +87,7 @@ while ($schedule_details = mysql_fetch_assoc($result)) {
  
   # Change TZID if need be
   $ics_contents .= "BEGIN:VEVENT\n";
-  $ics_contents .= "DTSTART;TZID=America/New_York"     . $estart_date . "T". $estart_time . "\n";
+  $ics_contents .= "DTSTART:"     . $estart_date . "T". $estart_time . "\n";
   $ics_contents .= "DTEND:"       . $eend_date . "T". $eend_time . "\n";
   $ics_contents .= "DTSTAMP:"     . date('Ymd') . "T". date('His') . "Z\n";
   $ics_contents .= "LOCATION:"    . "Front Desk" . "\n";
