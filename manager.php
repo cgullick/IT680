@@ -76,11 +76,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">  
-<<<<<<< HEAD
-                    <li><a href="./managerviewemployees.php">View</a></li> 
-=======
-                    <li><a href="view_employees.php">View</a></li> 
->>>>>>> printable schedule and ical
+                    <li><a href="./managerviewemployees.php">View</a></li>
                     <li><a href="#">Edit</a></li>
                     <li><a href="#">Add</a></li>
                     <li><a href="#">Delete</a></li>

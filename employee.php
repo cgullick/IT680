@@ -132,15 +132,6 @@ include 'dbconnect.php';
               <li class="nav-header">Navigation Bar</li>
               <li class="actice"><a href="./employee.php">Profile</a></li>
               <li><a href="./editprofile.php">Edit Profile</a></li>
-              <li class="actice"><a href="./employee.php">User Profile</a></li>
-              <li><a href="./timeclock.php">Time Clock</a></li>
-              <li><a href="./schedule.php">Schedule</a></li>
-              <li><a href="./availability.php">Availabilty</a></li>
-              <li><a href="./requesttimeoff.php">Request Time Off</a></li>
-              <li><a href="./test.php">Image Upload</a></li>
-              <li><a href="./Availability Calender.php">Availablity Calendar</a></li>
-
-              <li><a href="./timesheet.php">Timesheet</a></li>
 
             </ul>
           </div><!--/.well -->
