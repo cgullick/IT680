@@ -9,8 +9,8 @@ mysql_select_db($database,$connect) or die(mysql_error());
 
 
 # Query the database and get the results
-$sql      = "SELECT Schedule_ID, work_date, Emp_Start_Time, Emp_End_Time, concat(First_Name, ' ', Last_Name) as Employee
-             from schedule s join user_profile up on up.emp_id = s.emp_id ";
+$sql      = "SELECT Schedule_ID, work_date, Emp_Start_Time, Emp_End_Time, concat(e.First_Name, ' ', e.Last_Name) as Employee
+             from schedule s join employee e on e.emp_id = s.emp_id ";
 $result   = mysql_query($sql);
 $nresult  = mysql_num_rows($result);
 
@@ -116,7 +116,7 @@ if (is_writable($ics_file)) {
     exit;
   }
  
-   //echo "Success, wrote to <b>schedule.ics</b><br>\n\n";
+   echo "Success, wrote to <b>schedule.ics</b><br>\n\n";
 
   fclose($handle);
  

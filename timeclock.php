@@ -208,8 +208,8 @@ include 'dbconnect.php';
             if ($checkifclockedin == 0){
               echo "<form action=timeclock.php method=post>";
               echo "<input type=hidden name=hidden value=" . $data2['User_ID'] . ">";
-              //echo "<input type='submit' class='btn' name='ClockIn' value='Clock In' onclick=ConfirmclockIn() style= 'width:100px'></input> <br/>";?>
-              <input type="submit" value="Clock In" href="#clockinModal" style ="width:100px" class="btn" data-toggle="modal"></input><br/><br/>
+              echo "<input type='submit' class='btn' name='ClockIn' value='Clock In'  style= 'width:100px'></input> <br/>";?>
+              <!-- <input type="submit" value="Clock In" href="#clockinModal" style ="width:100px" class="btn" data-toggle="modal"></input><br/><br/> -->
               <?php
               echo "<form action=timeclock.php method=post>";
               echo "<input type=submit value='Clock Out' disabled style =width:100px class=btn data-toggle=modal></input><br/><br/>";
@@ -221,14 +221,14 @@ include 'dbconnect.php';
               echo "<input type=submit value='Clock In' disabled style =width:100px class=btn data-toggle=modal></input><br/><br/>";
 
               echo "<form action=timeclock.php method=post>";
-              //echo "<input type='submit' class='btn' name='ClockOut' value='Clock Out' onclick=ConfirmclockOut() style= 'width:100px'></input>";?>
-              <input type="submit" value="Clock Out" href="#clockoutModal" style ="width:100px" class="btn" data-toggle="modal"></input><br/><br/>
+              echo "<input type='submit' class='btn' name='ClockOut' value='Clock Out'  style= 'width:100px'></input>";?>
+              <!-- <input type="submit" value="Clock Out" href="#clockoutModal" style ="width:100px" class="btn" data-toggle="modal"></input><br/><br/> -->
               <?php
               }
               ?>
 
               <!-- Clock In Modal -->
-              <div id="clockinModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <!-- <div id="clockinModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <h3 id="myModalLabel">Clock In Confirmation</h3>
@@ -240,10 +240,10 @@ include 'dbconnect.php';
                   <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                   <button name="ClockIn" class="btn btn-primary">Submit</button>
                 </div>
-              </div>
+              </div> -->
 
               <!-- Clock Out Modal -->
-              <div id="clockoutModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <!-- <div id="clockoutModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   <h3 id="myModalLabel">Clock Out Confirmation</h3>
@@ -255,7 +255,7 @@ include 'dbconnect.php';
                   <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
                   <button name="ClockOut" class="btn btn-primary">Submit</button>
                 </div>
-              </div>
+              </div> -->
       </p>
       
 
