@@ -101,7 +101,7 @@ include 'dbconnect.php';
                 </a>  
                   <ul class="dropdown-menu">
                     <li><a href="#">My Schedule</a></li>
-                    <li><a href="#">Whole Schedule</a></li>
+                    <li><a href="#">Full Schedule</a></li>
                     <li><a href="./generateschedule.php">Generate Schedule</a></li>
                     <li><a href="./printableschedule.php">Printable Schedule</a></li>
                   </ul>
@@ -147,52 +147,92 @@ include 'dbconnect.php';
           </div>
           
           <div class="row-fluid">
-          
-          <!-- Get employee list in dropdown -->
-           <!-- <form method="post" action="manager.php">
-            <?php
 
-              
-              // echo "<select name = 'User_ID'>";
-              // while($row = mysql_fetch_row($emp_list)) {
+<!--             <table>
+              <th>Column One</th>
+              <th>column two</th>
+              <th>column three</th>
+            </table> -->
 
-              //   echo "<option name=dropdown value='" . $row[0] . "'>" . $row[1] . "</option>";
-              // }
-              // echo "</select>";
+          <?php
+            // print_r($ManageEmployees);
+            // exit();
+            echo "<table class=table>";
+            echo "<tr>";
+            $count = "0";
+            while($row = mysql_fetch_array($ManageEmployees))
+              {
+                if ($count == "3") {
+                  echo "</tr>";
+                  echo "<tr>";
+                  $count = "0";
+                }
+                echo "<td> 
+                  <a  href='./employee.php'><img src='$row[Image_Location]' width='100' height='100'> <br>
+                  $row[First_Name] $row[Last_Name]
+                  </td>";
+                $count++;
+              }
+            echo "</tr>";
+            echo "</table>";
+          ?>
+          <input type="submit" value="Add Employee" href="#AddEmployee" class="btn" data-toggle="modal"></input>
 
-            ?>
-          </form>
-          <table>
-            <th/>
-            <th/>
-            <th/>
-            <td/>
-            <td/>
-            <td/>
-          </table>
+          <!-- Modal -->
+            <div id="AddEmployee" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h3 id="myModalLabel">Add Employee</h3>
+              </div>
+              <div class="modal-body">
+                <p>Enter the employee's information here:</p>
+                <form method="POST" action="ManageEmployees.php">
+                  <table>
+                    <tr>
+                      <p><td style="font-weight:bold">Username: </td>
+                      <td><input type="text" name="username" value=""></td>
+                    </tr>
+                    <tr>
+                      <p><td style="font-weight:bold">Password: </td>
+                      <td><input type="password" name="password" value=""></td>
+                    </tr>
+                    <tr>
+                      <p><td style="font-weight:bold">First Name: </td>
+                      <td><input type="text" name="fname" value=""></td>
+                    </tr>
+                    <tr>
+                      <p><td style="font-weight:bold">Last Name: </td>
+                      <td><input type="text" name="lname" value=""></td>
+                    </tr>
+                    <tr>
+                      <p><td style="font-weight:bold">Email: </td>
+                      <td><input type="text" name="email" value=""></td>
+                    </tr>
+                    <tr>
+                      <p><td style="font-weight:bold">Phone Number: </td>
+                      <td><input type="text" name="phonenumber" value=""></td>
+                    </tr>
+                    <tr>
+                      <p><td style="font-weight:bold">Rank: </td>
+                      <td>              
+                        <select>
+                          <option name="rank" value="rank">Employee</option>
+                        </select>
+                      </td>
+                    </tr>
+                    <tr>
+                      <p><td style="font-weight:bold">Tech ID: </td>
+                      <td><input type="text" name="techid" value=""></td>
+                    </tr>
+                  </table>
+                  <div class="modal-footer">
+                    <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                    <button name="AddEmployee" class="btn btn-primary">Add</button>
+                  </div>
+                </form>
+              </div>
 
-          <div id="wrapper">
-            <for action="" method = "post">
-
-              <select name="gender" id="gender" class="gender">
-                <option value="">Select One</option>
-                <?php if (!empty($list)) { ?>
-
-                <?php foreach($list as $row) { ?>
-                  <option value="<?php echo $row['User_ID']; ?>">
-                    <?php echo $row['First_Name']; ?>
-                  </option>
-                  <?php } ?>
-                <?php } ?>
-              </select>
-
-              <select name="gender" id="gender" class="gender" disabled="disabled">
-                <option value="">- - - - -</option>
-              </select>
-              <select name="gender" id="gender" class="gender" disable="disabled">
-                <option value="">- - - - -</option>
-              </select>
-          </div> -->
+            </div>
 
           </div><!--/row-->
         </div><!--/span-->

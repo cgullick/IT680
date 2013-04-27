@@ -6,16 +6,15 @@
 
     $username = $_POST['username'];
     $password = $_POST['password'];
-    //$rank = $data2['Rank'];
 
     if ($username && $password) 
     {
 	    $connect = mysql_connect($dbhost,$dbuser,$dbpass) or die ("Couldn't connect!");
 	    mysql_select_db("scheduling_database") or die("Couldn't find database.");
 
-	    $query = mysql_query("SELECT u.username, p.password, u.rank 
-	    					  FROM user_profile u join password p on p.user_id = u.user_id 
-	    					  WHERE u.username='$username' and p.password='$password'");
+	    $query = mysql_query("SELECT e.username, p.password, e.rank 
+	    					  FROM employee e join password p on p.emp_id = e.emp_id 
+	    					  WHERE e.username='$username' and p.password='$password'");
 
 	    $numrows = mysql_num_rows($query);
 
@@ -28,15 +27,15 @@
 	    		$dbpassword = $row['password'];
 	    		$dbrank = $row['rank'];
 	    	
-		    	if ($username == $dbusername && $password == $dbpassword && $dbrank == 'administrator')
+		    	if ($username == $dbusername && $password == $dbpassword && $dbrank == 'Administrator')
 		    	{
 		    		$redirect = './admin.php';
 		    	}
-	    		else if ($username == $dbusername && $password == $dbpassword && $dbrank == 'manager')
+	    		else if ($username == $dbusername && $password == $dbpassword && $dbrank == 'Manager')
 		    	{
 		    		$redirect = './manager.php';
 		    	}
-	    		else if ($username == $dbusername && $password == $dbpassword && $dbrank == 'employee')
+	    		else if ($username == $dbusername && $password == $dbpassword && $dbrank == 'Employee')
 		    	{
 		    		$redirect = './employeenews.php';
 		    	}

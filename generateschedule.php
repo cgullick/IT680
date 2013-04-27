@@ -104,7 +104,7 @@ include 'dbconnect.php';
                 </a>  
                   <ul class="dropdown-menu">
                     <li><a href="#">My Schedule</a></li>
-                    <li><a href="./managerschedule.php">View Schedule</a></li>
+                    <li><a href="./schedule.php">View Schedule</a></li>
                     <li><a href="./generateschedule.php">Generate Schedule</a></li>
                   </ul>
               </li>
@@ -158,7 +158,7 @@ include 'dbconnect.php';
             </form> -->
             <form action="generateschedule.php" method="post">
             
-            <input class="btn" type="submit" name="GenerateSchedulebutton" value="Generate Schedule">
+            <input class="btn" type="submit" name="GenerateSchedulebutton" value="Generate Schedule" data-loading-text="Loading...">
           </form>
 
           </div>

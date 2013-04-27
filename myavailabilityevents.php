@@ -3,7 +3,7 @@
 
    include 'dbconnect.php';
    // $sql=("SELECT Schedule_ID, concat(u.First_Name, ' ' , u.Last_Name) as first_last, Emp_Start_Time AS start_time, Emp_End_Time as end_time FROM schedule s
-   //    join user_profile u on u.Emp_ID = s.Emp_ID");
+   //    join employee u on u.Emp_ID = s.Emp_ID");
    $sql=("SELECT t1.Availability_id, concat(t1.First_Name, ' ' , t1.Last_Name) as first_last, 
                concat(work_date,' ', t1.start_time) AS start_time, concat(work_date,' ',t1.end_time) as end_time
                from 
@@ -15,7 +15,7 @@
                when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.25))
                else null end) as work_date
                FROM emp_availability ea
-               join user_profile u on u.Emp_ID = ea.Emp_ID
+               join employee u on u.Emp_ID = ea.Emp_ID
                join time_availability ta on ta.time_availability_id = ea.time_availability_id 
                join day d on ta.day_id = d.day_id 
                join time t on t.time_id = ta.time_id 

@@ -11,13 +11,17 @@ $db = mysql_select_db('scheduling_database', $connection) or die ("Couldn't sele
  
       $search=$_SESSION['username']; 
 
-      $data = 'SELECT * FROM `user_profile` WHERE `username` = "'.$search.'"';
+      $data = 'SELECT * FROM `employee` WHERE `username` = "'.$search.'"';
       $query = mysql_query($data) or die("Couldn't execute query. ". mysql_error()); 
       $data2 = mysql_fetch_array($query);
 
 
 /* Start Update Profile Query */
 
+$username = $_POST['username'];
+$password = $_POST['password'];
+$rank = $_POST['rank'];
+$techid = $_POST['techid'];
 $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $email = $_POST['email'];
@@ -28,7 +32,7 @@ $state = $_POST['state'];
 $zip = $_POST['zip'];
 
 if(isset($_POST['UpdateProfileButton'])) {
-$UpdateQuery = "UPDATE user_profile
+$UpdateQuery = "UPDATE employee
                 SET First_Name = '$fname', Last_Name = '$lname', Email = '$email', Phone_Number = '$phonenumber', Address = '$address', City = '$city', State = '$state', Zip = '$zip'
                 WHERE username = '".$search."' ";
 mysql_query($UpdateQuery, $connection);
@@ -69,7 +73,7 @@ if (isset($_POST['RequestOffButton'])) {
 
 try {
 
-  $sql = " SELECT * FROM user_profile WHERE rank = 'employee' ";
+  $sql = " SELECT * FROM employee WHERE rank = 'employee' ";
   $result = mysql_query($sql) or die(mysql_error());
   $list = mysql_fetch_assoc($result);
 
@@ -77,58 +81,6 @@ try {
   echo 'There was a problem';
 }
 
-// $emp_list = " SELECT User_ID, concat(First_Name,' ',Last_Name) FROM user_profile WHERE rank = 'Employee' ";
-// $emp_list = mysql_query($emp_list) or die(mysql_error());
-// //$emp_list = mysql_fetch_array($emp_list) or die(mysql_error());
-
-// if (isset($_POST['dropdown'])) {
-//   echo "Hello world";
-// }
-
-/* End Employee List */
-
-/*********************/
-
-/* Start Image Upload Store to Database */
-
-//$name = $_FILES['file']['name'];
-//$location = "profile_image/".$name;
-
-//$imagequery = 'INSERT INTO user_profile SET picture = "profile_image/$name" WHERE username = "'.$search.'" ';
-//$imagequery = mysql_query("INSERT INTO  `user_profile` (`picture`) VALUES (`$location`) ");
-//$imagequery = "UPDATE user_profile SET picture = '".$location."' WHERE username = ".$_SESSION['Username'];
-
-// $file = $_FILES['image']['tmp_name'];
-// $getImageQuery = " SELECT image FROM user_profile WHERE username = '".$search."' ";
-
-// if(!isset($file))
-// {
-// }
-// else 
-// {
-//   $image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-//   echo $image_name = addslashes($_FILES['image']['name']);
-//   $image_size = getimagesize($_FILES['image']['tmp_name']);
-
-//   if($image_size==FALSE)
-//   {
-//     echo "That's not an image.";
-//   }
-//   else
-//   {
-//     if (!$insert = mysql_query("UPDATE user_profile SET image='$image', name='$image_name' WHERE Username = '".$search."' "))
-//     {
-//       echo mysql_error();
-//     }
-//     else
-//     {
-//       $lastid = mysql_insert_id();
-//       header("Content-type: image/jpeg");
-//       //echo "Image uploaded.<p />Your image:<p /><img src=get.php?id=$lastid>";
-//       echo $getImageQuery['image'];
-//     }
-//   }
-// }
 if ($_POST['UpdateProfileButton']) {
   $name = $_FILES['myfile']['name'];
   $tmp_name = $_FILES['myfile']['tmp_name'];
@@ -137,7 +89,7 @@ if ($_POST['UpdateProfileButton']) {
     $location = "img/$name";
     move_uploaded_file($tmp_name, $location);
 
-    $ImageQuery2 = mysql_query("UPDATE user_profile SET image_location='$location' WHERE username= '".$search."' ");
+    $ImageQuery2 = mysql_query("UPDATE employee SET image_name='$name', image_location='$location' WHERE username= '".$search."' ");
     die("Your profile image has been uploaded!");
   } else
     die("Please select a file!");
@@ -147,9 +99,9 @@ if ($_POST['UpdateProfileButton']) {
 
 /* Start Availability Update */
 
-$emp_id = mysql_fetch_assoc(mysql_query("SELECT emp_id FROM user_profile WHERE username = '". $search ."'"));
+$emp_id = mysql_fetch_assoc(mysql_query("SELECT emp_id FROM employee WHERE username = '". $search ."'"));
 
-$First_Name = mysql_fetch_assoc(mysql_query("SELECT First_Name from user_profile where username = '".$search."'"));
+$First_Name = mysql_fetch_assoc(mysql_query("SELECT First_Name from employee where username = '".$search."'"));
 
 $UpdateAvailabilityQuery = mysql_query(" SELECT is_avail FROM emp_availability WHERE emp_id = '".$emp_id['emp_id']."' ORDER BY time_availability_id ");
 
@@ -160,13 +112,13 @@ if (isset($_POST['UpdateAvailabilityButton'])) {
     if (isset($_POST['UpdateAvailabilityButton']) && $_POST['UpdateAvailability'.$i] == 'true' ) {
       $UpdateAvailabilityQuery = " UPDATE emp_availability
                                    SET is_avail = '1'
-                                   WHERE time_availability_id = '". $i . "' and emp_id = (select emp_id from user_profile where username = '". $search ."') ";
+                                   WHERE time_availability_id = '". $i . "' and emp_id = (select emp_id from employee where username = '". $search ."') ";
       mysql_query($UpdateAvailabilityQuery, $connection);
       header("Location: ./availability.php");                       
     } else {
           $UpdateAvailabilityQueryUnchecked = " UPDATE emp_availability
                                    SET is_avail = '0'
-                                   WHERE time_availability_id = '". $i . "' and emp_id = (select emp_id from user_profile where username = '". $search ."') ";
+                                   WHERE time_availability_id = '". $i . "' and emp_id = (select emp_id from employee where username = '". $search ."') ";
       mysql_query($UpdateAvailabilityQueryUnchecked, $connection); 
       header("Location: ./availability.php");
     }
@@ -177,28 +129,26 @@ if (isset($_POST['UpdateAvailabilityButton'])) {
 
 /* Start Time Clock Query */
 
-  	if (isset($_POST['ClockIn'])) {
-  			$InsertQuery="INSERT INTO `time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
-   			(select emp_id from user_profile where User_ID = '$_POST[hidden]'));";
-  			mysql_query($InsertQuery, $connection);
-  			header("Location: ./employee.php");
-  			//echo "clocked in";
-  			exit;
+	if (isset($_POST['ClockIn'])) {
+			$InsertQuery="INSERT INTO `time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
+ 			(select emp_id from employee where Emp_ID = '$emp_id[emp_id]'));";
+			mysql_query($InsertQuery, $connection);
+			header("Location: ./timeclock.php");
+			//echo "clocked in";
+			exit;
 	};
 
 	if (isset($_POST['ClockOut'])){
-		$ClockoutUpdateQuery="Update time_clock SET Clock_out_Time = curtime() where Emp_id = (select emp_id from user_profile where User_ID = '$_POST[hidden]') and Date = curdate()";
+		$ClockoutUpdateQuery="UPDATE time_clock SET Clock_out_Time = curtime() where Emp_id = '$emp_id[emp_id]' and Date = curdate()";
 		mysql_query($ClockoutUpdateQuery, $connection);
-		header("Location: ./employee.php");
+		header("Location: ./timeclock.php");
 		exit;
 	}
-  //$clockedin = "select null from time_clock where emp_id = (select emp_id from user_profile where username = "'.$search.'"') and clock_out_time is NULL"
-  $clockedinquery= mysql_query("SELECT null from `time_clock` where emp_id = (SELECT emp_id from user_profile where username = '".$search."') 
-                                and clock_out_time is NULL");
+  //$clockedin = "select null from time_clock where emp_id = (select emp_id from employee where username = "'.$search.'"') and clock_out_time is NULL"
+  $clockedinquery= mysql_query("SELECT null from `time_clock` where emp_id = '$emp_id[emp_id]' and clock_out_time is NULL");
   $checkifclockedin = mysql_num_rows($clockedinquery);
 
-  $displayClockintime = mysql_query("SELECT * from time_clock where emp_id= (SELECT emp_id from user_profile where username = '".$search."') 
-                                     and Date = curdate() order by Clock_in_time desc limit 1");
+  $displayClockintime = mysql_query("SELECT * from time_clock where emp_id = '$emp_id[emp_id]' and Date = curdate() order by Clock_in_time desc limit 1");
   $clockintimedisplay = mysql_fetch_array($displayClockintime);
 
 /* End Time Clock Query */
@@ -222,7 +172,7 @@ if (isset($_POST['RequestOffButton'])) {
 /* Start Report Query */
 
 $ReportQuery = "SELECT up.tech_id as Tech_ID, up.First_Name, up.Last_Name, e.reference_code as Reference_Code, pr.pay_rate as Pay_Rate, COALESCE(t1.total_hours,0) as Total_Hours, COALESCE(round((pr.pay_rate * t1.pay_hours),2),0) as Total_Pay
-                from user_profile up left join 
+                from employee up left join 
                 (select emp_id, time(sum(SUBTIME(clock_out_time,clock_in_time))) as total_hours, (time_to_sec(sum(SUBTIME(clock_out_time,clock_in_time)))/3600.0) as pay_hours
                  from time_clock group by emp_id) t1 on t1.emp_id = up.emp_id
                 join employee e on e.emp_id = up.emp_id
@@ -356,6 +306,23 @@ if (isset($_POST['GenerateSchedulebutton'])){
 }
 
 /* End Generate Schedule */
+
+/* Manage Employees Start */
+
+$ManageEmployees = mysql_query(" SELECT Image_Location, First_Name, Last_Name FROM employee ");
+
+if(isset($_POST['AddEmployee'])) {
+$AddEmployee = "INSERT INTO employee
+                SET Username = '$username', First_Name = '$fname', Last_Name = '$lname', Rank = 'Employee', Start_Date = curdate(), Reference_Code = 'C1', 
+                Email = '$email', Image_Location = '/img/default.jpg', Phone_Number = '$phonenumber', Tech_ID = '$techid' ";
+$AddEmployeePassword = " INSERT INTO password SET password = '$password', emp_id = (SELECT max(emp_id) FROM employee), Create_Date = curdate() ";
+mysql_query($AddEmployee, $connection);
+mysql_query($AddEmployeePassword, $connection);
+header("Location: ./ManageEmployees.php");
+
+};
+
+/* Manage Employees End */
 
 
 ?>
