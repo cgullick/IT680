@@ -129,7 +129,6 @@ if (isset($_POST['UpdateAvailabilityButton'])) {
 
 /* Start Time Clock Query */
 
-<<<<<<< HEAD
 	if (isset($_POST['ClockIn'])) {
 			$InsertQuery="INSERT INTO `time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
  			(select emp_id from employee where Emp_ID = '$emp_id[emp_id]'));";
@@ -137,7 +136,7 @@ if (isset($_POST['UpdateAvailabilityButton'])) {
 			header("Location: ./timeclock.php");
 			//echo "clocked in";
 			exit;
-=======
+  };
   	if (isset($_POST['ClockIn'])) {
   			$InsertQuery="INSERT INTO `time_clock` (`Clock_in_Time`, `Date`, `Emp_ID`) VALUES (curtime(), curdate(), 
    			(select emp_id from user_profile where User_ID = '$_POST[hidden]'));";
@@ -145,7 +144,6 @@ if (isset($_POST['UpdateAvailabilityButton'])) {
   			header("Location: ./timeclock.php");
   			//echo "clocked in";
   			exit;
->>>>>>> updated timeclock and ical
 	};
 
 	if (isset($_POST['ClockOut'])){
