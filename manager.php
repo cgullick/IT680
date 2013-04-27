@@ -115,7 +115,7 @@ include 'dbconnect.php';
                 </a>  
                   <ul class="dropdown-menu">
                     <li><a href="#">Time Clock</a></li>
-                    <li><a href="#">Timesheet</a></li>
+                    <li><a href="./report.php">Payroll</a></li>
                   </ul>
               </li> 
               <!-- End Top Bar Dropdown -->
