@@ -129,24 +129,23 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">Project name</a>
+          <a class="brand" href="./manager.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
-              <li class="active"><a href="./employeenews.php">Home</a></li>
+              <li class="active"><a href="./manager.php">Home</a></li>
               <!--Start Top Bar Dropdown-->
               <li class="dropdown">  
                 <a href="#"  
                   class="dropdown-toggle"  
                   data-toggle="dropdown">  
-                  Profile  
+                  Employees  
                 <b class="caret"></b>  
                 </a>  
-                  <ul class="dropdown-menu">  
-                    <li><a href="./employee.php">Profile</a></li> 
-                    <li><a href="./editprofile.php">Edit Profile</a></li>   
+                  <ul class="dropdown-menu">
+                    <li><a href="./ManageEmployees.php">Manage Employees</a></li>
                   </ul>  
               </li>
               <li class="dropdown">  
@@ -157,9 +156,9 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="./MyAvailabilityCalendar">My Availability Calendar</a></li>
-                    <li><a href="./availability.php">Update Availability</a></li>
-                    <li><a href="./requesttimeoff.php">Request Off</a></li>
+                    <li><a href="#">My Availability Calendar</a></li>
+                    <li><a href="#">Update Availability</a></li>
+                    <li><a href="#">Request Off</a></li>
                   </ul>
               </li> 
               <li class="dropdown">  
@@ -170,8 +169,10 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="./myschedule.php">My Schedule</a></li>
-                    <li><a href="./schedule.php">Whole Schedule</a></li>
+                    <li><a href="#">My Schedule</a></li>
+                    <li><a href="#">Full Schedule</a></li>
+                    <li><a href="./generateschedule.php">Generate Schedule</a></li>
+                    <li><a href="./printableschedule.php">Printable Schedule</a></li>
                   </ul>
               </li>
               <li class="dropdown">  
@@ -182,8 +183,8 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="./timeclock.php">Time Clock</a></li>
-                    <li><a href="./timesheet.php">Timesheet</a></li>
+                    <li><a href="#">Time Clock</a></li>
+                    <li><a href="#">Timesheet</a></li>
                   </ul>
               </li> 
               <!-- End Top Bar Dropdown -->
@@ -192,38 +193,65 @@ include 'dbconnect.php';
         </div>
       </div>
     </div>
-
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="#">My Schedule</a></li>
-              <li><a href="./schedule.php">Whole Schedule</a></li>
-            </ul>
-          </div><!--/.well -->
-        </div><!--/span-->
-        
-        <div class="span9">
-          <div class="page-header">
-            <h1>Schedule</h1>
-            <p>This displays your schedule</p>
-
-            <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
-          </div>
-        </div><!--row-fluid-->
-          <div id='calendar'></div>
-
-
-
-            <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
-          </div>
-          <div class="row-fluid">
-          <div class="span12" id='calendar'></div>
-          <div class="row-fluid">
-            
-          <div>
+    <div class="tabbable">
+           <ul class="nav nav-tabs">
+             <li class="active"><a href="#GeneralInfo" data-toggle="tab">General Info</a></li>
+             <li><a href="#Availability" data-toggle="tab">Availability</a></li>
+             <li><a href="#Schedule" data-toggle="tab">Schedule</a></li>
+             <li><a href="#Timesheet" data-toggle="tab">Timesheet</a></li>
+             <li><a href="#Message" data-toggle="tab">Message</a></li>
+           </ul>
+           <div class="tab-content">
+              <div id="GeneralInfo" class="tab-pane active">
+                      <table>
+                    <tr>
+                      <td><?php echo "<img src='$EditEmployees[Image_Location]' width='200' height='200'>"; ?></td>
+                    </tr>
+                    <tr>
+                      <p><td style="font-weight:bold">First Name: </td>
+                      <td><?php echo $EditEmployees['First_Name']; ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold">Last Name: </td>
+                      <td><?php echo $EditEmployees['Last_Name']; ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold">Email: </td>
+                      <td><?php echo $EditEmployees['Email']; ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold">Phone Number: </td>
+                      <td><?php echo $EditEmployees['Phone_Number']; ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold">Rank: </td>
+                      <td><?php echo $EditEmployees['Rank']; ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold">Address: </td>
+                      <td><?php echo $EditEmployees['Address']; ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold">City: </td>
+                      <td><?php echo $EditEmployees['City']; ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold">State: </td>
+                      <td><?php echo $EditEmployees['State']; ?></td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:bold">Zip: </td>
+                      <td><?php echo $EditEmployees['Zip']; ?></td>
+                    </tr> 
+                  </table>
+              </div>
+              <div id="Availability" class="tab-pane">
+                <table>
+                  <div id='calendar'></div>
+                </table>
+              </div>
+           </div>
+    </div>
 
 
           </div><!--/row-->

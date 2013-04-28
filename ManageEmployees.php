@@ -168,7 +168,7 @@ include 'dbconnect.php';
                   $count = "0";
                 }
                 echo "<td> 
-                  <a  href='./employee.php'><img src='$row[Image_Location]' width='100' height='100'> <br>
+                  <a  href='./EditEmployee.php?id=$row[Emp_ID]'><img src='$row[Image_Location]' width='100' height='100'> <br>
                   $row[First_Name] $row[Last_Name]
                   </td>";
                 $count++;

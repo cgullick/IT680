@@ -316,8 +316,10 @@ if (isset($_POST['GenerateSchedulebutton'])){
 /* End Generate Schedule */
 
 /* Manage Employees Start */
+$id = addslashes($_REQUEST['id']);
+$EditEmployees = mysql_fetch_array(mysql_query('SELECT * FROM `employee` WHERE `Emp_ID` = "'.$id.'"'));
 
-$ManageEmployees = mysql_query(" SELECT Image_Location, First_Name, Last_Name FROM employee ");
+$ManageEmployees = mysql_query(" SELECT Image_Location, First_Name, Last_Name,Emp_ID FROM employee ");
 
 if(isset($_POST['AddEmployee'])) {
 $AddEmployee = "INSERT INTO employee

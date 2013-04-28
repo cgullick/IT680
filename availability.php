@@ -51,6 +51,77 @@ include 'dbconnect.php';
     
     <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+
+    <script src="./js/jquery-1.9.1.js"></script>
+    <script src="./js/jquery-1.9.1.min.js"></script> 
+    <script src="./js/bootstrap.js"></script>
+
+    <!-- Full Calender -->
+    <link rel='stylesheet' type='text/css' href='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.css' />
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-1.9.1.min.js'></script>
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-ui-1.10.2.custom.min.js'></script>
+    <script type='text/javascript' src='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.min.js'></script>
+    <script>
+            $(document).ready(function() {
+
+              /* initialize the external events
+    -----------------------------------------------------------------*/
+  
+            $('#external-events div.external-event').each(function() {
+            
+              // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+              // it doesn't need to have a start or end
+              var eventObject = {
+                title: $.trim($(this).text()) // use the element's text as the event title
+              };
+              
+              // store the Event Object in the DOM element so we can get to it later
+              $(this).data('eventObject', eventObject);
+              
+              // make the event draggable using jQuery UI
+              $(this).draggable({
+                zIndex: 999,
+                revert: true,      // will cause the event to go back to its
+                revertDuration: 0  //  original position after the drag
+              });
+              
+            });
+
+
+            // page is now ready, initialize the calendar...
+
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                header: {
+                  left: 'prev,next today',
+                  center: 'title',
+                  right: 'month,agendaWeek,agendaDay'
+                },
+                defaultView:'agendaWeek',
+                minTime:'08:00',
+                maxTime:'17:00',
+                weekends:false,
+                allDaySlot:false,
+                weekNumbers:true,
+                contentHeight:490,
+                eventClick: function(calEvent, jsEvent, view) { 
+                  alert('Event: ' + calEvent.title +'\n Start Time: ' + calEvent.start +'\n End Time: '+ calEvent.end);
+                  // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                  // alert('View: ' + view.name);
+
+                  // change the border color just for fun
+                  //$(this).css('border-color', 'red');
+
+                },
+                events: './myavailabilityevents.php',
+
+                // editable:true
+                
+            }),
+            $('#calendar').fullCalendar('next');
+
+        });
+    </script>
   </head>
 
   <body>
@@ -488,6 +559,13 @@ include 'dbconnect.php';
           </div>
             
             <input class="btn" type="submit" name="UpdateAvailabilityButton" value="Submit">
+
+            <div class="row-fluid">
+          <div class="span12" id='calendar'></div>
+          <!--<img src="sav.png" width="150" height="150">-->
+          <div class="row-fluid">
+            
+          <div>
 
           </div><!--/row-->
         </div><!--/span-->
