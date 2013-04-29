@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include 'dbconnect.php';
 
@@ -85,7 +84,7 @@ include 'dbconnect.php';
 
             // page is now ready, initialize the calendar...
 
-            $('#calendar').fullCalendar({
+            $('#availability').fullCalendar({
                 // put your options and callbacks here
                 header: {
                   left: 'prev,next today',
@@ -98,7 +97,7 @@ include 'dbconnect.php';
                 weekends:false,
                 allDaySlot:false,
                 weekNumbers:true,
-                contentHeight:490,
+                contentHeight:422,
                 eventClick: function(calEvent, jsEvent, view) { 
                   alert('Event: ' + calEvent.title +'\n Start Time: ' + calEvent.start +'\n End Time: '+ calEvent.end);
                   // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
@@ -108,12 +107,41 @@ include 'dbconnect.php';
                   //$(this).css('border-color', 'red');
 
                 },
-                events: './myavailabilityevents.php',
+                events: './EmployeeAvailEvents.php',
 
                 // editable:true
                 
             }),
-            $('#calendar').fullCalendar('next');
+            $('#schedule').fullCalendar({
+                            // put your options and callbacks here
+                            header: {
+                              left: 'prev,next today',
+                              center: 'title',
+                              right: 'month,agendaWeek,agendaDay'
+                            },
+                            defaultView:'agendaWeek',
+                            minTime:'08:00',
+                            maxTime:'17:00',
+                            weekends:false,
+                            allDaySlot:false,
+                            weekNumbers:true,
+                            contentHeight:422,
+                            eventClick: function(calEvent, jsEvent, view) { 
+                              alert('Event: ' + calEvent.title +'\n Start Time: ' + calEvent.start +'\n End Time: '+ calEvent.end);
+                              // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                              // alert('View: ' + view.name);
+
+                              // change the border color just for fun
+                              //$(this).css('border-color', 'red');
+
+                            },
+                            events: './myevents.php',
+
+                            // editable:true
+                            
+                        }),
+            $('#availability').fullCalendar('next');
+            $('#schedule').fullCalendar('next');
 
 
 
@@ -121,18 +149,8 @@ include 'dbconnect.php';
 
     
     </script>
-   <script>
-    $('#myTab a').click(function (e) {
-      e.preventDefault();
-        $(this).tab('show');
-        show: function(event, ui) {
-        $('#calendar').fullCalendar('render');
-    }
-      })  
-   </script>
 
   </head>
-
   <body>
 
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -207,66 +225,85 @@ include 'dbconnect.php';
         </div>
       </div>
     </div>
-    <div class="tabbable">
-           <ul class="nav nav-tabs">
-             <li class="active"><a href="#GeneralInfo" data-toggle="tab">General Info</a></li>
-             <li><a href="#Availability" data-toggle="tab" id="myTab a">Availability</a></li>
-             <li><a href="#Schedule" data-toggle="tab">Schedule</a></li>
-             <li><a href="#Timesheet" data-toggle="tab">Timesheet</a></li>
-             <li><a href="#Message" data-toggle="tab">Message</a></li>
-           </ul>
-           <div class="tab-content">
-              <div id="GeneralInfo" class="tab-pane active">
-
-                      <table>
-                    <tr>
-                      <td><?php echo "<img src='$EditEmployees[Image_Location]' width='200' height='200'>"; ?></td>
-                    </tr>
-                    <tr>
-                      <p><td style="font-weight:bold">First Name: </td>
-                      <td><?php echo $EditEmployees['First_Name']; ?></td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Last Name: </td>
-                      <td><?php echo $EditEmployees['Last_Name']; ?></td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Email: </td>
-                      <td><?php echo $EditEmployees['Email']; ?></td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Phone Number: </td>
-                      <td><?php echo $EditEmployees['Phone_Number']; ?></td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Rank: </td>
-                      <td><?php echo $EditEmployees['Rank']; ?></td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Address: </td>
-                      <td><?php echo $EditEmployees['Address']; ?></td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">City: </td>
-                      <td><?php echo $EditEmployees['City']; ?></td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">State: </td>
-                      <td><?php echo $EditEmployees['State']; ?></td>
-                    </tr>
-                    <tr>
-                      <td style="font-weight:bold">Zip: </td>
-                      <td><?php echo $EditEmployees['Zip']; ?></td>
-                    </tr> 
-                  </table>
-              </div>
-              <div id="Availability" class="tab-pane">
-                <div id="calendar"></div>
-              </div>
-              <div id="Schedule" class="tab-pane">
-              </div>
-              <div id="Timesheet" class="tab-pane">
-                <?php
+    <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span6">
+        <table class="table table-bordered">
+          <caption> <h3>General Info</h3></caption>
+            <td>
+            <table class="table table-bordered">
+                <tr>
+                    <td><?php echo "<img src='$EditEmployees[Image_Location]' width='100' height='100'>"; ?></td>
+                </tr>
+                <tr>
+                  <p><td style="font-weight:bold">First Name: 
+                      <?php echo $EditEmployees['First_Name']; ?></td>
+                </tr>
+                <tr>
+                      <td style="font-weight:bold">Last Name: 
+                      <?php echo $EditEmployees['Last_Name']; ?></td>
+                </tr>
+                 <tr>
+                    <td style="font-weight:bold">Email: 
+                    <?php echo $EditEmployees['Email']; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:bold">Phone Number: 
+                    <?php echo $EditEmployees['Phone_Number']; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:bold">Rank: 
+                    <?php echo $EditEmployees['Rank']; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:bold">Address: 
+                    <?php echo $EditEmployees['Address']; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:bold">City: 
+                    <?php echo $EditEmployees['City']; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:bold">State: 
+                    <?php echo $EditEmployees['State']; ?></td>
+                  </tr>
+                  <tr>
+                    <td style="font-weight:bold">Zip: 
+                    <?php echo $EditEmployees['Zip']; ?></td>
+                  </tr> 
+           </table>
+            </td>
+        </table>
+    </div><!--span-->
+      <div class="span6">
+        <table class="table table-bordered">
+          <caption><h3>Availability</h3></caption>
+          <thead>
+            <tr>
+              <td><div id="availability"></div></td>
+            </tr>
+          </tbody>
+        </table>
+    </div><!--span-->
+</div><!--Row close-->
+<div class="row-fluid">
+      <div class="span6">
+        <table class="table table-bordered">
+          <caption><h3>Schedule</h3></caption>
+          <thead>
+           <tr>
+            <td><div id="schedule"></div></td>
+            </tr>
+          </tbody>
+        </table>
+    </div><!--span-->
+      <div class="span6">
+        <table class="table table-bordered">
+          <caption><h3>Timesheet</h3></caption>
+          <thead>
+            <tr>
+              <td>
+                 <?php
                   echo "<table class=table>
                   <tr>
                   <th>Date</th>
@@ -286,39 +323,11 @@ include 'dbconnect.php';
                   }
                   echo "</table>";
                 ?>
-              </div>
-           </div>
-    </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div><!--span-->
+</div><!--Row close-->
+</div><!--Container close-->
 
-
-          </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
-
-      <hr>
-
-      <footer>
-        <p>&copy; Company 2013</p>
-      </footer>
-
-    </div><!--/.fluid-container-->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
-
-  </body>
-</html>

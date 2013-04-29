@@ -1812,7 +1812,9 @@
   $(document).on('click.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
     e.preventDefault()
     $(this).tab('show')
+    
   })
+
 
 }(window.jQuery);/* =============================================================
  * bootstrap-typeahead.js v2.3.0
