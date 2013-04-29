@@ -115,8 +115,22 @@ include 'dbconnect.php';
             }),
             $('#calendar').fullCalendar('next');
 
+
+
         });
+
+    
     </script>
+   <script>
+     $(function(){
+        $("#tabs").tabs({
+          activate: function(event, ui) {
+            $("#Availability").fullCalendar('render');
+          }
+        });
+      })();     
+   </script>
+
   </head>
 
   <body>
@@ -193,8 +207,8 @@ include 'dbconnect.php';
         </div>
       </div>
     </div>
-    <div class="tabbable">
-           <ul class="nav nav-tabs">
+    <div class="tabbable" id="tabs">
+           <ul class="nav nav-tabs" >
              <li class="active"><a href="#GeneralInfo" data-toggle="tab">General Info</a></li>
              <li><a href="#Availability" data-toggle="tab">Availability</a></li>
              <li><a href="#Schedule" data-toggle="tab">Schedule</a></li>
@@ -203,6 +217,7 @@ include 'dbconnect.php';
            </ul>
            <div class="tab-content">
               <div id="GeneralInfo" class="tab-pane active">
+
                       <table>
                     <tr>
                       <td><?php echo "<img src='$EditEmployees[Image_Location]' width='200' height='200'>"; ?></td>
@@ -246,9 +261,31 @@ include 'dbconnect.php';
                   </table>
               </div>
               <div id="Availability" class="tab-pane">
-                <table>
-                  <div id='calendar'></div>
-                </table>
+                <div id="calendar"></div>
+              </div>
+              <div id="Schedule" class="tab-pane">
+              </div>
+              <div id="Timesheet" class="tab-pane">
+                <?php
+                  echo "<table class=table>
+                  <tr>
+                  <th>Date</th>
+                  <th>Clock In Time</th>
+                  <th>Clock Out Time</th>
+                  <th>Hours</th>
+                  </tr>";
+
+                  while($row = mysql_fetch_array($timesheet))
+                  {
+                  echo "<tr>";
+                  echo "<td>" . $row['Date'] . "</td>";
+                  echo "<td>" . $row['clock_in_time'] . "</td>";
+                  echo "<td>" . $row['clock_out_time'] . "</td>";
+                  echo "<td>" . $row['hours'] . "</td>";
+                  echo "</tr>";
+                  }
+                  echo "</table>";
+                ?>
               </div>
            </div>
     </div>

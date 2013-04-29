@@ -214,11 +214,12 @@ include 'dbconnect.php';
           <div class="hero-unit">
             <h1>Availability</h1>
             <p>Here you can update your availability</p>
-
+      
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
 
           <div class="row-fluid">
+
 
           <form action="availability.php" method="POST">
 
@@ -560,18 +561,15 @@ include 'dbconnect.php';
             
             <input class="btn" type="submit" name="UpdateAvailabilityButton" value="Submit">
 
-            <div class="row-fluid">
-          <div class="span12" id='calendar'></div>
-          <!--<img src="sav.png" width="150" height="150">-->
-          <div class="row-fluid">
-            
-          <div>
 
-          </div><!--/row-->
-        </div><!--/span-->
-      </div><!--/row-->
+
+
     </form>
 
+      <div id="calendar"></div>
+        </div><!--/row-->
+        </div><!--/span-->
+        </div><!--/row-->
       <hr>
 
       <footer>

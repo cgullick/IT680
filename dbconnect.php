@@ -318,6 +318,7 @@ if (isset($_POST['GenerateSchedulebutton'])){
 /* Manage Employees Start */
 $id = addslashes($_REQUEST['id']);
 $EditEmployees = mysql_fetch_array(mysql_query('SELECT * FROM `employee` WHERE `Emp_ID` = "'.$id.'"'));
+$timesheet = mysql_query("SELECT Date , clock_in_time, clock_out_time, timediff(concat(date, ' ',clock_out_time), concat(date,' ',clock_in_time))as hours FROM time_clock where emp_id = '".$id."'");
 
 $ManageEmployees = mysql_query(" SELECT Image_Location, First_Name, Last_Name,Emp_ID FROM employee ");
 
