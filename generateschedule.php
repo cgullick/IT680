@@ -76,25 +76,9 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">  
-                    <li><a href="#">View</a></li> 
-                    <li><a href="#">Edit</a></li>
-                    <li><a href="#">Add</a></li>
-                    <li><a href="#">Delete</a></li>
+                    <li><a href="./ManageEmployees.php">Manage Employees</a></li>
                   </ul>  
               </li>
-              <li class="dropdown">  
-                <a href="#"  
-                  class="dropdown-toggle"  
-                  data-toggle="dropdown">  
-                  Availability  
-                <b class="caret"></b>  
-                </a>  
-                  <ul class="dropdown-menu">
-                    <li><a href="#">My Availability Calendar</a></li>
-                    <li><a href="#">Update Availability</a></li>
-                    <li><a href="#">Request Off</a></li>
-                  </ul>
-              </li> 
               <li class="dropdown">  
                 <a href="#"  
                   class="dropdown-toggle"  
@@ -103,7 +87,6 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Schedule</a></li>
                     <li><a href="./schedule.php">View Schedule</a></li>
                     <li><a href="./generateschedule.php">Generate Schedule</a></li>
                   </ul>
@@ -112,12 +95,11 @@ include 'dbconnect.php';
                 <a href="#"  
                   class="dropdown-toggle"  
                   data-toggle="dropdown">  
-                  Time  
+                  Reports  
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">Time Clock</a></li>
-                    <li><a href="#">Timesheet</a></li>
+                    <li><a href="./report.php">Reports</a></li>
                   </ul>
               </li> 
               <!-- End Top Bar Dropdown -->

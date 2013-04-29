@@ -97,7 +97,7 @@ include 'dbconnect.php';
                 </a>  
                   <ul class="dropdown-menu">
                     <li><a href="./myschedule.php">My Schedule</a></li>
-                    <li><a href="./schedule.php">Whole Schedule</a></li>
+                    <li><a href="./schedule.php">Full Schedule</a></li>
                   </ul>
               </li>
               <li class="dropdown">  

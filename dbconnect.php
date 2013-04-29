@@ -184,7 +184,8 @@ $ReportQuery = "SELECT up.tech_id as Tech_ID, up.First_Name, up.Last_Name, e.ref
                 (select emp_id, time(sum(SUBTIME(clock_out_time,clock_in_time))) as total_hours, (time_to_sec(sum(SUBTIME(clock_out_time,clock_in_time)))/3600.0) as pay_hours
                  from time_clock group by emp_id) t1 on t1.emp_id = up.emp_id
                 join employee e on e.emp_id = up.emp_id
-                join pay_rate pr on e.reference_code = pr.reference_code";
+                join pay_rate pr on e.reference_code = pr.reference_code
+                ORDER BY up.Last_Name";
 $ReportQuery = mysql_query($ReportQuery) or die(mysql_error());
 
 /* End Report Query */

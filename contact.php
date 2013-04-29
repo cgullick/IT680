@@ -79,7 +79,7 @@
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
         <h1>Contact Us</h1>
-        <p>Test contact</p>
+        <p></p>
         <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
       </div>
 

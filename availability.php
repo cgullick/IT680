@@ -11,6 +11,7 @@ include 'dbconnect.php';
   <head>
     <meta charset="utf-8">
     <title>Maverick EMS</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -37,11 +38,6 @@ include 'dbconnect.php';
     </style>
     <link href="../assets/css/bootstrap-responsive.css" rel="stylesheet">
 
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="../assets/js/html5shiv.js"></script>
-    <![endif]-->
-
     <!-- Fav and touch icons -->
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
@@ -51,10 +47,6 @@ include 'dbconnect.php';
     
     <script src="http://code.jquery.com/jquery-1.7.1.js"></script>
     <script type="text/javascript" src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
-
-    <script src="./js/jquery-1.9.1.js"></script>
-    <script src="./js/jquery-1.9.1.min.js"></script> 
-    <script src="./js/bootstrap.js"></script>
 
     <!-- Full Calender -->
     <link rel='stylesheet' type='text/css' href='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.css' />
@@ -176,7 +168,7 @@ include 'dbconnect.php';
                 </a>  
                   <ul class="dropdown-menu">
                     <li><a href="./myschedule.php">My Schedule</a></li>
-                    <li><a href="./schedule.php">Whole Schedule</a></li>
+                    <li><a href="./schedule.php">Full Schedule</a></li>
                   </ul>
               </li>
               <li class="dropdown">  
@@ -190,7 +182,7 @@ include 'dbconnect.php';
                     <li><a href="./timeclock.php">Time Clock</a></li>
                     <li><a href="./timesheet.php">Timesheet</a></li>
                   </ul>
-              </li> 
+              </li>
               <!-- End Top Bar Dropdown -->
             </ul>
           </div><!--/.nav-collapse -->
@@ -204,7 +196,7 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="#">My Availability Calendar</a></li>
+              <li class="actice"><a href="./MyAvailabilityCalendar.php">My Availability Calendar</a></li>
               <li><a href="./availability.php">Update Availabilty</a></li>
               <li><a href="./requesttimeoff.php">Request Off</a></li>
             </ul>

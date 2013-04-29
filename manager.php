@@ -75,23 +75,10 @@ include 'dbconnect.php';
                   Employees  
                 <b class="caret"></b>  
                 </a>  
-                  <ul class="dropdown-menu">
+                  <ul class="dropdown-menu">  
                     <li><a href="./ManageEmployees.php">Manage Employees</a></li>
                   </ul>  
               </li>
-              <li class="dropdown">  
-                <a href="#"  
-                  class="dropdown-toggle"  
-                  data-toggle="dropdown">  
-                  Availability  
-                <b class="caret"></b>  
-                </a>  
-                  <ul class="dropdown-menu">
-                    <li><a href="#">My Availability Calendar</a></li>
-                    <li><a href="#">Update Availability</a></li>
-                    <li><a href="#">Request Off</a></li>
-                  </ul>
-              </li> 
               <li class="dropdown">  
                 <a href="#"  
                   class="dropdown-toggle"  
@@ -100,24 +87,21 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">My Schedule</a></li>
-                    <li><a href="#">Whole Schedule</a></li>
+                    <li><a href="./managerschedule.php">Full Schedule</a></li>
                     <li><a href="./generateschedule.php">Generate Schedule</a></li>
-                    <li><a href="./printableschedule.php">Printable Schedule</a></li>
                   </ul>
               </li>
               <li class="dropdown">  
                 <a href="#"  
                   class="dropdown-toggle"  
                   data-toggle="dropdown">  
-                  Time  
+                  Reports  
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="#">Time Clock</a></li>
-                    <li><a href="./report.php">Payroll</a></li>
+                    <li><a href="./report.php">Reports</a></li>
                   </ul>
-              </li> 
+              </li>
               <!-- End Top Bar Dropdown -->
             </ul>
           </div><!--/.nav-collapse -->
@@ -131,10 +115,9 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="#">Employees</a></li>
-              <li><a href="#">Availabilty</a></li>
-              <li><a href="#">Schedule</a></li>
-              <li><a href="#">Time</a></li>
+              <li class="actice"><a href="./ManageEmployees.php">Employees</a></li>
+              <li><a href="./managerschedule.php">Schedule</a></li>
+              <li><a href="./report.php">Report</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -147,52 +130,6 @@ include 'dbconnect.php';
           </div>
           
           <div class="row-fluid">
-          
-          <!-- Get employee list in dropdown -->
-           <!-- <form method="post" action="manager.php">
-            <?php
-
-              
-              // echo "<select name = 'User_ID'>";
-              // while($row = mysql_fetch_row($emp_list)) {
-
-              //   echo "<option name=dropdown value='" . $row[0] . "'>" . $row[1] . "</option>";
-              // }
-              // echo "</select>";
-
-            ?>
-          </form>
-          <table>
-            <th/>
-            <th/>
-            <th/>
-            <td/>
-            <td/>
-            <td/>
-          </table>
-
-          <div id="wrapper">
-            <for action="" method = "post">
-
-              <select name="gender" id="gender" class="gender">
-                <option value="">Select One</option>
-                <?php if (!empty($list)) { ?>
-
-                <?php foreach($list as $row) { ?>
-                  <option value="<?php echo $row['User_ID']; ?>">
-                    <?php echo $row['First_Name']; ?>
-                  </option>
-                  <?php } ?>
-                <?php } ?>
-              </select>
-
-              <select name="gender" id="gender" class="gender" disabled="disabled">
-                <option value="">- - - - -</option>
-              </select>
-              <select name="gender" id="gender" class="gender" disable="disabled">
-                <option value="">- - - - -</option>
-              </select>
-          </div> -->
 
           </div><!--/row-->
         </div><!--/span-->
