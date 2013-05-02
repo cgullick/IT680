@@ -204,15 +204,15 @@ if (isset($_POST['GenerateSchedulebutton'])){
         $q2counter = mysql_query("SELECT time_id from time");
         while ($row2 = mysql_fetch_array($q2counter, MYSQL_BOTH)){
           //printf("time_id: %s", $row2["time_id"]); echo "<br/>";
-          $insert_query = mysql_query("select t1.emp_id,t1.work_date, t1.emp_start_time, t1.emp_end_time, t1.all_day, t1.week_num
+          $insert_query = mysql_query("SELECT t1.emp_id,t1.work_date, t1.emp_start_time, t1.emp_end_time, t1.all_day, t1.week_num
                         from 
                         (SELECT ea.emp_id,t.start_time as emp_start_time, t.end_time as emp_end_time,
                          null as all_day, week(curdate())+1 as week_num,
                         (case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
                         when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
                         when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
-                        when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.2))
-                        when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.25))
+                        when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
+                        when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
                         else null end) as work_date
                         from emp_availability ea join time_availability ta on ta.time_availability_id = ea.time_availability_id join
                         day d  on ta.day_id = d.day_id join time t on t.time_id = ta.time_id 
@@ -222,12 +222,12 @@ if (isset($_POST['GenerateSchedulebutton'])){
           $colnum= mysql_fetch_row($insert_query);
           //echo $colnum[0]."     ".$colnum[1]."     ".$colnum[2]."     ".$colnum[3]."     ".$colnum[4]."     ".$colnum[5]."<br/>"; 
           //echo "&nbsp&nbsp&nbsp colnum output is:".$colnum[1]."     ".$colnum[2]."     ".$colnum[3]."<br/>";
-          $q3 = mysql_query("select count(emp_id) as emp_count from schedule group by work_date, emp_start_time, emp_end_time
+          $q3 = mysql_query("SELECT count(emp_id) as emp_count from schedule group by work_date, emp_start_time, emp_end_time
                              having work_date = (select (case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
                              when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
                              when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
-                             when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.2))
-                             when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.25))
+                             when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
+                             when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
                              else null end) as work_date 
                              from day d where rank_id = '".$row1['rank_id']."') 
                              and emp_start_time = (select start_time from time where time_id = '".$row2['time_id']."')
@@ -279,8 +279,8 @@ if (isset($_POST['GenerateSchedulebutton'])){
                       $finalINSERTQUERY = mysql_query("SELECT ea.emp_id,(case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
                                                       when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
                                                       when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
-                                                      when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.2))
-                                                      when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.25))
+                                                      when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
+                                                      when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
                                                       else null end) as work_date,
                                                       t.start_time as emp_start_time, t.end_time as emp_end_time,
                                                        null as all_day, week(curdate())+1 as week_num
@@ -311,12 +311,13 @@ if (isset($_POST['GenerateSchedulebutton'])){
         
       }
       mysql_free_result($q1counter);
-  header("Location: ./generateschedule.php");
+  header("Location: ./ical.php");
 }
 
 /* End Generate Schedule */
 
 /* Manage Employees Start */
+
 $id = addslashes($_REQUEST['id']);
 $EditEmployees = mysql_fetch_array(mysql_query('SELECT * FROM `employee` WHERE `Emp_ID` = "'.$id.'"'));
 $timesheet = mysql_query("SELECT Date , clock_in_time, clock_out_time, timediff(concat(date, ' ',clock_out_time), concat(date,' ',clock_in_time))as hours FROM time_clock where emp_id = '".$id."'");
@@ -335,6 +336,66 @@ header("Location: ./ManageEmployees.php");
 };
 
 /* Manage Employees End */
+
+/* Start Available Shifts Queries */
+
+//current week shifts
+$curweek1s = "SELECT work_date, emp_start_time, emp_end_time
+              from schedule s   
+              where s.week_num = week(curdate())
+              and concat(work_date, ' ', emp_start_time >= curtime()) >= now()
+              group by s.work_date, s.emp_start_time, s.emp_end_time
+              having count(emp_id) = '1'";
+
+$curweek0s ="SELECT distinct((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())) * 7))
+                        when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())) * 7.05))
+                        when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())) * 7.1))
+                        when d.day = 'Thursday' then (select makedate(2013, (week(curdate())) * 7.15))
+                        when d.day = 'Friday' then (select makedate(2013, (week(curdate())) * 7.2))
+                        else null end)) as work_date, t.start_time, t.end_time
+                        from time_availability ta join time t on t.time_id = ta.time_id
+                        join day d on d.day_id = ta.day_id 
+                        where ((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())) * 7))
+                        when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())) * 7.05))
+                        when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())) * 7.1))
+                        when d.day = 'Thursday' then (select makedate(2013, (week(curdate())) * 7.15))
+                        when d.day = 'Friday' then (select makedate(2013, (week(curdate())) * 7.2))
+                        else null end), t.start_time, t.end_time) not in (
+                        select work_date, emp_start_time, emp_end_time
+                        from schedule s   
+                        where s.week_num = week(curdate())
+                        group by s.work_date, s.emp_start_time, s.emp_end_time)"
+
+//next weeks shifts
+
+$nextweek1s = "SELECT work_date, emp_start_time, emp_end_time
+              from schedule s   
+              where s.week_num = week(curdate())+1
+              and concat(work_date, ' ', emp_start_time >= curtime()) >= now()
+              group by s.work_date, s.emp_start_time, s.emp_end_time
+              having count(emp_id) = '1';"
+
+$nextweek0s = "SELECT distinct((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
+                        when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
+                        when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
+                        when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
+                        when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
+                        else null end)) as work_date, t.start_time, t.end_time
+                        from time_availability ta join time t on t.time_id = ta.time_id
+                        join day d on d.day_id = ta.day_id 
+                        where ((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
+                        when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
+                        when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
+                        when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
+                        when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
+                        else null end), t.start_time, t.end_time) not in (
+                        select work_date, emp_start_time, emp_end_time
+                        from schedule s   
+                        where s.week_num = week(curdate())+1
+                        group by s.work_date, s.emp_start_time, s.emp_end_time)"
+
+
+/* End Available Shifts Queries */
 
 
 ?>

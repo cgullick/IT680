@@ -165,6 +165,7 @@ include 'dbconnect.php';
               }
             echo "</table>";
 				  ?>
+
           </div><!--/row-->
         </div><!--/span-->
       </div><!--/row-->
@@ -183,6 +184,7 @@ include 'dbconnect.php';
     <script src="./js/jquery-1.9.1.js"></script>
     <script src="./js/jquery-1.9.1.min.js"></script> 
     <script src="./js/bootstrap.js"></script>
+    <script src="./bootstrap-formhelpers-timepicker.js"></script>
 
   </body>
 </html>

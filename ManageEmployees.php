@@ -87,7 +87,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="./schedule.php">View Schedule</a></li>
+                    <li><a href="./managerschedule.php">View Schedule</a></li>
                     <li><a href="./generateschedule.php">Generate Schedule</a></li>
                   </ul>
               </li>
@@ -115,7 +115,9 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="./ManageEmployees.php">Manage Employees</a></li>
+              <li class="actice"><a href="./manager.php">Employees</a></li>
+              <li><a href="./managerschedule.php">Schedule</a></li>
+              <li><a href="./report.php">Report</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

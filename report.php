@@ -67,8 +67,42 @@ include 'dbconnect.php';
             </p>
             <ul class="nav">
               <li class="active"><a href="./manager.php">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <!--Start Top Bar Dropdown-->
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Employees  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">  
+                    <li><a href="./ManageEmployees.php">Manage Employees</a></li>
+                  </ul>  
+              </li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Schedule  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="./managerschedule.php">View Schedule</a></li>
+                    <li><a href="./generateschedule.php">Generate Schedule</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Reports  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="./report.php">Reports</a></li>
+                  </ul>
+              </li>
+              <!-- End Top Bar Dropdown -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -154,19 +188,9 @@ include 'dbconnect.php';
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../assets/js/jquery.js"></script>
-    <script src="../assets/js/bootstrap-transition.js"></script>
-    <script src="../assets/js/bootstrap-alert.js"></script>
-    <script src="../assets/js/bootstrap-modal.js"></script>
-    <script src="../assets/js/bootstrap-dropdown.js"></script>
-    <script src="../assets/js/bootstrap-scrollspy.js"></script>
-    <script src="../assets/js/bootstrap-tab.js"></script>
-    <script src="../assets/js/bootstrap-tooltip.js"></script>
-    <script src="../assets/js/bootstrap-popover.js"></script>
-    <script src="../assets/js/bootstrap-button.js"></script>
-    <script src="../assets/js/bootstrap-collapse.js"></script>
-    <script src="../assets/js/bootstrap-carousel.js"></script>
-    <script src="../assets/js/bootstrap-typeahead.js"></script>
+     <script src="./js/jquery-1.9.1.js"></script>
+    <script src="./js/jquery-1.9.1.min.js"></script> 
+    <script src="./js/bootstrap.js"></script>
 
   </body>
 </html>

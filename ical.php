@@ -116,11 +116,14 @@ if (is_writable($ics_file)) {
     exit;
   }
  
-   echo "Success, wrote to <b>schedule.ics</b><br>\n\n";
+   //echo "Success, wrote to <b>schedule.ics</b><br>\n\n";
+  header("Location: ./generateschedule.php");
 
   fclose($handle);
  
 } else {
   echo "The file <b>$ics_file</b> is not writable\n\n";
 }
+
+
 ?>

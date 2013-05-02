@@ -87,7 +87,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="./managerschedule.php">Full Schedule</a></li>
+                    <li><a href="./managerschedule.php">View Schedule</a></li>
                     <li><a href="./generateschedule.php">Generate Schedule</a></li>
                   </ul>
               </li>

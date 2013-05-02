@@ -60,10 +60,10 @@ include 'dbconnect.php';
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="./employee.php">Maverick EMS</a>
+          <a class="brand" href="./manager.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
               <li class="active"><a href="./manager.php">Home</a></li>
@@ -87,7 +87,7 @@ include 'dbconnect.php';
                 <b class="caret"></b>  
                 </a>  
                   <ul class="dropdown-menu">
-                    <li><a href="./schedule.php">View Schedule</a></li>
+                    <li><a href="./managerschedule.php">View Schedule</a></li>
                     <li><a href="./generateschedule.php">Generate Schedule</a></li>
                   </ul>
               </li>
@@ -101,7 +101,7 @@ include 'dbconnect.php';
                   <ul class="dropdown-menu">
                     <li><a href="./report.php">Reports</a></li>
                   </ul>
-              </li> 
+              </li>
               <!-- End Top Bar Dropdown -->
             </ul>
           </div><!--/.nav-collapse -->
@@ -115,10 +115,9 @@ include 'dbconnect.php';
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Navigation Bar</li>
-              <li class="actice"><a href="#">Employees</a></li>
-              <li><a href="#">Availabilty</a></li>
-              <li><a href="#">Schedule</a></li>
-              <li><a href="#">Time</a></li>
+              <li class="actice"><a href="./manager.php">Employees</a></li>
+              <li><a href="./managerschedule.php">Schedule</a></li>
+              <li><a href="./report.php">Report</a></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->

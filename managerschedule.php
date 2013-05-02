@@ -47,6 +47,10 @@ include 'dbconnect.php';
                     <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
                                    <link rel="shortcut icon" href="../assets/ico/favicon.png">
 
+    <script src="./js/jquery-1.9.1.js"></script>
+    <script src="./js/jquery-1.9.1.min.js"></script> 
+    <script src="./js/bootstrap.js"></script>
+
     <!-- Full Calender -->
     <link rel='stylesheet' type='text/css' href='/js/fullcalendar-1.6.0/fullcalendar/fullcalendar.css' />
     <script type='text/javascript' src='/js/fullcalendar-1.6.0/jquery/jquery-1.9.1.min.js'></script>
@@ -94,15 +98,22 @@ include 'dbconnect.php';
                 weekends:false,
                 allDaySlot:false,
                 weekNumbers:true,
-                contentHeight:490,
-                eventClick: function(calEvent, jsEvent, view) {
-                  alert('Event: ' + calEvent.title + '\n Start Time: ' + calEvent.start + '\n End Time: ' + calEvent.end);
+                contentHeight:580,
+                eventClick: function(calEvent, jsEvent, view) { 
+                  alert('Event: ' + calEvent.title +'\n Start Time: ' + calEvent.start +'\n End Time: '+ calEvent.end);
+                  // alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
+                  // alert('View: ' + view.name);
+
+                  // change the border color just for fun
+                  //$(this).css('border-color', 'red');
+
                 },
-                events: './myevents.php'
+                events: './fullschedule.php',
 
                 // editable:true
                 
-            })
+            });
+            //$('#calendar').fullCalendar('next');
 
         });
     </script>
@@ -121,19 +132,53 @@ include 'dbconnect.php';
           <a class="brand" href="./manager.php">Maverick EMS</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
-              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'> Log out </a>"; ?></a>
+              Logged in as <a href="#" class="navbar-link"><?php echo $_SESSION['username']."<a href='logout.php'>  Log out</a>"; ?></a>
             </p>
             <ul class="nav">
               <li class="active"><a href="./manager.php">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <!--Start Top Bar Dropdown-->
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Employees  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">  
+                    <li><a href="./ManageEmployees.php">Manage Employees</a></li>
+                  </ul>  
+              </li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Schedule  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="./managerschedule.php">View Schedule</a></li>
+                    <li><a href="./generateschedule.php">Generate Schedule</a></li>
+                  </ul>
+              </li>
+              <li class="dropdown">  
+                <a href="#"  
+                  class="dropdown-toggle"  
+                  data-toggle="dropdown">  
+                  Reports  
+                <b class="caret"></b>  
+                </a>  
+                  <ul class="dropdown-menu">
+                    <li><a href="./report.php">Reports</a></li>
+                  </ul>
+              </li>
+              <!-- End Top Bar Dropdown -->
             </ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
     </div>
 
-    <div class="container-fluid">
+     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
           <div class="well sidebar-nav">
@@ -145,18 +190,23 @@ include 'dbconnect.php';
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
+        
         <div class="span9">
-          <div class="hero-unit">
+          <div class="page-header">
             <h1>Schedule</h1>
             <p>This displays the schedule</p>
 
-            </div>
-          </div>
-            <div class="row fluid">
-              <div class="span12">
             <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
           </div>
+        </div><!--row-fluid-->
           <div id='calendar'></div>
+
+
+
+            <!--<p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>-->
+          </div>
+          <div class="row-fluid">
+          <div class="span12" id='calendar'></div>
           <!--<img src="sav.png" width="150" height="150">-->
           <div class="row-fluid">
             
