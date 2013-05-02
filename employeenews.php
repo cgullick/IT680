@@ -141,9 +141,44 @@ include 'dbconnect.php';
           </div>
 
           <div class="row-fluid">
+            <div class="span6">
+            <?php 
+              
+              echo "<table class=table>
+              <caption><h3 style=float:left>This Week's Available Shifts</h3></caption>
+              <tr>
+              <th>Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              </tr>";
 
-            
-            
+              while($row = mysql_fetch_array($CurWeek))
+                {
+                echo "<tr>";
+                echo "<td>" . $row['work_date'] . "</td>";
+                echo "<td>" . $row['emp_start_time'] . "</td>";
+                echo "<td>" . $row['emp_end_time'] . "</td>";
+                echo "</tr>";
+                }
+              echo "</table>";
+              echo "<table class=table>
+              <caption><h3 style=float:left>Next Week's Available Shifts</h3></caption>
+              <tr>
+              <th>Date</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              </tr>";
+              while($row = mysql_fetch_array($NextWeek))
+                {
+                echo "<tr>";
+                echo "<td>" . $row['work_date'] . "</td>";
+                echo "<td>" . $row['emp_start_time'] . "</td>";
+                echo "<td>" . $row['emp_end_time'] . "</td>";
+                echo "</tr>";
+                }
+              echo "</table>";
+            ?>
+            </div>
           <div>
 
           </div><!--/row-->
