@@ -341,64 +341,68 @@ header("Location: ./ManageEmployees.php");
 
 //current week shifts
 $CurWeek = mysql_query (" SELECT * from
-                            (select work_date, emp_start_time, emp_end_time
-                            from schedule s   
-                            where s.week_num = week(curdate())
-                            and concat(work_date, ' ', emp_start_time >= curtime()) >= now()
-                            group by s.work_date, s.emp_start_time, s.emp_end_time
-                            having count(emp_id) = '1'
+                          (select work_date, emp_start_time, emp_end_time
+                          from schedule s   
+                          where s.week_num = week(curdate())
+                          and concat(work_date, ' ', emp_start_time >= curtime()) >= now()
+                          group by s.work_date, s.emp_start_time, s.emp_end_time
+                          having count(emp_id) = '1'
 
-                            UNION
-                            select distinct((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())) * 7))
-                                                    when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())) * 7.05))
-                                                    when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())) * 7.1))
-                                                    when d.day = 'Thursday' then (select makedate(2013, (week(curdate())) * 7.15))
-                                                    when d.day = 'Friday' then (select makedate(2013, (week(curdate())) * 7.2))
-                                                    else null end)) as work_date, t.start_time, t.end_time
-                            from time_availability ta join time t on t.time_id = ta.time_id
-                            join day d on d.day_id = ta.day_id 
-                            where ((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())) * 7))
-                                                    when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())) * 7.05))
-                                                    when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())) * 7.1))
-                                                    when d.day = 'Thursday' then (select makedate(2013, (week(curdate())) * 7.15))
-                                                    when d.day = 'Friday' then (select makedate(2013, (week(curdate())) * 7.2))
-                                                    else null end), t.start_time, t.end_time) not in (
-                            select work_date, emp_start_time, emp_end_time
-                            from schedule s   
-                            where s.week_num = week(curdate())
-                            group by s.work_date, s.emp_start_time, s.emp_end_time))t1
-                            order by t1.work_date ");
+                          UNION
+                          select distinct((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())) * 7))
+                                                  when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())) * 7.05))
+                                                  when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())) * 7.1))
+                                                  when d.day = 'Thursday' then (select makedate(2013, (week(curdate())) * 7.15))
+                                                  when d.day = 'Friday' then (select makedate(2013, (week(curdate())) * 7.2))
+                                                  else null end)) as work_date, t.start_time, t.end_time
+                          from time_availability ta join time t on t.time_id = ta.time_id
+                          join day d on d.day_id = ta.day_id 
+                          where ((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())) * 7))
+                                                  when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())) * 7.05))
+                                                  when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())) * 7.1))
+                                                  when d.day = 'Thursday' then (select makedate(2013, (week(curdate())) * 7.15))
+                                                  when d.day = 'Friday' then (select makedate(2013, (week(curdate())) * 7.2))
+                                                  else null end), t.start_time, t.end_time) not in (
+                          select work_date, emp_start_time, emp_end_time
+                          from schedule s   
+                          where s.week_num = week(curdate())
+                          group by s.work_date, s.emp_start_time, s.emp_end_time))t1
+                          where concat(t1.work_date, ' ', t1.emp_start_time) >=now()
+                          order by t1.work_date
+                          ");
 
 //next weeks shifts
 
 $NextWeek = mysql_query (" SELECT * from
-                            (select work_date, emp_start_time, emp_end_time
-                            from schedule s   
-                            where s.week_num = week(curdate())+1
-                            and concat(work_date, ' ', emp_start_time >= curtime()) >= now()
-                            group by s.work_date, s.emp_start_time, s.emp_end_time
-                            having count(emp_id) = '1'
+                          (select work_date, emp_start_time, emp_end_time
+                          from schedule s   
+                          where s.week_num = week(curdate())+1
+                          and concat(work_date, ' ', emp_start_time >= curtime()) >= now()
+                          group by s.work_date, s.emp_start_time, s.emp_end_time
+                          having count(emp_id) = '1'
 
-                            UNION
-                            select distinct((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
-                                                    when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
-                                                    when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
-                                                    when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
-                                                    when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
-                                                    else null end)) as work_date, t.start_time, t.end_time
-                            from time_availability ta join time t on t.time_id = ta.time_id
-                            join day d on d.day_id = ta.day_id 
-                            where ((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
-                                                    when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
-                                                    when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
-                                                    when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
-                                                    when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
-                                                    else null end), t.start_time, t.end_time) not in (
-                            select work_date, emp_start_time, emp_end_time
-                            from schedule s   
-                            where s.week_num = week(curdate())+1
-                            group by s.work_date, s.emp_start_time, s.emp_end_time))t1
-                            order by t1.work_date ");
+                          UNION
+                          select distinct((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
+                                                  when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
+                                                  when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
+                                                  when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
+                                                  when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
+                                                  else null end)) as work_date, t.start_time, t.end_time
+                          from time_availability ta join time t on t.time_id = ta.time_id
+                          join day d on d.day_id = ta.day_id 
+                          where ((case when d.day = 'Monday' then (select makedate(2013, (week(curdate())+1) * 7))
+                                                  when d.day = 'Tuesday' then (select makedate(2013, (week(curdate())+1) * 7.05))
+                                                  when d.day = 'Wednesday' then (select makedate(2013, (week(curdate())+1) * 7.1))
+                                                  when d.day = 'Thursday' then (select makedate(2013, (week(curdate())+1) * 7.15))
+                                                  when d.day = 'Friday' then (select makedate(2013, (week(curdate())+1) * 7.2))
+                                                  else null end), t.start_time, t.end_time) not in (
+                          select work_date, emp_start_time, emp_end_time
+                          from schedule s   
+                          where s.week_num = week(curdate())+1
+                          group by s.work_date, s.emp_start_time, s.emp_end_time))t1
+                          where concat(t1.work_date, ' ', t1.emp_start_time) >=now()
+                          order by t1.work_date
+                          ");
 
 
 /* End Available Shifts Queries */
